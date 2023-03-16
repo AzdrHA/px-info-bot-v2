@@ -1,5 +1,5 @@
 ARG NODE_VERSION=18
-FROM node:${NODE_VERSION}-alpine as node_api
+FROM node:${NODE_VERSION}-alpine AS node_api
 
 WORKDIR /srv/app
 
@@ -13,5 +13,7 @@ RUN set -eux; \
 	;
 
 RUN npm -g install npm@latest
+
+USER node
 
 CMD ["npm", "run", "start"]

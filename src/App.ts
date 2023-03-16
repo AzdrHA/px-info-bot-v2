@@ -15,5 +15,6 @@ new Client({
   ],
   partials: [Partials.Message, Partials.GuildMember, Partials.User],
   token: DISCORD_TOKEN,
-  prefix: DISCORD_PREFIX
+  prefix: DISCORD_PREFIX,
+  autoStart: true
 })

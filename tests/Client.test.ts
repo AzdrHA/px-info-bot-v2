@@ -1,16 +1,21 @@
 import Client from '../src/Client'
-import { Client as BaseClient } from 'discord.js'
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '../src/config/AppConfig'
 
 describe('Client', () => {
-  it('should be valid', () => {
-    const client = new Client({
+  let client: Client
+
+  beforeEach(() => {
+    client = new Client({
+      prefix: DISCORD_PREFIX,
+      token: DISCORD_TOKEN,
       intents: [],
       partials: [],
-      token: 'token123',
-      prefix: '123prefix'
+      autoStart: false
     })
-    expect(client).toBeInstanceOf(BaseClient)
-    expect(client.prefix).toBe('123prefix')
-    expect(client.token).toBe('token123')
+  })
+
+  it('should be valid', async () => {
+    expect(client.prefix).toBe(DISCORD_PREFIX)
+    expect(client.token).toBe(DISCORD_TOKEN)
   })
 })

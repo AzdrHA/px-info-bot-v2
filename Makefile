@@ -15,7 +15,7 @@ build:
 
 # Path: Makefile
 shell:
-	@docker-compose -f docker-compose.yml -f docker-compose.local.yml exec phantom-x-bot sh
+	@docker-compose -f docker-compose.yml -f docker-compose.local.yml run --rm phantom-x-bot sh
 
 # Path: Makefile
 editable:
@@ -30,5 +30,8 @@ lint:
 test:
 	@docker-compose -f docker-compose.yml -f docker-compose.test.yml run --rm phantom-x-bot npm test $(FILE)
 
+sonar:
+	sonar-scanner   -Dsonar.projectKey=PhantomX-Bot   -Dsonar.sources=.   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=sqp_5eefb9c7749881a1123750ea1f876fd2a572c2a6
+
 .PHONY: ci
-ci: lint test
+ci: lint test sonar
