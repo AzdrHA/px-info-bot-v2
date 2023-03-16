@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  phantom-x-bot:
+    build:
+      args:
+        - NODE_ENV=development

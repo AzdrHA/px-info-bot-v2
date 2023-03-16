@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  phantom-x-bot:
+    build:
+      context: ./docker/node
+    volumes:
+      - ./:/srv/app:rw,cached
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    labels:
+      - word.enable=true
