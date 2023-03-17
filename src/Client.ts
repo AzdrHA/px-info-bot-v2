@@ -43,5 +43,6 @@ export default class Client extends BaseClient {
       const loadFileService = new LoadFileService(this)
       await loadFileService.searchFolder(util.format('%s/%s', APP_DIR, dir))
     }
+    console.log('\n')
   }
 }

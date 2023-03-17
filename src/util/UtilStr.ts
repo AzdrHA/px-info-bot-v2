@@ -62,3 +62,20 @@ export const isScriptFile = (file: string): boolean => {
 export const leadingZero = (num: number): string => {
   return num < 10 ? util.format('0%s', num) : num.toString()
 }
+
+/**
+ * @public
+ * @param {string} content
+ * @param {Record<string, string>} params
+ * @returns {string}
+ * @description Replace string with params
+ * @example
+ * replace('Hello {name}', { name: 'World' }) // Hello World
+ */
+export const replace = (content: string, params: Record<string, string>): string => {
+  let result = content
+  for (const key in params) {
+    result = result.replace(new RegExp(util.format('{%s}', key), 'gi'), params[key])
+  }
+  return result
+}
