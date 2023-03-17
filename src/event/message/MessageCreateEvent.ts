@@ -48,6 +48,11 @@ export default class MessageCreateEvent extends AbstractEvent {
     command.args = args
     command.message = message
 
+    // Check if the user has permission to run the command
+    if ((await command.hasPermission()) === false) {
+      return await message.reply('You don\'t have permission to run this command!')
+    }
+
     // Run the command
     return await command.run()
   }

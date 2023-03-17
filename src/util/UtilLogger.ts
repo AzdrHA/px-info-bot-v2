@@ -104,6 +104,16 @@ class BaseUtilLogger {
     const warn = chalk.yellow('WARN')
     this.log(warn, message)
   }
+
+  public apiRequest = (message: string): void => {
+    const apiRequest = chalk.blue('API REQUEST')
+    this.log(apiRequest, message)
+  }
+
+  public cacheRequest = (message: string): void => {
+    const cacheRequest = chalk.magenta('CACHE REQUEST')
+    this.log(cacheRequest, message)
+  }
 }
 
 export default new BaseUtilLogger()

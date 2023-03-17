@@ -48,7 +48,7 @@ class BaseUtilTranslator {
    * @param file
    * @returns {string}
    */
-  public trans (key: string, params: TUtilTranslatorOptions, file: string = 'message'): string {
+  public trans (key: string, params: TUtilTranslatorOptions, file: string): string {
     return replace(this.getTranslation(key, file), params)
   }
 }

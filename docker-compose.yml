@@ -12,3 +12,11 @@ services:
     tty: true
     labels:
       - word.enable=true
+    networks:
+      - phantom_x_network
+    restart: always
+
+networks:
+  phantom_x_network:
+    external: true
+    name: bot_phantom_x_network
