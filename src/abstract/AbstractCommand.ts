@@ -35,7 +35,6 @@ export default abstract class AbstractCommand {
    * @returns {boolean}
    */
   public async hasPermission (): Promise<boolean | undefined> {
-    return true
     if (this.permission === EPermission.MEMBER) return true
     const roles = await roleRequest.get()
     const resourcePermissionList: Record<keyof IRole, string[]> = {

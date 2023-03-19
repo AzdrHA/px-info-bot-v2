@@ -5,6 +5,10 @@ import { type Message } from 'discord.js'
 import { ENodeEnv } from '../../../src/enum/ENodeEnv'
 import { DONT_PING_ME } from '../../../src/config/EmojiConfig'
 import { COMMAND_LIST } from '../../../src/config/Constant'
+import type AbstractCommand from '../../../src/abstract/AbstractCommand'
+import { EPermission } from '../../../src/enum/EPermission'
+import roleRequest from '../../../src/api/RoleRequest'
+import type PingCommand from '../../../src/command/PingCommand'
 
 describe('MessageCreateEvent', () => {
   let event: MessageCreateEvent
@@ -91,7 +95,8 @@ describe('MessageCreateEvent', () => {
 
   it('should run the command if the message is valid', async () => {
     const command = {
-      run: jest.fn()
+      run: jest.fn(),
+      hasPermission: jest.fn().mockReturnValue(true)
     } as any
 
     const validMessage = {
@@ -104,5 +109,34 @@ describe('MessageCreateEvent', () => {
     command.args = ['arg1', 'arg2']
     await event.run(validMessage)
     expect(command.run).toHaveBeenCalled()
+  })
+
+  it('should reply with a message if the member does not have permission to run support the command', async () => {
+    const validMessage = {
+      ...mockMessage,
+      content: '-ping arg1 arg2'
+    } as any
+
+    const command: PingCommand = {
+      run: jest.fn(),
+      hasPermission: jest.fn().mockReturnValue(false),
+      client,
+      message: validMessage as Message,
+      alias: [],
+      args: [],
+      description: '',
+      usage: '',
+      permission: EPermission.SUPPORT
+    }
+
+    const spy = jest.fn(command.prototype.hasPermission)
+
+    COMMAND_LIST.set('ping', command)
+    command.client = client
+    const res = await event.run(validMessage)
+    expect(command.run).not.toHaveBeenCalled()
+    expect(validMessage.reply).toHaveBeenCalled()
+    expect(validMessage.reply).toHaveBeenCalledWith('You don\'t have permission to run this command!')
+    expect(res).toBeUndefined()
   })
 })
