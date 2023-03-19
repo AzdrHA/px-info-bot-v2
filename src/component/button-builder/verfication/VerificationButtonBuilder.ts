@@ -1,7 +1,7 @@
-import { ActionRowBuilder, ButtonBuilder, type ButtonComponentData, ButtonStyle } from 'discord.js'
+import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import DefaultButtonBuilder from '../DefaultButtonBuilder'
 import { EVerificationButton } from '../../../enum/EVerificationButton'
-import DefaultCanceledButtonBuilder from '../DefaultCanceledButtonBuilder'
+import translator from '../../../util/UtilTranslator'
 
 /**
  * @class VerificationButtonBuilder
@@ -9,20 +9,20 @@ import DefaultCanceledButtonBuilder from '../DefaultCanceledButtonBuilder'
 export default class VerificationButtonBuilder extends DefaultButtonBuilder {
   /**
    * @public
-   * @return {Partial<ButtonComponentData>[]}
+   * @return {Promise<ButtonBuilder[]>}
    */
-  public initializeButton = async (): Promise<Array<Partial<ButtonComponentData>>> => {
+  public initializeButton = async (): Promise<ButtonBuilder[]> => {
     return [
-      {
-        label: 'Verify',
+      new ButtonBuilder({
+        label: translator('Verify'),
         style: ButtonStyle.Success,
-        customId: 'VERIFY'
-      },
-      {
-        label: 'Refuse',
+        customId: EVerificationButton.VERIFY
+      }),
+      new ButtonBuilder({
+        label: translator('Refuse'),
         style: ButtonStyle.Danger,
-        customId: 'REFUSE'
-      }
+        customId: EVerificationButton.REFUSE
+      })
     ]
   }
 }

@@ -19,7 +19,7 @@ export default class SetCommand extends AbstractCommand {
 
     const message = await this.send({
       content: translator('What **Settings** would you like to change?'),
-      components: [await new VerificationButtonBuilder().buildButton()]
+      components: await this.buildButtons(VerificationButtonBuilder)
     })
 
     return await this.buttonCollector(message)

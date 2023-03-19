@@ -1,9 +1,7 @@
 import type Client from '../Client'
 import ButtonCollector from '../collector/ButtonCollector'
 import type DefaultButtonRowBuilder from '../component/row-builder/DefaultButtonRowBuilder'
-import type DefaultButtonBuilder from '../component/button-builder/DefaultButtonBuilder'
 import { type Message, type MessageCreateOptions, type MessagePayload } from 'discord.js'
-import VerificationButtonBuilder from '../component/button-builder/verfication/VerificationButtonBuilder'
 
 /**
  * @class AbstractCommand
@@ -63,6 +61,6 @@ export default abstract class AbstractCommand {
    * @param {any} DataClass
    */
   public async buildButtons (DataClass: any): Promise<DefaultButtonRowBuilder[]> {
-    return [await new DataClass().buttons()]
+    return new DataClass().buildButton()
   }
 }

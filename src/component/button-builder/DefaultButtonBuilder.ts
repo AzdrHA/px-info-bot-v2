@@ -1,4 +1,4 @@
-import { ButtonBuilder, type ButtonComponentData } from 'discord.js'
+import { type ButtonBuilder } from 'discord.js'
 import DefaultButtonRowBuilder from '../row-builder/DefaultButtonRowBuilder'
 
 /**
@@ -8,16 +8,11 @@ import DefaultButtonRowBuilder from '../row-builder/DefaultButtonRowBuilder'
 export default abstract class DefaultButtonBuilder {
   /**
    * @protected
-   * @param {any|null} data
    * @return {DefaultButtonRowBuilder}
    */
-  public async buildButton (data?: any): Promise<DefaultButtonRowBuilder> {
-    return new DefaultButtonRowBuilder().setComponents(
-      (await this.initializeButton(data)).map((data) => new ButtonBuilder(data))
-    )
+  public buildButton = async (): Promise<DefaultButtonRowBuilder> => {
+    return new DefaultButtonRowBuilder().setComponents(await this.initializeButton())
   }
 
-  public abstract initializeButton (
-    data: any
-  ): Promise<Array<Partial<ButtonComponentData>>>
+  public abstract initializeButton (): Promise<ButtonBuilder[]>
 }
