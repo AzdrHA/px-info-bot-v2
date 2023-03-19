@@ -36,7 +36,7 @@ export default class Client extends BaseClient {
    * @private
    */
   private async _init (): Promise<void> {
-    for (const dir of ['event', 'command']) {
+    for (const dir of ['event', 'command', 'interaction']) {
       console.log('\n------------------------------')
       console.log(util.format('Loading %s', ucFirst(dir)))
       console.log('------------------------------')

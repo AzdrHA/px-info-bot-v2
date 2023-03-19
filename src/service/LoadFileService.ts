@@ -1,7 +1,7 @@
 import { readdirSync, statSync } from 'fs'
 import { parse, resolve } from 'path'
 import AbstractEvent from '../abstract/AbstractEvent'
-import { COMMAND_LIST, EVENT_LIST } from '../config/Constant'
+import { COMMAND_LIST, EVENT_LIST, INTERACTION_LIST } from '../config/Constant'
 import { Guild } from 'discord.js'
 import { SUPPORT_DISCORD } from '../config/AppConfig'
 import { formalizeEventName, isScriptFile } from '../util/UtilStr'
@@ -11,6 +11,7 @@ import UtilLogger from '../util/UtilLogger'
 import type Client from '../Client'
 import AbstractCommand from '../abstract/AbstractCommand'
 import { ENodeEnv } from '../enum/ENodeEnv'
+import AbstractInteraction from '../abstract/AbstractInteraction'
 
 /**
  * @class LoadFileService
@@ -61,6 +62,8 @@ export default class LoadFileService {
       await this.loadEvent(fileName, event, Action)
     } else if (event instanceof AbstractCommand) {
       await this.loadCommand(fileName, event, Action)
+    } else if (event instanceof AbstractInteraction) {
+      await this.loadInteraction(fileName, event, Action)
     }
 
     console.log(util.format('Loaded %s', fileName))
@@ -108,5 +111,19 @@ export default class LoadFileService {
       }
       COMMAND_LIST.set(name, event)
     })
+  }
+
+  /**
+   * Load a command
+   * @param {string} fileName
+   * @param {AbstractCommand} event
+   * @param {() => AbstractCommand} Action
+   * @private
+   */
+  private async loadInteraction (fileName: string, event: AbstractInteraction, Action: () => AbstractInteraction): Promise<any> {
+    if (INTERACTION_LIST.has(event.id) && process.env.NODE_ENV !== ENodeEnv.TEST) {
+      throw new AppException(util.format('The interaction %s is already registered', fileName))
+    }
+    INTERACTION_LIST.set(event.id, Action)
   }
 }
