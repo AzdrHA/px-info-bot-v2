@@ -1,9 +1,9 @@
 import { Client as BaseClient } from 'discord.js'
-import { type IClientOptions } from './interface/IClientOptions'
 import LoadFileService from './service/LoadFileService'
 import * as util from 'util'
-import { ucFirst } from './util/UtilStr'
-import { APP_DIR } from './config/Constant'
+import { type IClientOptions } from '@interface/IClientOptions'
+import { ucFirst } from '@util/UtilStr'
+import { APP_DIR } from '@config/Constant'
 
 /**
  * @class Client

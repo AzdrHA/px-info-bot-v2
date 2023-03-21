@@ -10,6 +10,8 @@ import { COMMAND_LIST } from '@config/Constant'
 /**
  * @class MessageCreateEvent
  * @extends AbstractEvent
+ * @classdesc Event class for messageCreate event.
+ * @see https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-messageCreate
  */
 export default class MessageCreateEvent extends AbstractEvent {
   /**
@@ -57,7 +59,10 @@ export default class MessageCreateEvent extends AbstractEvent {
         return await message.reply(error.message)
       }
       console.error(error)
-      return await message.reply('There was an error trying to execute that command!')
+      return await message.reply({
+        content: 'There was an error trying to execute that command!',
+        failIfNotExists: false
+      })
     }
   }
 }

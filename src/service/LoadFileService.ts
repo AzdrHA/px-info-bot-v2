@@ -36,7 +36,7 @@ export default class LoadFileService {
     for (const file of readdirSync(path)) {
       const filePath = resolve(path, file)
 
-      if (statSync(filePath).isDirectory()) return await this.searchFolder(filePath)
+      if (statSync(filePath).isDirectory()) await this.searchFolder(filePath)
       await this.loadFile(filePath)
     }
   }
@@ -93,7 +93,7 @@ export default class LoadFileService {
       if (!UtilLogger.DISABLE_EVENT_LOG.includes(fileName)) {
         UtilLogger.event(util.format('%s called', fileName))
       }
-      event.run(...args)
+      void event.run(...args)
     })
   }
 
@@ -124,6 +124,6 @@ export default class LoadFileService {
     if (INTERACTION_LIST.has(event.id) && process.env.NODE_ENV !== ENodeEnv.TEST) {
       throw new AppException(util.format('The interaction %s is already registered', fileName))
     }
-    INTERACTION_LIST.set(event.id, Action)
+    INTERACTION_LIST.set(event.id, event)
   }
 }

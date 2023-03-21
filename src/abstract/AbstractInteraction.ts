@@ -1,4 +1,5 @@
 import {
+  type BaseInteraction,
   type ButtonInteraction
 } from 'discord.js'
 import type Client from '@/Client'
@@ -32,5 +33,6 @@ export default abstract class AbstractInteraction {
   }
 
   public abstract id: string
-  public abstract run (): Promise<void>
+  public abstract global: boolean
+  public abstract run (): Promise<BaseInteraction>
 }

@@ -61,6 +61,6 @@ export default abstract class AbstractCommand {
    * @param {any} DataClass
    */
   public async buildButtons (DataClass: any): Promise<DefaultButtonRowBuilder[]> {
-    return new DataClass().buildButton()
+    return [await new DataClass().buildButton()]
   }
 }
