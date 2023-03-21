@@ -1,6 +1,6 @@
-import LoadFileService from '../../src/service/LoadFileService'
-import Client from '../../src/Client'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from '../../src/config/AppConfig'
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
+import LoadFileService from '@service/LoadFileService'
+import Client from '@/Client'
 
 describe('LoadFileService', () => {
   let client: Client

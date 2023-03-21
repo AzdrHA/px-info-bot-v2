@@ -1,5 +1,5 @@
 import { type ButtonBuilder } from 'discord.js'
-import DefaultButtonRowBuilder from '../row-builder/DefaultButtonRowBuilder'
+import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
 
 /**
  * @abstract

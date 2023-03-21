@@ -1,7 +1,7 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import DefaultButtonBuilder from '../DefaultButtonBuilder'
-import { EVerificationButton } from '../../../enum/EVerificationButton'
-import translator from '../../../util/UtilTranslator'
+import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder'
+import translator from '@util/UtilTranslator'
+import { EVerificationButton } from '@enum/EVerificationButton'
 
 /**
  * @class VerificationButtonBuilder

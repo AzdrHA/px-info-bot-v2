@@ -1,4 +1,4 @@
-import AbstractEvent from '../abstract/AbstractEvent'
+import AbstractEvent from '@abstract/AbstractEvent'
 
 /**
  * @class ReadyEvent

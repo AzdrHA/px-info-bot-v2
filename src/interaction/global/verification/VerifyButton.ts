@@ -1,5 +1,5 @@
-import AbstractInteraction from '../../../abstract/AbstractInteraction'
-import { EVerificationButton } from '../../../enum/EVerificationButton'
+import AbstractInteraction from '@abstract/AbstractInteraction'
+import { EVerificationButton } from '@enum/EVerificationButton'
 
 /**
  * @class VerifyButton

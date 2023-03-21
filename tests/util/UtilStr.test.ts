@@ -1,4 +1,4 @@
-import { formalizeEventName, isScriptFile, lcFirst, leadingZero, replace, ucFirst } from '../../src/util/UtilStr'
+import { formalizeEventName, isScriptFile, lcFirst, leadingZero, replace, ucFirst } from '@util/UtilStr'
 
 describe('util/str', () => {
   it('should be able to convert first character to lowercase', () => {

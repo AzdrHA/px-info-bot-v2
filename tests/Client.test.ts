@@ -1,5 +1,5 @@
 import Client from '../src/Client'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from '../src/config/AppConfig'
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
 
 describe('Client', () => {
   let client: Client

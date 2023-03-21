@@ -1,7 +1,7 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import DefaultButtonRowBuilder from '../row-builder/DefaultButtonRowBuilder'
-import translator from '../../util/UtilTranslator'
-import { EGlobalButton } from '../../enum/EGlobalButton'
+import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
+import translator from '@util/UtilTranslator'
+import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
  * @abstract

@@ -1,4 +1,4 @@
-import AppException from '../../src/exception/AppException'
+import AppException from '@exception/AppException'
 
 describe('AppException', () => {
   it('should be an instance of Error', () => {

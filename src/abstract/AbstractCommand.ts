@@ -1,7 +1,7 @@
-import type Client from '../Client'
-import ButtonCollector from '../collector/ButtonCollector'
-import type DefaultButtonRowBuilder from '../component/row-builder/DefaultButtonRowBuilder'
+import type Client from '@/Client'
 import { type Message, type MessageCreateOptions, type MessagePayload } from 'discord.js'
+import ButtonCollector from '@collector/ButtonCollector'
+import type DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
 
 /**
  * @class AbstractCommand

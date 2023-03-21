@@ -1,7 +1,7 @@
-import type Client from '../Client'
 import {
   type ButtonInteraction
 } from 'discord.js'
+import type Client from '@/Client'
 
 /**
  * @abstract

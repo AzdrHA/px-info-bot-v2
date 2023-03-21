@@ -1,6 +1,6 @@
-import UtilLogger from '../../src/util/UtilLogger'
 import * as util from 'util'
 import chalk from 'chalk'
+import UtilLogger from '@util/UtilLogger'
 
 describe('util/logger', () => {
   it('should be able to log to console', () => {

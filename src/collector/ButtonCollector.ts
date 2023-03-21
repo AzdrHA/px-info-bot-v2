@@ -1,5 +1,5 @@
 import { Message, type ButtonInteraction, type InteractionCollector, ComponentType } from 'discord.js'
-import UtilLogger from '../util/UtilLogger'
+import UtilLogger from '@util/UtilLogger'
 
 /**
  * @class ButtonCollector
