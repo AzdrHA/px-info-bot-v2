@@ -1,4 +1,4 @@
-import type Client from '../Client'
+import type Client from '@/Client'
 
 /**
  * @class AbstractEvent
@@ -14,5 +14,5 @@ export default abstract class AbstractEvent {
   public constructor (client: Client) {
     this.client = client
   }
-  public abstract run (...args: any[]): void
+  public abstract run (...args: any[]): Promise<any>
 }

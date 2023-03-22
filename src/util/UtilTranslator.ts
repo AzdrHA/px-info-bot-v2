@@ -1,10 +1,10 @@
 import * as util from 'util'
-import { PROJECT_DIR } from '../config/Constant'
-import { type TUtilTranslatorOptions } from '../interface/IUtilTranslator'
 import * as fs from 'fs'
 import { parse } from 'yaml'
 import UtilLogger from './UtilLogger'
 import { replace } from './UtilStr'
+import { type TUtilTranslatorOptions } from '@/interface/IUtilTranslator'
+import { PROJECT_DIR } from '@config/Constant'
 
 /**
  * @public

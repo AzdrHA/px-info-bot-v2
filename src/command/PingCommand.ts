@@ -1,5 +1,5 @@
-import AbstractCommand from '../abstract/AbstractCommand'
 import { type Message } from 'discord.js'
+import AbstractCommand from '@abstract/AbstractCommand'
 
 /**
  * @class PingCommand

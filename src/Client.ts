@@ -1,9 +1,9 @@
 import { Client as BaseClient } from 'discord.js'
-import { type IClientOptions } from './interface/IClientOptions'
 import LoadFileService from './service/LoadFileService'
 import * as util from 'util'
-import { ucFirst } from './util/UtilStr'
-import { APP_DIR } from './config/Constant'
+import { type IClientOptions } from '@interface/IClientOptions'
+import { ucFirst } from '@util/UtilStr'
+import { APP_DIR } from '@config/Constant'
 
 /**
  * @class Client
@@ -36,7 +36,7 @@ export default class Client extends BaseClient {
    * @private
    */
   private async _init (): Promise<void> {
-    for (const dir of ['event', 'command']) {
+    for (const dir of ['event', 'command', 'interaction']) {
       console.log('\n------------------------------')
       console.log(util.format('Loading %s', ucFirst(dir)))
       console.log('------------------------------')

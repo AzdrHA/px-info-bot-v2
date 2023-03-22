@@ -1,14 +1,17 @@
 import AbstractEvent from '../../abstract/AbstractEvent'
 import { type Message, userMention } from 'discord.js'
-import { ENodeEnv } from '../../enum/ENodeEnv'
-import { DEVELOPERS } from '../../config/AppConfig'
-import { DONT_PING_ME } from '../../config/EmojiConfig'
-import { COMMAND_LIST } from '../../config/Constant'
 import type AbstractCommand from '../../abstract/AbstractCommand'
+import AppException from '../../exception/AppException'
+import { ENodeEnv } from '@enum/ENodeEnv'
+import { DEVELOPERS } from '@/config/AppConfig'
+import { DONT_PING_ME } from '@config/EmojiConfig'
+import { COMMAND_LIST } from '@config/Constant'
 
 /**
  * @class MessageCreateEvent
  * @extends AbstractEvent
+ * @classdesc Event class for messageCreate event.
+ * @see https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-messageCreate
  */
 export default class MessageCreateEvent extends AbstractEvent {
   /**
@@ -54,6 +57,17 @@ export default class MessageCreateEvent extends AbstractEvent {
     }
 
     // Run the command
-    return await command.run()
+    try {
+      return await command.run()
+    } catch (error) {
+      if (error instanceof AppException) {
+        return await message.reply(error.message)
+      }
+      console.error(error)
+      return await message.reply({
+        content: 'There was an error trying to execute that command!',
+        failIfNotExists: false
+      })
+    }
   }
 }

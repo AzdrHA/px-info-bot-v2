@@ -1,10 +1,10 @@
-import MessageCreateEvent from '../../../src/event/message/MessageCreateEvent'
-import Client from '../../../src/Client'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from '../../../src/config/AppConfig'
 import { type Message } from 'discord.js'
-import { ENodeEnv } from '../../../src/enum/ENodeEnv'
-import { DONT_PING_ME } from '../../../src/config/EmojiConfig'
-import { COMMAND_LIST } from '../../../src/config/Constant'
+import MessageCreateEvent from '@event/message/MessageCreateEvent'
+import Client from '@/Client'
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
+import { ENodeEnv } from '@enum/ENodeEnv'
+import { DONT_PING_ME } from '@config/EmojiConfig'
+import { COMMAND_LIST } from '@config/Constant'
 
 describe('MessageCreateEvent', () => {
   let event: MessageCreateEvent

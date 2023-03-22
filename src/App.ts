@@ -1,6 +1,7 @@
-import Client from './Client'
+import 'module-alias/register'
 import { IntentsBitField, Partials } from 'discord.js'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from './config/AppConfig'
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '@/config/AppConfig'
+import Client from '@/Client'
 
 // eslint-disable-next-line no-new
 new Client({

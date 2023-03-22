@@ -1,6 +1,6 @@
-import Client from '../../src/Client'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from '../../src/config/AppConfig'
-import ReadyEvent from '../../src/event/ReadyEvent'
+import Client from '@/Client'
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
+import ReadyEvent from '@event/ReadyEvent'
 
 describe('ReadyEvent', () => {
   let client: Client
@@ -19,7 +19,7 @@ describe('ReadyEvent', () => {
     await client.login(DISCORD_TOKEN)
     const readyEvent = new ReadyEvent(client)
     console.log = jest.fn()
-    readyEvent.run()
+    await readyEvent.run()
     expect(console.log).toHaveBeenCalledWith(
       'Logged in as', client.user?.tag
     )
