@@ -2,7 +2,7 @@ import { type Message } from 'discord.js'
 import AbstractCommand from '@abstract/AbstractCommand'
 import translator from '@util/UtilTranslator'
 import SetCommandButtonBuilder from '@component/button/command/set/SetCommandButtonBuilder'
-import {EPermission} from "../../enum/EPermission";
+import { EPermission } from '@enum/EPermission'
 
 /**
  * @class SetCommand

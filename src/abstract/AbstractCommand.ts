@@ -1,11 +1,9 @@
+import AbstractAction from '@abstract/AbstractAction'
 import type Client from '@/Client'
 import { type Message, type MessageCreateOptions, type MessagePayload } from 'discord.js'
-import AbstractAction from '@abstract/AbstractAction'
-import type Client from '../Client'
-import { type Message } from 'discord.js'
-import roleRequest from '../api/RoleRequest'
-import { EPermission } from '../enum/EPermission'
-import { type IRole } from '../interface/IRole'
+import { EPermission } from '@enum/EPermission'
+import roleRequest from '@/api/RoleRequest'
+import { type IRole } from '@interface/IRole'
 
 /**
  * @class AbstractCommand
