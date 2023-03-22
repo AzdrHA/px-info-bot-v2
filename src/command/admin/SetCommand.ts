@@ -1,7 +1,7 @@
 import { type Message } from 'discord.js'
 import AbstractCommand from '@abstract/AbstractCommand'
 import translator from '@util/UtilTranslator'
-import VerificationButtonBuilder from '@component/button/verfication/VerificationButtonBuilder'
+import SetCommandButtonBuilder from '@component/button/command/set/SetCommandButtonBuilder'
 
 /**
  * @class SetCommand
@@ -19,7 +19,7 @@ export default class SetCommand extends AbstractCommand {
 
     return await this.buttonCollector(await this.send({
       content: translator('What **Settings** would you like to change?'),
-      components: await this.buildButtons(VerificationButtonBuilder)
+      components: await this.buildButtons(SetCommandButtonBuilder)
     }))
   }
 }

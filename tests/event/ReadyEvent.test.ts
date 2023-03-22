@@ -19,7 +19,7 @@ describe('ReadyEvent', () => {
     await client.login(DISCORD_TOKEN)
     const readyEvent = new ReadyEvent(client)
     console.log = jest.fn()
-    readyEvent.run()
+    await readyEvent.run()
     expect(console.log).toHaveBeenCalledWith(
       'Logged in as', client.user?.tag
     )

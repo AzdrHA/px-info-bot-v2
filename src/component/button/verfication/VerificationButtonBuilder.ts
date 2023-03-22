@@ -5,6 +5,7 @@ import { EVerificationButton } from '@enum/EVerificationButton'
 
 /**
  * @class VerificationButtonBuilder
+ * @extends DefaultButtonBuilder
  */
 export default class VerificationButtonBuilder extends DefaultButtonBuilder {
   /**

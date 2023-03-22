@@ -1,8 +1,9 @@
 import {
-  type BaseInteraction,
-  type ButtonInteraction
+  type BooleanCache,
+  type ButtonInteraction, type CacheType, type InteractionEditReplyOptions, type Message, type MessagePayload
 } from 'discord.js'
 import type Client from '@/Client'
+import AbstractAction from '@abstract/AbstractAction'
 
 /**
  * @abstract
@@ -17,9 +18,9 @@ import type Client from '@/Client'
  * @returns {void}
  * @example
  */
-export default abstract class AbstractInteraction {
+export default abstract class AbstractInteraction extends AbstractAction {
   public client: Client
-  public interaction: ButtonInteraction
+  private _interaction: ButtonInteraction
 
   /**
    * @constructor
@@ -28,11 +29,46 @@ export default abstract class AbstractInteraction {
    * @protected
    */
   protected constructor (client: Client, interaction: ButtonInteraction) {
+    super()
     this.client = client
-    this.interaction = interaction
+    this._interaction = interaction
   }
 
   public abstract id: string
   public abstract global: boolean
-  public abstract run (): Promise<BaseInteraction>
+  public abstract run (): Promise<any>
+
+  /**
+   * @public
+   * @param {string | MessagePayload | InteractionEditReplyOptions} options
+   * @returns {Promise<Message<BooleanCache<CacheType>>>}
+   * @description Send a message
+   * @example
+   * await this.send('hello world')
+   */
+  public async send (options: string | MessagePayload | InteractionEditReplyOptions): Promise<Message<BooleanCache<CacheType>>> {
+    return await this._interaction.editReply(options)
+  }
+
+  /**
+   * @public
+   * @param {ButtonInteraction} value
+   * @returns {ButtonInteraction}
+   * @description Get the interaction
+   * @param value
+   */
+  public setInteraction (value: ButtonInteraction): void {
+    this._interaction = value
+  }
+
+  /**
+   * @public
+   * @param {Message} message
+   * @param {boolean} autoDeletion
+   * @returns {Promise<Message>}
+   * @override
+   */
+  public async buttonCollector (message: Message, autoDeletion: boolean = false): Promise<Message> {
+    return await super.parentButtonCollector(message, this._interaction, autoDeletion)
+  }
 }

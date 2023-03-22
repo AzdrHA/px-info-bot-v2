@@ -27,7 +27,7 @@ export default class InteractionService {
     if (_interaction == null || _interaction.global !== global) return false
 
     // add attribute interaction to interaction
-    _interaction.interaction = interaction
+    _interaction.setInteraction(interaction)
 
     // Run the interaction
     return await _interaction.run()

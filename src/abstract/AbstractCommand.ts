@@ -1,13 +1,12 @@
 import type Client from '@/Client'
 import { type Message, type MessageCreateOptions, type MessagePayload } from 'discord.js'
-import ButtonCollector from '@collector/ButtonCollector'
-import type DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
+import AbstractAction from '@abstract/AbstractAction'
 
 /**
  * @class AbstractCommand
  * @abstract
  */
-export default abstract class AbstractCommand {
+export default abstract class AbstractCommand extends AbstractAction {
   public client: Client
   public message: Message
   public abstract alias: string[]
@@ -20,6 +19,7 @@ export default abstract class AbstractCommand {
    * @protected
    */
   public constructor (client: Client, message: Message) {
+    super()
     this.client = client
     this.message = message
   }
@@ -47,20 +47,11 @@ export default abstract class AbstractCommand {
 
   /**
    * @public
+   * @param {Message} message
+   * @param {boolean} autoDeletion
    * @returns {Promise<Message>}
    */
-  public async buttonCollector (message: Message): Promise<Message> {
-    // eslint-disable-next-line no-new
-    new ButtonCollector(message, this.message)
-    return this.message
-  }
-
-  /**
-   * @public
-   * @returns {Promise<DefaultButtonRowBuilder[]>}
-   * @param {any} DataClass
-   */
-  public async buildButtons (DataClass: any): Promise<DefaultButtonRowBuilder[]> {
-    return [await new DataClass().buildButton()]
+  public async buttonCollector (message: Message, autoDeletion: boolean = false): Promise<Message> {
+    return await super.parentButtonCollector(message, this.message, autoDeletion)
   }
 }

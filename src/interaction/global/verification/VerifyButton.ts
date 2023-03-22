@@ -1,6 +1,5 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { EVerificationButton } from '@enum/EVerificationButton'
-import { type BaseInteraction } from 'discord.js'
 
 /**
  * @class VerifyButton
@@ -14,10 +13,9 @@ export default class VerifyButton extends AbstractInteraction {
   /**
    * @method run
    * @description The run method
-   * @returns {Promise<BaseInteraction>}
+   * @returns {Promise<any>}
    */
-  public async run (): Promise<BaseInteraction> {
+  public async run (): Promise<any> {
     console.log('VerifyButton#run')
-    return this.interaction
   }
 }
