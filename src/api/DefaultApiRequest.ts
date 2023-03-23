@@ -1,7 +1,7 @@
 import { MakeRequest } from './MakeRequest'
 import * as util from 'util'
-import { CACHE } from '../config/Constant'
-import UtilLogger from '../util/UtilLogger'
+import { CACHE } from '@config/Constant'
+import UtilLogger from '@util/UtilLogger'
 
 /**
  * Default API request
@@ -33,7 +33,7 @@ export default class DefaultApiRequest <K> {
     UtilLogger.apiRequest(util.format('Requesting GET %s', this.url))
     const request = await MakeRequest(this.url, 'GET')
     CACHE.set(this.url, request)
-    return await MakeRequest(this.url, 'GET')
+    return request
   }
 
   /**

@@ -26,6 +26,6 @@ export default abstract class AbstractAction {
    * @param {any} DataClass
    */
   public async buildButtons (DataClass: any): Promise<DefaultButtonRowBuilder[]> {
-    return [await new DataClass().buildButton()]
+    return new DataClass().buildButton()
   }
 }

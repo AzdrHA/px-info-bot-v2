@@ -1,5 +1,5 @@
 import axios, { type Method } from 'axios'
-import { API_KEY, API_URL } from '../config/AppConfig'
+import { API_KEY, API_URL } from '@config/AppConfig'
 
 /**
  * Make a request to the API
