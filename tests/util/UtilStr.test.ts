@@ -1,4 +1,5 @@
 import { formalizeEventName, isScriptFile, lcFirst, leadingZero, replace, ucFirst } from '@util/UtilStr'
+import { describe, it, expect } from 'vitest'
 
 describe('util/str', () => {
   it('should be able to convert first character to lowercase', () => {

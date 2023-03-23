@@ -6,12 +6,12 @@ import AbstractEvent from '@abstract/AbstractEvent'
 import InteractionService from '@service/InteractionService'
 
 /**
- * @class InteractionCreate
+ * @class InteractionCreateEvent
  * @extends AbstractEvent
  * @classdesc Event class for interactionCreate event.
  * @see https://discord.js.org/#/docs/main/stable/class/Client?scrollTo=e-interactionCreate
  */
-export default class InteractionCreate extends AbstractEvent {
+export default class InteractionCreateEvent extends AbstractEvent {
   /**
    * @constructor
    * @param {BaseInteraction} interaction
@@ -19,13 +19,13 @@ export default class InteractionCreate extends AbstractEvent {
    */
   public async run (interaction: BaseInteraction): Promise<any> {
     // Ignore interaction from other guild
-    if (interaction.guildId !== SUPPORT_DISCORD) return false
+    if (interaction.guildId !== SUPPORT_DISCORD) return '11'
 
     // Ignore message form people who are not developer in dev mode
-    if (process.env.NODE_ENV === ENodeEnv.DEVELOPMENT && !DEVELOPERS.includes(interaction.user.id)) return false
+    if (process.env.NODE_ENV === ENodeEnv.DEVELOPMENT && !DEVELOPERS.includes(interaction.user.id)) return '22'
 
     // Ignore interaction that is not command
-    if (!interaction.isButton()) return false
+    if (!interaction.isButton()) return '333'
 
     try {
       return await new InteractionService().run(interaction, true)

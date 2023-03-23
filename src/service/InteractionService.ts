@@ -24,7 +24,10 @@ export default class InteractionService {
     const _interaction: AbstractInteraction = INTERACTION_LIST.get(interaction.customId)
 
     // Ignore if interaction is not found
-    if (_interaction == null || _interaction.global !== global) return false
+    if (_interaction == null) return false
+
+    // Ignore if interaction is not global
+    if (_interaction.global !== global) return false
 
     // add attribute interaction to interaction
     _interaction.setInteraction(interaction)

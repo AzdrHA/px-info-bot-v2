@@ -78,7 +78,7 @@ export default class LoadFileService {
    * @private
    */
   private async loadEvent (fileName: string, event: AbstractEvent, Action: () => AbstractEvent): Promise<any> {
-    if (EVENT_LIST.has(fileName) && process.env.NODE_ENV !== ENodeEnv.TEST) {
+    if (EVENT_LIST.has(fileName)) {
       throw new AppException(util.format('The event %s is already registered', fileName))
     }
 

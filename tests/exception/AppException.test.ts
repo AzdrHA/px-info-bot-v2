@@ -1,4 +1,5 @@
 import AppException from '@exception/AppException'
+import { describe, it, expect } from 'vitest'
 
 describe('AppException', () => {
   it('should be an instance of Error', () => {

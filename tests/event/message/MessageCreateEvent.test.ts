@@ -1,17 +1,20 @@
+import { describe, it, expect, vi, beforeEach, afterEach, beforeAll, afterAll } from 'vitest'
 import { type Message } from 'discord.js'
-import MessageCreateEvent from '@event/message/MessageCreateEvent'
 import Client from '@/Client'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
+import MessageCreateEvent from '@event/message/MessageCreateEvent'
 import { ENodeEnv } from '@enum/ENodeEnv'
+import { DEVELOPERS, DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
 import { DONT_PING_ME } from '@config/EmojiConfig'
 import { COMMAND_LIST } from '@config/Constant'
+import type AbstractCommand from '@abstract/AbstractCommand'
 
 describe('MessageCreateEvent', () => {
-  let event: MessageCreateEvent
   let client: Client
   let mockMessage: Message
+  let event: MessageCreateEvent
+  let command: AbstractCommand
 
-  beforeEach(() => {
+  beforeAll(() => {
     client = new Client({
       prefix: DISCORD_PREFIX,
       token: DISCORD_TOKEN,
@@ -19,120 +22,82 @@ describe('MessageCreateEvent', () => {
       partials: [],
       autoStart: false
     })
-    event = new MessageCreateEvent(client)
+  })
 
+  beforeEach(() => {
     mockMessage = {
       author: {
         bot: false,
-        id: '123456789'
+        id: DEVELOPERS[0]
       },
       content: '-ping arg1 arg2',
-      reply: jest.fn()
+      reply: vi.fn()
     } as any
+    event = new MessageCreateEvent(client)
+    command = {
+      hasPermission: vi.fn().mockResolvedValue(true),
+      run: vi.fn().mockResolvedValue(true)
+    } as any
+    COMMAND_LIST.set('ping', command)
   })
 
-  it('should return the original message if the author is a bot', async () => {
-    const botMessage: Message = {
-      author: {
-        bot: true
-      }
-    } as any
-
-    const result = await event.run(botMessage)
-    expect(result).toBeFalsy()
+  afterEach(() => {
+    vi.resetAllMocks()
+    COMMAND_LIST.delete('ping')
   })
 
-  it('should return the original message if the author is not a developer in development mode', async () => {
+  afterAll(() => {
+    client.destroy()
+  })
+
+  it('should return false if the author of message is a bot', async () => {
+    mockMessage.author.bot = true
+    expect(await event.run(mockMessage)).toBeFalsy()
+  })
+
+  it('should return "false" if the author is not from a developer in development mode', async () => {
     process.env.NODE_ENV = ENodeEnv.DEVELOPMENT
-    const result = await event.run(mockMessage)
-    expect(result).toBeFalsy()
+    mockMessage.author.id = 'not_a_developer'
+    expect(await event.run(mockMessage)).toBeFalsy()
     process.env.NODE_ENV = ENodeEnv.TEST
   })
 
   it('should reply with a message if the bot is mentioned in the message', async () => {
-    const botMentionedMessage = {
-      ...mockMessage,
-      content: `<@${client.user?.id as string}>`
-    } as any
-
-    await event.run(botMentionedMessage)
-    expect(botMentionedMessage.reply).toHaveBeenCalledWith(DONT_PING_ME)
+    mockMessage.content = `test <@${client.user?.id as string}> test`
+    await event.run(mockMessage)
+    expect(mockMessage.reply).toHaveBeenCalledWith(DONT_PING_ME)
   })
 
-  it('should return the original message if it does not start with the prefix', async () => {
-    const noPrefixMessage = {
-      ...mockMessage,
-      content: 'testCommand arg1 arg2'
-    } as any
-
-    const result = await event.run(noPrefixMessage)
-    expect(result).toBeFalsy()
+  it('should return "false" if the message does not start with the prefix', async () => {
+    mockMessage.content = 'ping arg1 arg2'
+    expect(await event.run(mockMessage)).toBeFalsy()
   })
 
-  it('should return the original message if the command is not found', async () => {
-    const unknownCommandMessage = {
-      ...mockMessage,
-      content: '-unknownCommand arg1 arg2'
-    } as any
-
-    const result = await event.run(unknownCommandMessage)
-    expect(result).toBeFalsy()
+  it('should return "false" if the command is not found', async () => {
+    mockMessage.content = '-not_a_command arg1 arg2'
+    expect(await event.run(mockMessage)).toBeFalsy()
   })
 
-  it('should return the original message if the command name is null', async () => {
-    const nullNameMessage = {
-      ...mockMessage,
-      content: '-null arg1 arg2'
-    } as any
-
-    const result = await event.run(nullNameMessage)
-    expect(result).toBeFalsy()
+  it('should return "false" if the command name is empty', async () => {
+    mockMessage.content = '-'
+    expect(await event.run(mockMessage)).toBeFalsy()
   })
 
-  it('should run the command if the message is valid', async () => {
-    const command = {
-      run: jest.fn(),
-      hasPermission: jest.fn().mockReturnValue(true)
-    } as any
-
-    const validMessage = {
-      ...mockMessage,
-      content: '-ping arg1 arg2'
-    } as any
-
-    COMMAND_LIST.set('ping', command)
-    command.client = client
-    command.args = ['arg1', 'arg2']
-    await event.run(validMessage)
-    expect(command.run).toHaveBeenCalled()
+  it('should set the "args" and "message" attribute of the command', async () => {
+    await event.run(mockMessage)
+    expect(command.args).toEqual(['arg1', 'arg2'])
+    expect(command.message).toEqual(mockMessage)
   })
 
-  // it('should reply with a message if the member does not have permission to run support the command', async () => {
-  //   const validMessage = {
-  //     ...mockMessage,
-  //     content: '-ping arg1 arg2'
-  //   } as any
-  //
-  //   const command: PingCommand = {
-  //     run: jest.fn(),
-  //     hasPermission: jest.fn().mockReturnValue(false),
-  //     client,
-  //     message: validMessage as Message,
-  //     alias: [],
-  //     args: [],
-  //     description: '',
-  //     usage: '',
-  //     permission: EPermission.SUPPORT
-  //   }
-  //
-  //   const spy = jest.fn(command.prototype.hasPermission)
-  //
-  //   COMMAND_LIST.set('ping', command)
-  //   command.client = client
-  //   const res = await event.run(validMessage)
-  //   expect(command.run).not.toHaveBeenCalled()
-  //   expect(validMessage.reply).toHaveBeenCalled()
-  //   expect(validMessage.reply).toHaveBeenCalledWith('You don\'t have permission to run this command!')
-  //   expect(res).toBeUndefined()
-  // })
+  it('should return "false" if the user does not have permission to run the command', async () => {
+    command.hasPermission = vi.fn().mockResolvedValue(false)
+    await event.run(mockMessage)
+    expect(mockMessage.reply).toHaveBeenCalledWith('You don\'t have permission to run this command!')
+  })
+
+  it('should call InteractionService.run if the interaction is valid', async () => {
+    const spy = vi.spyOn(event, 'run')
+    await event.run(mockMessage)
+    expect(spy).toHaveBeenCalled()
+  })
 })

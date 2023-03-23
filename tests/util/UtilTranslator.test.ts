@@ -1,3 +1,4 @@
+import { describe, it, expect, vi } from 'vitest'
 import translator from '@util/UtilTranslator'
 import UtilLogger from '@util/UtilLogger'
 
@@ -14,7 +15,7 @@ describe('UtilTranslator', () => {
   it('should log a warning and return the key for an invalid key', () => {
     const key = 'unknown-key'
     const originalWarn = UtilLogger.warn
-    UtilLogger.warn = jest.fn() // mock the warn method
+    UtilLogger.warn = vi.fn() // mock the warn method
     expect(translator(key, {}, 'message')).toBe(key)
     expect(UtilLogger.warn).toHaveBeenCalledWith(`Translation key "${key}" not found in file "message"`)
     UtilLogger.warn = originalWarn

@@ -19,7 +19,7 @@ export default class MessageCreateEvent extends AbstractEvent {
    * @param {Message} message
    * @returns {Promise<Message>}
    */
-  public async run (message: Message): Promise<Message | false> {
+  public async run (message: Message): Promise<any> {
     // Ignore bot messages
     if (message.author.bot) return false
 
@@ -36,13 +36,13 @@ export default class MessageCreateEvent extends AbstractEvent {
 
     // Separate "command" name, and the "arguments"
     const args: string[] = message.content.slice(this.client.prefix.length).trim().split(/ +/g)
-    const name = args.shift()
+    const name = args.shift()?.toLowerCase()
 
     // Ignore if name is empty
-    if (name == null) return false
+    if (name == null || name === '') return false
 
     // Get the command
-    const command: AbstractCommand | null = COMMAND_LIST.get(name.toLowerCase())
+    const command: AbstractCommand | null = COMMAND_LIST.get(name)
 
     // Ignore if command is not found
     if (command == null) return false

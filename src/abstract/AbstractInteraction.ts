@@ -28,7 +28,7 @@ export default abstract class AbstractInteraction extends AbstractAction {
    * @param {ButtonInteraction} interaction
    * @protected
    */
-  protected constructor (client: Client, interaction: ButtonInteraction) {
+  public constructor (client: Client, interaction: ButtonInteraction) {
     super()
     this.client = client
     this._interaction = interaction
