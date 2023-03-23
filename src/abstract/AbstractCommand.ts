@@ -62,6 +62,16 @@ export default abstract class AbstractCommand extends AbstractAction {
   }
 
   /**
+   * @public
+   * @param {Message} message
+   * @param {(message: Message) => void} callback
+   * @returns {Promise<Message>}
+   */
+  public async messageCollector (message: Message, callback?: (message: Message) => void): Promise<Message> {
+    return await super.parentMessageCollector(message, this.message, callback)
+  }
+
+  /**
    * Check if the member has permission to run the command
    * @public
    * @returns {boolean}

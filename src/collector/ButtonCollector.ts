@@ -11,7 +11,6 @@ export default class ButtonCollector {
   private readonly interaction: Message | ButtonInteraction
   private collector: InteractionCollector<ButtonInteraction> | undefined
   private readonly callback: ((customId: string) => void) | undefined
-
   private readonly autoDeletion: boolean = false
 
   /**
@@ -54,5 +53,12 @@ export default class ButtonCollector {
     await interaction.update({ content: 'Loading...', components: [] })
     await new InteractionService().run(interaction)
     if (this.callback != null) this.callback(interaction.customId)
+  }
+
+  /**
+   * @return {InteractionCollector<ButtonInteraction>}
+   */
+  public getCollector = (): InteractionCollector<ButtonInteraction> | undefined => {
+    return this.collector
   }
 }

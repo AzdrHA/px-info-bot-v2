@@ -17,8 +17,10 @@ export default class BaseVerificationInteraction extends AbstractInteraction {
    */
   public async run (): Promise<any> {
     return await this.buttonCollector(await this.send({
-      content: translator('What **{TYPE}** settings would you like to change?'),
+      content: translator('What **{TYPE}** settings would you like to change?', {
+        TYPE: translator('Verification')
+      }),
       components: await this.buildButtons(VerificationSetCommandButtonBuilder)
-    }), true)
+    }))
   }
 }
