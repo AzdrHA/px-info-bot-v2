@@ -1,5 +1,6 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommandVerification } from '@enum/command/ESetCommandVerification'
+import translator from '@util/UtilTranslator'
 
 /**
  * @class ChannelVerificationInteraction
@@ -14,6 +15,16 @@ export default class ChannelVerificationInteraction extends AbstractInteraction 
    * @returns {Promise<any>}
    */
   public async run (): Promise<any> {
-    await this.send('hello world')
+    /**
+     * @param {string} content
+     * @returns {void}
+     */
+    const callback = (content: string): void => {
+      console.log(content)
+    }
+
+    return await this.messageCollector(await this.send({
+      content: translator('WRITE_A_MESSAGE')
+    }), callback)
   }
 }

@@ -1,4 +1,8 @@
-import { type Message, type MessageCollector as BaseMessageCollector } from 'discord.js'
+import {
+  type ButtonInteraction,
+  Message,
+  type MessageCollector as BaseMessageCollector
+} from 'discord.js'
 
 /**
  * @public
@@ -6,9 +10,9 @@ import { type Message, type MessageCollector as BaseMessageCollector } from 'dis
  */
 export class MessageCollector {
   private readonly clientMessage: Message
-  private readonly executorMessage: Message
+  private readonly executorMessage: Message | ButtonInteraction
   private collector: BaseMessageCollector | undefined
-  private readonly callback: ((content: Message) => void) | undefined
+  private readonly callback: ((content: string) => void) | undefined
 
   /**
    * @public
@@ -18,8 +22,8 @@ export class MessageCollector {
    */
   public constructor (
     clientMessage: Message,
-    executorMessage: Message,
-    callback?: (content: Message) => void
+    executorMessage: Message | ButtonInteraction,
+    callback?: (content: string) => void
   ) {
     this.clientMessage = clientMessage
     this.executorMessage = executorMessage
@@ -27,10 +31,15 @@ export class MessageCollector {
     this.__init()
   }
 
+  /**
+   * @private
+   * @description Initialize the collector
+   * @returns {void}
+   */
   private __init (): void {
-    console.log(this.executorMessage.author.id)
-    this.collector = this.executorMessage.channel.createMessageCollector({
-      filter: (message: Message) => message.author.id === this.executorMessage.author.id,
+    const author = this.executorMessage instanceof Message ? this.executorMessage.author : this.executorMessage.user
+    this.collector = this.clientMessage.channel.createMessageCollector({
+      filter: (message: Message) => message.author.id === author.id,
       time: 60000,
       max: 1
     })
@@ -38,10 +47,22 @@ export class MessageCollector {
     this.collector.on('collect', this.__collect)
   }
 
+  /**
+   * @private
+   * @description Collect the message
+   * @param {Message} message
+   * @returns {Promise<any>}
+   */
   private readonly __collect = async (message: Message): Promise<any> => {
-    if (this.executorMessage.deletable) await this.executorMessage.delete().catch(() => null)
+    // Delete the message from the bot
     if (this.clientMessage.deletable) await this.clientMessage.delete().catch(() => null)
+    // Delete the message from the user
     if (message.deletable) await message.delete().catch(() => null)
-    if (this.callback != null) this.callback(message)
+    // Call the callback if it exists
+    if (this.callback != null) this.callback(message.content)
+  }
+
+  public getCollector = (): BaseMessageCollector | undefined => {
+    return this.collector
   }
 }

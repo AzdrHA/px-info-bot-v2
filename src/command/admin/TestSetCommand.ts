@@ -1,10 +1,8 @@
-import { ButtonBuilder, ButtonStyle, type Message } from 'discord.js'
 import AbstractCommand from '@abstract/AbstractCommand'
 import translator from '@util/UtilTranslator'
 import { EPermission } from '@enum/EPermission'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder'
-import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
+import { type MessageButtonCollector } from '@collector/MessageButtonCollector'
+import VerificationSetCommandButtonBuilder from '@component/button/command/set/VerificationSetCommandButtonBuilder'
 
 /**
  * @class SetCommand
@@ -20,24 +18,21 @@ export default class TestSetCommand extends AbstractCommand {
    * @public
    * @returns {Promise<void>}
    */
-  public async run (): Promise<Message> {
+  public async run (): Promise<MessageButtonCollector> {
     await this.delete()
 
-    const callback = (message: Message) => {
-      console.log(message.content)
+    /**
+     * @param {string} content
+     * @returns {void}
+     */
+    const callback = (content: string): void => {
+      console.log(content)
+      void this.success(content)
     }
 
-    return await this.messageCollector(await this.send({
+    return await this.messageButtonCollector(await this.send({
       content: translator('WRITE_A_MESSAGE'),
-      components: [
-        new DefaultButtonRowBuilder().setComponents([
-          new ButtonBuilder({
-            label: 'Test',
-            style: ButtonStyle.Primary,
-            customId: 'fsqfqsfsq45fqs45f4qs56fq4s65f4qs'
-          })
-        ])
-      ]
+      components: await this.buildButtons(VerificationSetCommandButtonBuilder)
     }), callback)
   }
 }

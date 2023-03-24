@@ -1,6 +1,12 @@
-import { Message, type ButtonInteraction, type InteractionCollector, ComponentType } from 'discord.js'
+import {
+  Message,
+  type ButtonInteraction,
+  type InteractionCollector,
+  ComponentType
+} from 'discord.js'
 import UtilLogger from '@util/UtilLogger'
 import InteractionService from '@service/InteractionService'
+import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
  * @class ButtonCollector
@@ -11,18 +17,15 @@ export default class ButtonCollector {
   private readonly interaction: Message | ButtonInteraction
   private collector: InteractionCollector<ButtonInteraction> | undefined
   private readonly callback: ((customId: string) => void) | undefined
-  private readonly autoDeletion: boolean = false
 
   /**
    * @constructor
    * @param {Message} message
    * @param {Message | ButtonInteraction} interaction
-   * @param {boolean} autoDeletion
    */
-  public constructor (message: Message, interaction: Message | ButtonInteraction, autoDeletion: boolean = false) {
+  public constructor (message: Message, interaction: Message | ButtonInteraction) {
     this.message = message
     this.interaction = interaction
-    this.autoDeletion = autoDeletion
     this.__init()
   }
 
@@ -49,7 +52,7 @@ export default class ButtonCollector {
   }
 
   private readonly __collect = async (interaction: ButtonInteraction): Promise<any> => {
-    if (this.autoDeletion) return await interaction.message.delete().catch(() => null)
+    if (interaction.customId === EGlobalButton.CANCEL) return await interaction.message.delete().catch(() => null)
     await interaction.update({ content: 'Loading...', components: [] })
     await new InteractionService().run(interaction)
     if (this.callback != null) this.callback(interaction.customId)

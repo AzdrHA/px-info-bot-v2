@@ -1,9 +1,16 @@
 import {
   type BooleanCache,
-  type ButtonInteraction, type CacheType, type InteractionEditReplyOptions, type Message, type MessagePayload
+  type ButtonInteraction,
+  type CacheType,
+  type InteractionEditReplyOptions,
+  type Message,
+  type MessagePayload,
+  type TextChannel
 } from 'discord.js'
 import type Client from '@/Client'
 import AbstractAction from '@abstract/AbstractAction'
+import type ButtonCollector from '@collector/ButtonCollector'
+import { type MessageCollector } from '@collector/MessageCollector'
 
 /**
  * @abstract
@@ -68,7 +75,28 @@ export default abstract class AbstractInteraction extends AbstractAction {
    * @returns {Promise<Message>}
    * @override
    */
-  public async buttonCollector (message: Message, autoDeletion: boolean = false): Promise<Message> {
-    return await super.parentButtonCollector(message, this._interaction, autoDeletion)
+  public async buttonCollector (message: Message, autoDeletion: boolean = false): Promise<ButtonCollector> {
+    return await super.parentButtonCollector(message, this._interaction)
+  }
+
+  /**
+   * @public
+   * @override
+   * @param {Message} message
+   * @param {(content: string) => void} callback
+   * @returns {Promise<MessageCollector>}
+   */
+  public async messageCollector (message: Message, callback: (content: string) => void): Promise<MessageCollector> {
+    return await super.parentMessageCollector(message, this._interaction, callback)
+  }
+
+  /**
+   * @public
+   * @param {content} content
+   * @param {time} time
+   * @returns {Promise<any>}
+   */
+  public async success (content: string, time: number = 5): Promise<Message<true>> {
+    return await this.tempMessage(content, this._interaction.channel as TextChannel, time)
   }
 }
