@@ -6,6 +6,8 @@ import util from 'util'
 import translator from '@util/UtilTranslator'
 import { MessageButtonCollector } from '@collector/MessageButtonCollector'
 
+export type Callback = (content: string) => Promise<void>
+
 /**
  * @abstract
  * @class AbstractAction
@@ -28,7 +30,7 @@ export default abstract class AbstractAction {
    * @param {(message: Message) => void} callback
    * @returns {Promise<Message>}
    */
-  public async parentMessageCollector (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: (message: string) => void): Promise<MessageCollector> {
+  public async parentMessageCollector (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: Callback): Promise<MessageCollector> {
     return new MessageCollector(clientMessage, executorMessage, callback)
   }
 
@@ -40,7 +42,7 @@ export default abstract class AbstractAction {
    * @returns {Promise<MessageButtonCollector>}
    * @description Create a message button collector
    */
-  public async parentMessageButtonCollector (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: (content: string) => void): Promise<MessageButtonCollector> {
+  public async parentMessageButtonCollector (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: Callback): Promise<MessageButtonCollector> {
     return new MessageButtonCollector(clientMessage, executorMessage, callback)
   }
 

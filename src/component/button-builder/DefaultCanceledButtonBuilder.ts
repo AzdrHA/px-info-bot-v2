@@ -1,7 +1,6 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
+import { type ButtonBuilder } from 'discord.js'
 import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
-import translator from '@util/UtilTranslator'
-import { EGlobalButton } from '@enum/EGlobalButton'
+import CancelButton from '@component/button/CancelButton'
 
 /**
  * @abstract
@@ -22,11 +21,7 @@ export default abstract class DefaultCanceledButtonBuilder {
     })
 
     if (this.buttons.length > 0) {
-      res.push(new DefaultButtonRowBuilder().setComponents(...this.buttons, new ButtonBuilder({
-        label: translator('Cancel'),
-        style: ButtonStyle.Danger,
-        customId: EGlobalButton.CANCEL
-      })))
+      res.push(new DefaultButtonRowBuilder().setComponents(...this.buttons, new CancelButton()))
       this.buttons.splice(0, this.buttons.length)
     }
     return res

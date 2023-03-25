@@ -43,9 +43,10 @@ export default class DefaultApiRequest <K> {
    * @returns {Promise<K>}
    * @template K
    * @example
-   * const data = await DefaultApiRequest.create('/users', 'id', { name: 'John Doe' })
+   * const data = await DefaultApiRequest().update('id', 'value')
    */
-  public async update (id: keyof K, data: Record<string, string>): Promise<K> {
+  public async update (id: keyof K, data?: string | null): Promise<K> {
+    CACHE.delete(this.url)
     UtilLogger.apiRequest(util.format('Requesting PUT %s', this.url))
     return await MakeRequest(util.format('%s/%s', this.url, id), 'PUT', { [id]: data })
   }

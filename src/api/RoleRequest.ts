@@ -1,5 +1,5 @@
 import DefaultApiRequest from './DefaultApiRequest'
-import { type IRole } from '../interface/IRole'
+import { type IRole } from '@interface/IRole'
 
 /**
  * Role request

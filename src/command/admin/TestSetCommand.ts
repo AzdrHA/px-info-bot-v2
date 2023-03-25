@@ -25,7 +25,7 @@ export default class TestSetCommand extends AbstractCommand {
      * @param {string} content
      * @returns {void}
      */
-    const callback = (content: string): void => {
+    const callback = async (content: string): Promise<void> => {
       console.log(content)
       void this.success(content)
     }

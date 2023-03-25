@@ -1,4 +1,4 @@
-import AbstractAction from '@abstract/AbstractAction'
+import AbstractAction, { type Callback } from '@abstract/AbstractAction'
 import type Client from '@/Client'
 import { type Message, type MessageCreateOptions, type MessagePayload, type TextChannel } from 'discord.js'
 import { EPermission } from '@enum/EPermission'
@@ -69,7 +69,7 @@ export default abstract class AbstractCommand extends AbstractAction {
    * @param {(message: Message) => void} callback
    * @returns {Promise<Message>}
    */
-  public async messageCollector (message: Message, callback?: (message: string) => void): Promise<MessageCollector> {
+  public async messageCollector (message: Message, callback?: Callback): Promise<MessageCollector> {
     return await super.parentMessageCollector(message, this.message, callback)
   }
 
@@ -79,7 +79,7 @@ export default abstract class AbstractCommand extends AbstractAction {
    * @param {(message: content) => void} callback
    * @returns {Promise<MessageButtonCollector>}
    */
-  public async messageButtonCollector (message: Message, callback?: (message: string) => void): Promise<MessageButtonCollector> {
+  public async messageButtonCollector (message: Message, callback?: Callback): Promise<MessageButtonCollector> {
     return await super.parentMessageButtonCollector(message, this.message, callback)
   }
 

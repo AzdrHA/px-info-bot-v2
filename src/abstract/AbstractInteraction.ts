@@ -8,9 +8,10 @@ import {
   type TextChannel
 } from 'discord.js'
 import type Client from '@/Client'
-import AbstractAction from '@abstract/AbstractAction'
+import AbstractAction, { type Callback } from '@abstract/AbstractAction'
 import type ButtonCollector from '@collector/ButtonCollector'
 import { type MessageCollector } from '@collector/MessageCollector'
+import { type MessageButtonCollector } from '@collector/MessageButtonCollector'
 
 /**
  * @abstract
@@ -59,12 +60,17 @@ export default abstract class AbstractInteraction extends AbstractAction {
 
   /**
    * @public
-   * @param {ButtonInteraction} value
-   * @returns {ButtonInteraction}
-   * @description Get the interaction
-   * @param value
+   * @returns {Promise<ButtonCollector>}
    */
-  public setInteraction (value: ButtonInteraction): void {
+  get interaction (): ButtonInteraction {
+    return this._interaction
+  }
+
+  /**
+   * @public
+   * @param {ButtonInteraction} value
+   */
+  set interaction (value: ButtonInteraction) {
     this._interaction = value
   }
 
@@ -86,8 +92,18 @@ export default abstract class AbstractInteraction extends AbstractAction {
    * @param {(content: string) => void} callback
    * @returns {Promise<MessageCollector>}
    */
-  public async messageCollector (message: Message, callback: (content: string) => void): Promise<MessageCollector> {
+  public async messageCollector (message: Message, callback: Callback): Promise<MessageCollector> {
     return await super.parentMessageCollector(message, this._interaction, callback)
+  }
+
+  /**
+   * @public
+   * @param {Message} message
+   * @param {(message: content) => void} callback
+   * @returns {Promise<MessageButtonCollector>}
+   */
+  public async messageButtonCollector (message: Message, callback?: Callback): Promise<MessageButtonCollector> {
+    return await super.parentMessageButtonCollector(message, this._interaction, callback)
   }
 
   /**

@@ -45,7 +45,6 @@ export class MessageButtonCollector {
 
     buttonCollector?.on('collect', () => {
       messageCollector.getCollector()?.stop()
-      console.log('ufqisfhqisfhqsiofhioqs')
     })
 
     return messageCollector
