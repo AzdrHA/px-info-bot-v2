@@ -2,7 +2,7 @@ import type Client from '@/Client'
 import verificationSettingRequest from '@/api/VerificationSettingRequest'
 import { type IVerificationSetting } from '@interface/IVerificationSetting'
 import { type BaseMessageOptions, type Message, type TextChannel } from 'discord.js'
-import VerificationButtonBuilder from '@component/button/verfication/VerificationButtonBuilder'
+import VerificationButtonBuilder from '@component/button/VerificationButtonBuilder'
 
 /**
  * Verification setting service
@@ -10,7 +10,7 @@ import VerificationButtonBuilder from '@component/button/verfication/Verificatio
  */
 export default class VerificationSettingService {
   public static readonly DEFAULT_MESSAGE = 'Hello, to access the other channels you need to fullfill the verification. To do this just click the **{CONTENT_BUTTON}** button below this message.'
-  public static readonly DEFAULT_BUTTON = 'Verify'
+  public static readonly DEFAULT_BUTTON_CONTENT = 'Verify'
 
   public updateChannel = async (client: Client, channel: TextChannel): Promise<Message | boolean> => {
     await verificationSettingRequest.updateChannel(channel)
@@ -18,10 +18,15 @@ export default class VerificationSettingService {
     return await this.__updateMessage(client, channel)
   }
 
+  public updateContentButton = async (client: Client, content: string): Promise<Message | boolean> => {
+    await verificationSettingRequest.updateContentButton(content)
+    return await this.__updateMessage(client)
+  }
+
   private readonly __message = async (setting: IVerificationSetting): Promise<BaseMessageOptions> => {
     return {
       content: setting.content.replace('{CONTENT_BUTTON}', setting.contentButton),
-      components: await new VerificationButtonBuilder().buildButton()
+      components: await new VerificationButtonBuilder(setting.contentButton).buildButton()
     }
   }
 

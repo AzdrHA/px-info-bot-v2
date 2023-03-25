@@ -1,7 +1,7 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
 import { EVerificationButton } from '@enum/EVerificationButton'
-import VerificationButtonBuilder from '@component/button/verfication/VerificationButtonBuilder'
+import VerificationButtonBuilder from '@component/button/VerificationButtonBuilder'
 import { describe, it, expect } from 'vitest'
 
 describe('SetCommandButtonBuilder', () => {

@@ -8,6 +8,18 @@ import { EVerificationButton } from '@enum/EVerificationButton'
  * @extends DefaultButtonBuilder
  */
 export default class VerificationButtonBuilder extends DefaultButtonBuilder {
+  private readonly verifyText: string
+
+  /**
+   * @constructor
+   * @param verifyText
+   */
+  public constructor (verifyText: string = translator('Verify')) {
+    super()
+
+    this.verifyText = verifyText
+  }
+
   /**
    * @public
    * @return {Promise<ButtonBuilder[]>}
@@ -15,7 +27,7 @@ export default class VerificationButtonBuilder extends DefaultButtonBuilder {
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
     return [
       new ButtonBuilder({
-        label: translator('Verify'),
+        label: this.verifyText,
         style: ButtonStyle.Success,
         customId: EVerificationButton.VERIFY
       }),

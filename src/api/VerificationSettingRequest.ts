@@ -26,6 +26,15 @@ class BaseVerificationSettingRequest extends DefaultApiRequest<IVerificationSett
   public async updateMessage (message?: string | null): Promise<IVerificationSetting> {
     return await this.update('message', message)
   }
+
+  /**
+   * Update the content button
+   * @param {string} content
+   * @returns {Promise<IVerificationSetting>}
+   */
+  public async updateContentButton (content: string): Promise<IVerificationSetting> {
+    return await this.update('contentButton', content)
+  }
 }
 
 const verificationSettingRequest = new BaseVerificationSettingRequest('/verification')

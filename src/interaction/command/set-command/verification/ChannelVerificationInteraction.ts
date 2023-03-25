@@ -31,7 +31,7 @@ export default class ChannelVerificationInteraction extends AbstractInteraction 
       if (channel == null || !(channel instanceof TextChannel)) throw new AppException('The value entered is invalid')
       const verificationSettingService = new VerificationSettingService()
       await verificationSettingService.updateChannel(this.client, channel)
-      await this.success(translator('The {TYPE} channel has been successfully updated', { TYPE: translator('Verification') }))
+      await this.success(translator('The **{TYPE}** has been successfully updated', { TYPE: translator('Verification') }))
       UtilLogger.success('ChannelVerificationInteraction callback' + channel.id)
     }
 
