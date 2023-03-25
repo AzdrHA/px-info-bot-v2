@@ -7,9 +7,10 @@ Cancel: Cancel
 Channel: Channel
 Button content: Button content
 Message content: Message content
-Send the ID or mention the {TYPE} channel you want to use: Send the ID or mention the {TYPE} channel you want to use
+Send the ID or mention the **{TYPE}** channel you want to use: Send the ID or mention the **{TYPE}** channel you want to use
 Send the new content of the verification button: Send the new content of the verification button
 Default Content Button: Default Content Button
 Content Button: Content Button
 The **{TYPE}** has been successfully updated: The **{TYPE}** has been successfully updated
 (Automatically removed in {TIME}s): (Automatically removed in {TIME}s)
+Send the new content of the verification **{TYPE}**: Send the new content of the verification **{TYPE}**

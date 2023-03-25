@@ -9,7 +9,7 @@ import VerificationButtonBuilder from '@component/button/VerificationButtonBuild
  * @class VerificationSettingService
  */
 export default class VerificationSettingService {
-  public static readonly DEFAULT_MESSAGE = 'Hello, to access the other channels you need to fullfill the verification. To do this just click the **{CONTENT_BUTTON}** button below this message.'
+  public static readonly DEFAULT_MESSAGE_CONTENT = 'Hello, to access the other channels you need to fullfill the verification. To do this just click the **{CONTENT_BUTTON}** button below this message.'
   public static readonly DEFAULT_BUTTON_CONTENT = 'Verify'
 
   public updateChannel = async (client: Client, channel: TextChannel): Promise<Message | boolean> => {
@@ -20,6 +20,11 @@ export default class VerificationSettingService {
 
   public updateContentButton = async (client: Client, content: string): Promise<Message | boolean> => {
     await verificationSettingRequest.updateContentButton(content)
+    return await this.__updateMessage(client)
+  }
+
+  public updateMessageContent = async (client: Client, content: string): Promise<Message | boolean> => {
+    await verificationSettingRequest.updateMessageContent(content)
     return await this.__updateMessage(client)
   }
 

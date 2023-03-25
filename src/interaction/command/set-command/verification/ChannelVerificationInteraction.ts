@@ -36,7 +36,7 @@ export default class ChannelVerificationInteraction extends AbstractInteraction 
     }
 
     return await this.messageButtonCollector(await this.send({
-      content: translator('Send the ID or mention the {TYPE} channel you want to use', { TYPE: translator('Verification') }),
+      content: translator('Send the ID or mention the **{TYPE}** channel you want to use', { TYPE: translator('Verification') }),
       components: [new DefaultButtonRowBuilder().setComponents(new CancelButton())]
     }), callback)
   }

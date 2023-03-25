@@ -47,7 +47,7 @@ export default class DefaultApiRequest <K> {
    */
   public async update (id: keyof K, data?: string | null): Promise<K> {
     UtilLogger.apiRequest(util.format('Requesting PUT %s', this.url))
-    const request = await MakeRequest(this.url, 'PUT', { id, data })
+    const request = await MakeRequest(util.format('%s/%s', this.url, id), 'PUT', { [id]: data })
     CACHE.set(this.url, request)
     return request
   }

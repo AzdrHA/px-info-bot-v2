@@ -27,8 +27,7 @@ export default class VerificationSetCommandButtonBuilder extends DefaultCanceled
       new ButtonBuilder({
         label: translator('Message content'),
         style: ButtonStyle.Primary,
-        customId: ESetCommandVerification.MESSAGE,
-        disabled: true
+        customId: ESetCommandVerification.MESSAGE
       })
     ]
   }

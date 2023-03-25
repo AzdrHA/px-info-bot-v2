@@ -31,7 +31,7 @@ export default class ContentButtonVerificationInteraction extends AbstractIntera
     }
 
     return await this.messageButtonCollector(await this.send({
-      content: translator('Send the new content of the verification button'),
+      content: translator('Send the new content of the verification **{TYPE}**', { TYPE: translator('Content Button') }),
       components: await new ContentButtonVerificationSetCommandButtonBuilder().buildButton()
     }), callback)
   }
