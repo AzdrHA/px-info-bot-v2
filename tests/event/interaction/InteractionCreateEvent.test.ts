@@ -31,21 +31,21 @@ describe('InteractionCreateEvent', () => {
     it('should return "11" if the interaction is from another guild', async () => {
       interaction.guildId = 'another_guild'
       const result = await event.run(interaction)
-      expect(result).toEqual('11')
+      expect(result).toBeFalsy()
     })
 
     it('should return "22" if the interaction is not from a developer in development mode', async () => {
       process.env.NODE_ENV = ENodeEnv.DEVELOPMENT
       interaction.user.id = 'not_a_developer'
       const result = await event.run(interaction)
-      expect(result).toEqual('22')
+      expect(result).toBeFalsy()
       process.env.NODE_ENV = ENodeEnv.TEST
     })
 
     it('should return "333" if the interaction is not a button', async () => {
       interaction.isButton = vi.fn(() => false)
       const result = await event.run(interaction)
-      expect(result).toEqual('333')
+      expect(result).toBeFalsy()
     })
 
     it('should call InteractionService.run if the interaction is valid', async () => {

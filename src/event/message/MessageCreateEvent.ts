@@ -1,11 +1,11 @@
 import AbstractEvent from '../../abstract/AbstractEvent'
-import { type Message, userMention } from 'discord.js'
+import { type Message, type TextChannel, userMention } from 'discord.js'
 import type AbstractCommand from '../../abstract/AbstractCommand'
-import AppException from '../../exception/AppException'
 import { ENodeEnv } from '@enum/ENodeEnv'
 import { DEVELOPERS } from '@/config/AppConfig'
 import { DONT_PING_ME } from '@config/EmojiConfig'
 import { COMMAND_LIST } from '@config/Constant'
+import ExceptionService from '@service/ExceptionService'
 
 /**
  * @class MessageCreateEvent
@@ -60,14 +60,7 @@ export default class MessageCreateEvent extends AbstractEvent {
     try {
       return await command.run()
     } catch (error) {
-      if (error instanceof AppException) {
-        return await message.reply(error.message)
-      }
-      console.error(error)
-      return await message.reply({
-        content: 'There was an error trying to execute that command!',
-        failIfNotExists: false
-      })
+      return new ExceptionService(error as Error, message.channel as TextChannel)
     }
   }
 }

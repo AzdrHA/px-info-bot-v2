@@ -3,7 +3,7 @@ import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
 import MessageContentVerificationSetCommandButtonBuilder
   from '@component/button/command/set/MessageContentVerificationSetCommandButtonBuilder'
-import { EVerificationButton } from '@enum/EVerificationButton'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 
 describe('MessageContentVerificationSetCommandButtonBuilder', () => {
   it('should return an array of button', async () => {
@@ -13,7 +13,7 @@ describe('MessageContentVerificationSetCommandButtonBuilder', () => {
       new ButtonBuilder({
         label: translator('Default Message Content'),
         style: ButtonStyle.Primary,
-        customId: EVerificationButton.DEFAULT_MESSAGE
+        customId: EVerificationSetCommand.DEFAULT_MESSAGE
       })
     ])
   })

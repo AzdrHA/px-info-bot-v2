@@ -4,11 +4,11 @@ import translator from '@util/UtilTranslator'
 import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
- * @class RefuseButton
+ * @class RefuseInteraction
  * @description The refuse button
  * @extends AbstractInteraction
  */
-export default class RefuseButton extends AbstractInteraction {
+export default class RefuseInteraction extends AbstractInteraction {
   public id: string = EGlobalButton.REFUSE
   public global: boolean = true
 

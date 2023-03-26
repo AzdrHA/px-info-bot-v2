@@ -5,11 +5,11 @@ import translator from '@util/UtilTranslator'
 import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
- * @class VerifyButton
+ * @class VerifyInteraction
  * @description The verify button
  * @extends AbstractInteraction
  */
-export default class VerifyButton extends AbstractInteraction {
+export default class VerifyInteraction extends AbstractInteraction {
   public id: string = EGlobalButton.VERIFY
   public global: boolean = true
 
@@ -24,8 +24,14 @@ export default class VerifyButton extends AbstractInteraction {
       if (this.interaction.member.roles.cache.has(memberRole)) {
         await this.interaction.reply({ content: translator('You are already verified'), ephemeral: true })
       } else {
-        await this.interaction.member.roles.add(memberRole)
-        await this.interaction.reply({ content: translator('You are now verified'), ephemeral: true })
+        this.interaction.member.roles.add(memberRole).then(async () => {
+          await this.interaction.reply({ content: translator('You are now verified'), ephemeral: true })
+        }).catch(async () => {
+          await this.interaction.reply({
+            content: translator('I do not have the necessary authorizations to give you the member role'),
+            ephemeral: true
+          })
+        })
       }
     }
   }
