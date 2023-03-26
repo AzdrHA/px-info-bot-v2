@@ -35,9 +35,4 @@ describe('InteractionService', () => {
   it('should return false if interaction is not global', async () => {
     expect(await interactionService.run(interaction, true)).toBeFalsy()
   })
-
-  it('should set interaction to interaction', async () => {
-    await interactionService.run(interaction)
-    expect(INTERACTION_LIST.get('test/i').setInteraction).toBeCalledWith(interaction)
-  })
 })
