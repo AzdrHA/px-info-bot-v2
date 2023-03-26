@@ -1,4 +1,4 @@
-export enum ESetCommandButton {
+export enum ESetCommand {
   VERIFICATION = 'admin_command_set_button/verification',
   ROLES = 'admin_command_set_button/roles',
   TICKETS = 'admin_command_set_button/tickets',

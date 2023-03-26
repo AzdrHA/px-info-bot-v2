@@ -1,5 +1,5 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
-import { ESetCommandVerification } from '@enum/command/ESetCommandVerification'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 import translator from '@util/UtilTranslator'
 import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
 import CancelButton from '@component/button/CancelButton'
@@ -15,7 +15,7 @@ import VerificationSettingService from '@service/VerificationSettingService'
  */
 export default class ChannelVerificationInteraction extends AbstractInteraction {
   public global: boolean = false
-  public id: string = ESetCommandVerification.CHANNEL
+  public id: string = EVerificationSetCommand.CHANNEL
 
   /**
    * @public

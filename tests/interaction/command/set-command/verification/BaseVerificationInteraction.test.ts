@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import type Client from '@/Client'
 import { type ButtonInteraction } from 'discord.js'
 import BaseVerificationInteraction from '@interaction/command/set-command/verification/BaseVerificationInteraction'
-import { ESetCommandButton } from '@enum/command/ESetCommandButton'
+import { ESetCommand } from '@enum/command/ESetCommand'
 
 describe('BaseVerificationInteraction', () => {
   let button: BaseVerificationInteraction
@@ -14,7 +14,7 @@ describe('BaseVerificationInteraction', () => {
   })
 
   it('should have the correct id', () => {
-    expect(button.id).toBe(ESetCommandButton.VERIFICATION)
+    expect(button.id).toBe(ESetCommand.VERIFICATION)
   })
 
   it('should have the correct global', () => {

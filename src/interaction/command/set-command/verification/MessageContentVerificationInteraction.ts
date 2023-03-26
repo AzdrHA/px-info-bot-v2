@@ -1,5 +1,5 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
-import { ESetCommandVerification } from '@enum/command/ESetCommandVerification'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 import translator from '@util/UtilTranslator'
 import UtilLogger from '@util/UtilLogger'
 import VerificationSettingService from '@service/VerificationSettingService'
@@ -12,7 +12,7 @@ import MessageContentVerificationSetCommandButtonBuilder
  */
 export default class MessageContentVerificationInteraction extends AbstractInteraction {
   public global: boolean = false
-  public id: string = ESetCommandVerification.MESSAGE
+  public id: string = EVerificationSetCommand.MESSAGE
 
   /**
    * @public

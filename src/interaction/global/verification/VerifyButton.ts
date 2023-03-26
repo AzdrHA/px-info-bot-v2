@@ -1,5 +1,8 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
-import { EVerificationButton } from '@enum/EVerificationButton'
+import roleRequest from '@/api/RoleRequest'
+import { GuildMember } from 'discord.js'
+import translator from '@util/UtilTranslator'
+import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
  * @class VerifyButton
@@ -7,8 +10,8 @@ import { EVerificationButton } from '@enum/EVerificationButton'
  * @extends AbstractInteraction
  */
 export default class VerifyButton extends AbstractInteraction {
-  public id: string = EVerificationButton.VERIFY
-  public global: boolean = false
+  public id: string = EGlobalButton.VERIFY
+  public global: boolean = true
 
   /**
    * @method run
@@ -16,6 +19,14 @@ export default class VerifyButton extends AbstractInteraction {
    * @returns {Promise<any>}
    */
   public async run (): Promise<any> {
-    console.log('VerifyButton#run')
+    const memberRole = await roleRequest.getMemberRoles()
+    if ((this.interaction.member != null) && this.interaction.member instanceof GuildMember) {
+      if (this.interaction.member.roles.cache.has(memberRole)) {
+        await this.interaction.reply({ content: translator('You are already verified'), ephemeral: true })
+      } else {
+        await this.interaction.member.roles.add(memberRole)
+        await this.interaction.reply({ content: translator('You are now verified'), ephemeral: true })
+      }
+    }
   }
 }

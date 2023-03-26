@@ -1,6 +1,6 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
-import { ESetCommandVerification } from '@enum/command/ESetCommandVerification'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
 
 /**
@@ -17,17 +17,17 @@ export default class VerificationSetCommandButtonBuilder extends DefaultCanceled
       new ButtonBuilder({
         label: translator('Channel'),
         style: ButtonStyle.Primary,
-        customId: ESetCommandVerification.CHANNEL
+        customId: EVerificationSetCommand.CHANNEL
       }),
       new ButtonBuilder({
         label: translator('Button content'),
         style: ButtonStyle.Primary,
-        customId: ESetCommandVerification.CONTENT_BUTTON
+        customId: EVerificationSetCommand.CONTENT_BUTTON
       }),
       new ButtonBuilder({
         label: translator('Message content'),
         style: ButtonStyle.Primary,
-        customId: ESetCommandVerification.MESSAGE
+        customId: EVerificationSetCommand.MESSAGE
       })
     ]
   }

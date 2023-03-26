@@ -1,7 +1,7 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
 import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import { EVerificationButton } from '@enum/EVerificationButton'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 
 /**
  * @class MessageContentVerificationSetCommandButtonBuilder
@@ -17,7 +17,7 @@ export default class MessageContentVerificationSetCommandButtonBuilder extends D
       new ButtonBuilder({
         label: translator('Default Message Content'),
         style: ButtonStyle.Primary,
-        customId: EVerificationButton.DEFAULT_MESSAGE
+        customId: EVerificationSetCommand.DEFAULT_MESSAGE
       })
     ]
   }

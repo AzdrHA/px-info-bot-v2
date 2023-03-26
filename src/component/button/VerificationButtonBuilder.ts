@@ -1,7 +1,7 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder'
 import translator from '@util/UtilTranslator'
-import { EVerificationButton } from '@enum/EVerificationButton'
+import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
  * @class VerificationButtonBuilder
@@ -29,12 +29,12 @@ export default class VerificationButtonBuilder extends DefaultButtonBuilder {
       new ButtonBuilder({
         label: this.verifyText,
         style: ButtonStyle.Success,
-        customId: EVerificationButton.VERIFY
+        customId: EGlobalButton.VERIFY
       }),
       new ButtonBuilder({
         label: translator('Refuse'),
         style: ButtonStyle.Danger,
-        customId: EVerificationButton.REFUSE
+        customId: EGlobalButton.REFUSE
       })
     ]
   }

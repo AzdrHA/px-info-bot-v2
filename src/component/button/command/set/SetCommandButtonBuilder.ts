@@ -1,6 +1,6 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
-import { ESetCommandButton } from '@enum/command/ESetCommandButton'
+import { ESetCommand } from '@enum/command/ESetCommand'
 import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
 
 /**
@@ -13,7 +13,7 @@ export default class SetCommandButtonBuilder extends DefaultCanceledButtonBuilde
       new ButtonBuilder({
         label: translator('Verification'),
         style: ButtonStyle.Primary,
-        customId: ESetCommandButton.VERIFICATION
+        customId: ESetCommand.VERIFICATION
       })
     ]
   }

@@ -2,7 +2,7 @@ import AbstractInteraction from '@abstract/AbstractInteraction'
 import translator from '@util/UtilTranslator'
 import UtilLogger from '@util/UtilLogger'
 import VerificationSettingService from '@service/VerificationSettingService'
-import { EVerificationButton } from '@enum/EVerificationButton'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 
 /**
  * @class DefaultMessageContentVerificationInteraction
@@ -10,7 +10,7 @@ import { EVerificationButton } from '@enum/EVerificationButton'
  */
 export default class DefaultMessageContentVerificationInteraction extends AbstractInteraction {
   public global: boolean = false
-  public id: string = EVerificationButton.DEFAULT_MESSAGE
+  public id: string = EVerificationSetCommand.DEFAULT_MESSAGE
 
   /**
    * @public

@@ -1,5 +1,5 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
-import { ESetCommandButton } from '@enum/command/ESetCommandButton'
+import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
 import VerificationSetCommandButtonBuilder from '@component/button/command/set/VerificationSetCommandButtonBuilder'
 
@@ -9,7 +9,7 @@ import VerificationSetCommandButtonBuilder from '@component/button/command/set/V
  */
 export default class BaseVerificationInteraction extends AbstractInteraction {
   public global: boolean = false
-  public id: string = ESetCommandButton.VERIFICATION
+  public id: string = ESetCommand.VERIFICATION
 
   /**
    * @public

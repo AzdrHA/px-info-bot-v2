@@ -1,7 +1,7 @@
 import SetCommandButtonBuilder from '@component/button/command/set/SetCommandButtonBuilder'
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
-import { ESetCommandButton } from '@enum/command/ESetCommandButton'
+import { ESetCommand } from '@enum/command/ESetCommand'
 import { describe, it, expect } from 'vitest'
 import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
 import { EGlobalButton } from '@enum/EGlobalButton'
@@ -15,7 +15,7 @@ describe('SetCommandButtonBuilder', () => {
       new ButtonBuilder({
         label: translator('Verification'),
         style: ButtonStyle.Primary,
-        customId: ESetCommandButton.VERIFICATION
+        customId: ESetCommand.VERIFICATION
       })
     ])
   })
@@ -29,7 +29,7 @@ describe('SetCommandButtonBuilder', () => {
         new ButtonBuilder({
           label: translator('Verification'),
           style: ButtonStyle.Primary,
-          customId: ESetCommandButton.VERIFICATION
+          customId: ESetCommand.VERIFICATION
         }),
         new ButtonBuilder({
           label: translator('Cancel'),
