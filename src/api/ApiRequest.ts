@@ -1,0 +1,22 @@
+import { type Guild } from 'discord.js'
+import { MakeRequest } from '@/api/MakeRequest'
+import * as process from 'process'
+import UtilLogger from '@util/UtilLogger'
+import { ENodeEnv } from '@enum/ENodeEnv'
+
+/**
+ * @method updateMemberCountRequest
+ * @description Update the member count
+ * @returns {Promise<void>}
+ * @async
+ * @public
+ * @param {Guild} guild
+ * @param {boolean} force
+ */
+export const updateMemberCountRequest = async (guild: Guild, force: boolean = false): Promise<void> => {
+  if (process.env.NODE_ENV === ENodeEnv.DEVELOPMENT && !force) {
+    UtilLogger.info('Member count update skipped in development mode')
+    return
+  }
+  return await MakeRequest('/members', 'POST', { members: guild.memberCount })
+}
