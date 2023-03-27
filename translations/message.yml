@@ -57,3 +57,16 @@ message: Message
 name: Name
 ticket: Ticket
 voiceChat: Voice Chat
+Channels: Channels
+Info: Info
+Menu News: Menu News
+Menu Info: Menu Info
+Shop Info: Shop Info
+Shop News: Shop News
+Shop Announcement: Shop Announcement
+Channel Log: Channel Log
+info: Info
+menuNews: Menu News
+menuInfo: Menu Info
+shopNews: Shop News
+shopAnnouncement: Shop Announcement

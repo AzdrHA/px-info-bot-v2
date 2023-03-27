@@ -35,7 +35,7 @@ export default class ChannelSetCommandButtonBuilder extends DefaultCanceledButto
         customId: EChannelSetCommand.SHOP_NEWS
       }),
       new ButtonBuilder({
-        label: translator('Shop Announcements'),
+        label: translator('Shop Announcement'),
         style: ButtonStyle.Primary,
         customId: EChannelSetCommand.SHOP_ANNOUNCEMENT
       })

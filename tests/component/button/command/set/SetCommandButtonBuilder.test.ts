@@ -25,6 +25,18 @@ describe('SetCommandButtonBuilder', () => {
         style: ButtonStyle.Primary,
         customId: ESetCommand.VERIFICATION,
         disabled: !checkRoleCreate
+      }),
+      new ButtonBuilder({
+        label: translator('Channels'),
+        style: ButtonStyle.Primary,
+        customId: ESetCommand.CHANNELS,
+        disabled: !checkRoleCreate
+      }),
+      new ButtonBuilder({
+        label: translator('Logs'),
+        style: ButtonStyle.Secondary,
+        customId: ESetCommand.LOGS,
+        disabled: !checkRoleCreate
       })
     ])
   })
@@ -46,6 +58,18 @@ describe('SetCommandButtonBuilder', () => {
           label: translator('Verification'),
           style: ButtonStyle.Primary,
           customId: ESetCommand.VERIFICATION,
+          disabled: !checkRoleCreate
+        }),
+        new ButtonBuilder({
+          label: translator('Channels'),
+          style: ButtonStyle.Primary,
+          customId: ESetCommand.CHANNELS,
+          disabled: !checkRoleCreate
+        }),
+        new ButtonBuilder({
+          label: translator('Logs'),
+          style: ButtonStyle.Secondary,
+          customId: ESetCommand.LOGS,
           disabled: !checkRoleCreate
         }),
         new ButtonBuilder({
