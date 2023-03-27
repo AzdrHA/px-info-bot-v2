@@ -11,10 +11,10 @@ import UtilLogger from '@util/UtilLogger'
 
 /**
  * @abstract
- * @class AbstractRoleInterface
+ * @class AbstractRoleInteraction
  * @extends AbstractInteraction
  */
-export default abstract class AbstractRoleInterface extends AbstractInteraction {
+export default abstract class AbstractRoleInteraction extends AbstractInteraction {
   public abstract role: keyof IRole
   public global: boolean = false
 
