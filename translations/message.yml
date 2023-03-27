@@ -44,3 +44,16 @@ Member: Member
 Support: Support
 Administrator: Administrator
 Send the ID or mention the **{TYPE}** role you want to use: Send the ID or mention the **{TYPE}** role you want to use
+Send the ID or mention the **{TYPE}** log channel you want to use: Send the ID or mention the **{TYPE}** log channel you want to use
+Logs: Logs
+Member Role: Member Role
+Ticket: Ticket
+Message: Message
+Name: Name
+Voice Chat: Voice Chat
+memberRole: Member Role
+member: Member
+message: Message
+name: Name
+ticket: Ticket
+voiceChat: Voice Chat

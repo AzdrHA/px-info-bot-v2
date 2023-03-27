@@ -4,10 +4,10 @@ import translator from '@util/UtilTranslator'
 import LogSetCommandButtonBuilder from '@component/button/command/set/LogSetCommandButtonBuilder'
 
 /**
- * @class BaseLogInterface
+ * @class BaseLogInteraction
  * @extends AbstractInteraction
  */
-export default class BaseLogInterface extends AbstractInteraction {
+export default class BaseLogInteraction extends AbstractInteraction {
   public global: boolean = false
   public id: string = ESetCommand.LOGS
 

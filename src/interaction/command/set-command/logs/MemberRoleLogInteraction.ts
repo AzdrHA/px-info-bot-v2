@@ -1,4 +1,4 @@
-import AbstractLogInteraction from '@interaction/command/set-command/logs/AbstractLogInteraction'
+import AbstractLogInteraction from '@abstract/AbstractLogInteraction'
 import { type IChannelLog } from '@interface/IChannelLog'
 import { ELogSetCommand } from '@enum/command/ELogSetCommand'
 
