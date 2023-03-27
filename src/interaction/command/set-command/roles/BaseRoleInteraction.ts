@@ -4,10 +4,10 @@ import translator from '@util/UtilTranslator'
 import RoleSetCommandButtonBuilder from '@component/button/command/set/RoleSetCommandButtonBuilder'
 
 /**
- * @class BaseRoleInterface
+ * @class BaseRoleInteraction
  * @extends AbstractInteraction
  */
-export default class BaseRoleInterface extends AbstractInteraction {
+export default class BaseRoleInteraction extends AbstractInteraction {
   public global: boolean = false
   public id: string = ESetCommand.ROLES
 
