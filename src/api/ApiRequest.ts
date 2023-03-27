@@ -1,4 +1,4 @@
-import { type Guild } from 'discord.js'
+import { type Guild, type PresenceData } from 'discord.js'
 import { MakeRequest } from '@/api/MakeRequest'
 import * as process from 'process'
 import UtilLogger from '@util/UtilLogger'
@@ -19,4 +19,14 @@ export const updateMemberCountRequest = async (guild: Guild, force: boolean = fa
     return
   }
   return await MakeRequest('/members', 'POST', { members: guild.memberCount })
+}
+
+/**
+ * @method getPresenceRequest
+ * @description Get the presence
+ * @returns {Promise<PresenceData>}
+ * @async
+ */
+export const getPresenceRequest = async (): Promise<PresenceData> => {
+  return await MakeRequest('/presence', 'GET')
 }
