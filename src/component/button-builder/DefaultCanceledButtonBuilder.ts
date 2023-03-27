@@ -20,10 +20,8 @@ export default abstract class DefaultCanceledButtonBuilder {
       }
     })
 
-    if (this.buttons.length > 0) {
-      res.push(new DefaultButtonRowBuilder().setComponents(...this.buttons, new CancelButton()))
-      this.buttons.splice(0, this.buttons.length)
-    }
+    res.push(new DefaultButtonRowBuilder().setComponents(...this.buttons, new CancelButton()))
+    this.buttons.splice(0, this.buttons.length)
     return res
   }
 
