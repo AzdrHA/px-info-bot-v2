@@ -20,6 +20,11 @@ export default class SetCommandButtonBuilder extends DefaultCanceledButtonBuilde
         customId: ESetCommand.ROLES
       }),
       new ButtonBuilder({
+        label: translator('Ticket'),
+        style: ButtonStyle.Primary,
+        customId: ESetCommand.TICKETS
+      }),
+      new ButtonBuilder({
         label: translator('Verification'),
         style: ButtonStyle.Primary,
         customId: ESetCommand.VERIFICATION,
