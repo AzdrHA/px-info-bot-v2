@@ -38,6 +38,7 @@ export default class ExceptionService {
       }
     }
 
+    console.error(error)
     return await this._channel.send({
       content: translator('There was an error trying to execute that command!', {}, 'error')
     })
