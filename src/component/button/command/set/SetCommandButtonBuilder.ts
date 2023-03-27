@@ -26,6 +26,12 @@ export default class SetCommandButtonBuilder extends DefaultCanceledButtonBuilde
         disabled: !checkRoleCreate
       }),
       new ButtonBuilder({
+        label: translator('Channels'),
+        style: ButtonStyle.Primary,
+        customId: ESetCommand.CHANNELS,
+        disabled: !checkRoleCreate
+      }),
+      new ButtonBuilder({
         label: translator('Logs'),
         style: ButtonStyle.Secondary,
         customId: ESetCommand.LOGS,
