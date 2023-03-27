@@ -18,3 +18,24 @@ Send the new content of the verification **{TYPE}**: Send the new content of the
 You are already verified: You are already verified
 You are now verified: You are now verified
 I do not have the necessary authorizations to give you the member role: I do not have the necessary authorizations to give you the member role
+Not yet defined: Not yet defined
+"__**My current settings:**__": "__**My current settings:**__"
+"__**Roles:**__": "__**Roles:**__"
+"Administrator:": "Administrator:"
+"Support:": "Support:"
+"Member:": "Member:"
+"__**Ticket Settings:**__": "__**Ticket Settings:**__"
+"Ticket Creation channel:": "Ticket Creation channel:"
+"Ticket Category ID:": "Ticket Category ID:"
+"__**Channels:**__": "__**Channels:**__"
+"Verification:": "Verification:"
+"Info:": "Info:"
+"Menu Info:": "Menu Info:"
+"Menu News:": "Menu News:"
+"Shop News:": "Shop News:"
+"__**Logs:**__": "__**Logs:**__"
+"Member Role:": "Member Role:"
+"Ticket:": "Ticket:"
+"Message:": "Message:"
+"Name:": "Name:"
+"Voice Chat:": "Voice Chat:"

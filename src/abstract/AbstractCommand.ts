@@ -19,7 +19,7 @@ export default abstract class AbstractCommand extends AbstractAction {
   public args: string[] = []
   public description: string = 'No description provided.'
   public usage: string = 'No usage provided.'
-  public permission: EPermission = EPermission.MEMBER
+  public permission: EPermission = EPermission.ADMINISTRATOR
 
   /**
    * @constructor

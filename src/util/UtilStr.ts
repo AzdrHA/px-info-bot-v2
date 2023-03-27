@@ -79,3 +79,13 @@ export const replace = (content: string, params: Record<string, string>): string
   }
   return result
 }
+
+/**
+ * @public
+ * @param {string} content
+ * @param {Record<string, any>} obj
+ * @param {string|null} defaultValue
+ */
+export const getNested = (content: string, obj: Record<string, any>, defaultValue: string | null = null): any => {
+  return content.split('.').reduce((obj, level) => (obj[level] != null) ? obj[level] : defaultValue, obj)
+}

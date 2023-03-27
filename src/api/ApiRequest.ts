@@ -3,6 +3,7 @@ import { MakeRequest } from '@/api/MakeRequest'
 import * as process from 'process'
 import UtilLogger from '@util/UtilLogger'
 import { ENodeEnv } from '@enum/ENodeEnv'
+import { type ISettings } from '@interface/ISettings'
 
 /**
  * @method updateMemberCountRequest
@@ -29,4 +30,14 @@ export const updateMemberCountRequest = async (guild: Guild, force: boolean = fa
  */
 export const getPresenceRequest = async (): Promise<PresenceData> => {
   return await MakeRequest('/presence', 'GET')
+}
+
+/**
+ * @method getSettingsRequest
+ * @description Get the settings
+ * @returns {Promise<ISettings>}
+ * @async
+ */
+export const getSettingsRequest = async (): Promise<ISettings> => {
+  return await MakeRequest('/settings', 'GET')
 }
