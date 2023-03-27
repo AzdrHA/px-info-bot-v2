@@ -5,6 +5,4 @@ export interface IChannelLog {
   member: string
   name: string
   voiceChat: string
-  command: string
-  invite: string
 }

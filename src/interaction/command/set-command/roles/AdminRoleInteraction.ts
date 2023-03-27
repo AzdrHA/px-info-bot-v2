@@ -1,4 +1,4 @@
-import AbstractRoleInteraction from '@interaction/command/set-command/roles/AbstractRoleInteraction'
+import AbstractRoleInteraction from '@abstract/AbstractRoleInteraction'
 import { type IRole } from '@interface/IRole'
 import { ERoleSetCommand } from '@enum/command/ERoleSetCommand'
 
