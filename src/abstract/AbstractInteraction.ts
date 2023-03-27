@@ -29,6 +29,9 @@ import { type MessageButtonCollector } from '@collector/MessageButtonCollector'
 export default abstract class AbstractInteraction extends AbstractAction {
   public client: Client
   private _interaction: ButtonInteraction
+  public abstract id: string
+  public abstract global: boolean
+  public abstract run (): Promise<any>
 
   /**
    * @constructor
@@ -41,10 +44,6 @@ export default abstract class AbstractInteraction extends AbstractAction {
     this.client = client
     this._interaction = interaction
   }
-
-  public abstract id: string
-  public abstract global: boolean
-  public abstract run (): Promise<any>
 
   /**
    * @public
