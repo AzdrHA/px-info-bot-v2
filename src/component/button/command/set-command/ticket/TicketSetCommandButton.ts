@@ -5,10 +5,10 @@ import { ETicketSetCommand } from '@enum/command/ETicketSetCommand'
 import ticketSettingRequest from '@/api/TicketSettingRequest'
 
 /**
- * @class TicketSetCommandButtonBuilder
+ * @class TicketSetCommandButton
  * @extends DefaultButtonBuilder
  */
-export default class TicketSetCommandButtonBuilder extends DefaultCanceledButtonBuilder {
+export default class TicketSetCommandButton extends DefaultCanceledButtonBuilder {
   /**
    * @public
    * @return {Promise<ButtonBuilder[]>}

@@ -1,7 +1,8 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
-import VerificationSetCommandButtonBuilder from '@component/button/command/set/VerificationSetCommandButtonBuilder'
+import VerificationSetCommandButton
+  from '@component/button/command/set-command/verification/VerificationSetCommandButton'
 
 /**
  * @class BaseVerificationInteraction
@@ -20,7 +21,7 @@ export default class BaseVerificationInteraction extends AbstractInteraction {
       content: translator('What **{TYPE}** settings would you like to change?', {
         TYPE: translator('Verification')
       }),
-      components: await this.buildButtons(VerificationSetCommandButtonBuilder)
+      components: await this.buildButtons(VerificationSetCommandButton)
     }))
   }
 }

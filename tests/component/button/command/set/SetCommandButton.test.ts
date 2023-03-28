@@ -1,4 +1,3 @@
-import SetCommandButtonBuilder from '@component/button/command/set/SetCommandButtonBuilder'
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
 import { ESetCommand } from '@enum/command/ESetCommand'
@@ -6,10 +5,11 @@ import { describe, it, expect } from 'vitest'
 import DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
 import { EGlobalButton } from '@enum/EGlobalButton'
 import roleRequest from '@/api/RoleRequest'
+import SetCommandButton from '@component/button/command/set-command/SetCommandButton'
 
-describe('SetCommandButtonBuilder', () => {
+describe('SetCommandButton', () => {
   it('should return an array of button', async () => {
-    const setCommandButtonBuilder = new SetCommandButtonBuilder()
+    const setCommandButtonBuilder = new SetCommandButton()
     const button = await setCommandButtonBuilder.initializeButton()
     const roles = (await roleRequest.get())
     const checkRoleCreate = (roles.support != null) && (roles.member != null)
@@ -47,7 +47,7 @@ describe('SetCommandButtonBuilder', () => {
   })
 
   it('should return an array of button', async () => {
-    const setCommandButtonBuilder = new SetCommandButtonBuilder()
+    const setCommandButtonBuilder = new SetCommandButton()
     const build = await setCommandButtonBuilder.buildButton()
     const roles = (await roleRequest.get())
     const checkRoleCreate = (roles.support != null) && (roles.member != null)

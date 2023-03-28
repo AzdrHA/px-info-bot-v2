@@ -1,12 +1,13 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
-import VerificationSetCommandButtonBuilder from '@component/button/command/set/VerificationSetCommandButtonBuilder'
 import { describe, it, expect } from 'vitest'
 import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
+import VerificationSetCommandButton
+  from '@component/button/command/set-command/verification/VerificationSetCommandButton'
 
-describe('VerificationSetCommandButtonBuilder', () => {
+describe('VerificationSetCommandButton', () => {
   it('should return an array of button', async () => {
-    const verificationSetCommandButtonBuilder = new VerificationSetCommandButtonBuilder()
+    const verificationSetCommandButtonBuilder = new VerificationSetCommandButton()
     const button = await verificationSetCommandButtonBuilder.initializeButton()
 
     expect(button).toEqual([

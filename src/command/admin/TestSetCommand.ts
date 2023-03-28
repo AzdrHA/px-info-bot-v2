@@ -2,7 +2,8 @@ import AbstractCommand from '@abstract/AbstractCommand'
 import translator from '@util/UtilTranslator'
 import { EPermission } from '@enum/EPermission'
 import { type MessageButtonCollector } from '@collector/MessageButtonCollector'
-import VerificationSetCommandButtonBuilder from '@component/button/command/set/VerificationSetCommandButtonBuilder'
+import VerificationSetCommandButton
+  from '@component/button/command/set-command/verification/VerificationSetCommandButton'
 
 /**
  * @class SetCommand
@@ -32,7 +33,7 @@ export default class TestSetCommand extends AbstractCommand {
 
     return await this.messageButtonCollector(await this.send({
       content: translator('WRITE_A_MESSAGE'),
-      components: await this.buildButtons(VerificationSetCommandButtonBuilder)
+      components: await this.buildButtons(VerificationSetCommandButton)
     }), callback)
   }
 }

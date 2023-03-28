@@ -6,10 +6,10 @@ import { EGlobalButton } from '@enum/EGlobalButton'
 import { MENU_FAQ_LINK, TROUBLESHOOT_LINK } from '@config/Constant'
 
 /**
- * @class TicketButtonBuilder
+ * @class TicketButton
  * @extends DefaultButtonBuilder
  */
-export default class TicketButtonBuilder extends DefaultButtonBuilder {
+export default class TicketButton extends DefaultButtonBuilder {
   /**
    * @public
    * @returns {Promise<ButtonBuilder[]>}

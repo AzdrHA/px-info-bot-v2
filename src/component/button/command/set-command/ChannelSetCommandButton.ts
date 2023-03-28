@@ -1,13 +1,13 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
+import { EChannelSetCommand } from '@enum/command/EChannelSetCommand'
 import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import { ELogSetCommand } from '@enum/command/ELogSetCommand'
 
 /**
- * @class LogSetCommandButtonBuilder
+ * @class ChannelSetCommandButton
  * @extends DefaultButtonBuilder
  */
-export default class LogSetCommandButtonBuilder extends DefaultCanceledButtonBuilder {
+export default class ChannelSetCommandButton extends DefaultCanceledButtonBuilder {
   /**
    * @public
    * @return {Promise<ButtonBuilder[]>}
@@ -15,34 +15,29 @@ export default class LogSetCommandButtonBuilder extends DefaultCanceledButtonBui
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
     return [
       new ButtonBuilder({
-        label: translator('Member Role'),
+        label: translator('Info'),
         style: ButtonStyle.Primary,
-        customId: ELogSetCommand.MEMBER_ROLE
+        customId: EChannelSetCommand.INFO
       }),
       new ButtonBuilder({
-        label: translator('Ticket'),
+        label: translator('Menu News'),
         style: ButtonStyle.Primary,
-        customId: ELogSetCommand.TICKET
+        customId: EChannelSetCommand.MENU_NEWS
       }),
       new ButtonBuilder({
-        label: translator('Message'),
+        label: translator('Menu Info'),
         style: ButtonStyle.Primary,
-        customId: ELogSetCommand.MESSAGE
+        customId: EChannelSetCommand.MENU_INFO
       }),
       new ButtonBuilder({
-        label: translator('Member'),
+        label: translator('Shop News'),
         style: ButtonStyle.Primary,
-        customId: ELogSetCommand.MEMBER
+        customId: EChannelSetCommand.SHOP_NEWS
       }),
       new ButtonBuilder({
-        label: translator('Name'),
+        label: translator('Shop Announcement'),
         style: ButtonStyle.Primary,
-        customId: ELogSetCommand.NAME
-      }),
-      new ButtonBuilder({
-        label: translator('Voice Chat'),
-        style: ButtonStyle.Primary,
-        customId: ELogSetCommand.VOICE_CHAT
+        customId: EChannelSetCommand.SHOP_ANNOUNCEMENT
       })
     ]
   }

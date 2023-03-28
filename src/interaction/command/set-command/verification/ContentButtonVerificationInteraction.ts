@@ -3,8 +3,8 @@ import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 import translator from '@util/UtilTranslator'
 import UtilLogger from '@util/UtilLogger'
 import VerificationSettingService from '@service/VerificationSettingService'
-import ContentButtonVerificationSetCommandButtonBuilder
-  from '@component/button/command/set/ContentButtonVerificationSetCommandButtonBuilder'
+import ContentButtonVerificationSetCommandButton
+  from '@component/button/command/set-command/verification/ContentButtonVerificationSetCommandButton'
 
 /**
  * @class ContentButtonVerificationInteraction
@@ -32,7 +32,7 @@ export default class ContentButtonVerificationInteraction extends AbstractIntera
 
     return await this.messageButtonCollector(await this.send({
       content: translator('Send the new content of the verification **{TYPE}**', { TYPE: translator('Content Button') }),
-      components: await new ContentButtonVerificationSetCommandButtonBuilder().buildButton()
+      components: await new ContentButtonVerificationSetCommandButton().buildButton()
     }), callback)
   }
 }

@@ -1,7 +1,7 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
-import LogSetCommandButtonBuilder from '@component/button/command/set/LogSetCommandButtonBuilder'
+import LogSetCommandButton from '@component/button/command/set-command/LogSetCommandButton'
 
 /**
  * @class BaseLogInteraction
@@ -21,7 +21,7 @@ export default class BaseLogInteraction extends AbstractInteraction {
       content: translator('What **{TYPE}** settings would you like to change?', {
         TYPE: translator('Logs')
       }),
-      components: await this.buildButtons(LogSetCommandButtonBuilder)
+      components: await this.buildButtons(LogSetCommandButton)
     }))
   }
 }

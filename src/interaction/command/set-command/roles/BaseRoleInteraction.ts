@@ -1,7 +1,7 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
-import RoleSetCommandButtonBuilder from '@component/button/command/set/RoleSetCommandButtonBuilder'
+import RoleSetCommandButton from '@component/button/command/set-command/RoleSetCommandButton'
 
 /**
  * @class BaseRoleInteraction
@@ -21,7 +21,7 @@ export default class BaseRoleInteraction extends AbstractInteraction {
       content: translator('What **{TYPE}** settings would you like to change?', {
         TYPE: translator('Roles')
       }),
-      components: await this.buildButtons(RoleSetCommandButtonBuilder)
+      components: await this.buildButtons(RoleSetCommandButton)
     }))
   }
 }

@@ -5,10 +5,10 @@ import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCance
 import roleRequest from '@/api/RoleRequest'
 
 /**
- * @class SetCommandButtonBuilder
+ * @class SetCommandButton
  * @extends DefaultButtonBuilder
  */
-export default class SetCommandButtonBuilder extends DefaultCanceledButtonBuilder {
+export default class SetCommandButton extends DefaultCanceledButtonBuilder {
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
     const roles = (await roleRequest.get())
     const checkRoleCreate = (roles.support != null) && (roles.member != null)

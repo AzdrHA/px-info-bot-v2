@@ -4,10 +4,10 @@ import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCance
 import { ETicketSetCommand } from '@enum/command/ETicketSetCommand'
 
 /**
- * @class ContentButtonTicketSetCommandButtonBuilder
+ * @class MessageContentTicketSetCommandButton
  * @extends DefaultButtonBuilder
  */
-export default class ContentButtonTicketSetCommandButtonBuilder extends DefaultCanceledButtonBuilder {
+export default class MessageContentTicketSetCommandButton extends DefaultCanceledButtonBuilder {
   /**
    * @public
    * @return {Promise<ButtonBuilder[]>}
@@ -15,9 +15,9 @@ export default class ContentButtonTicketSetCommandButtonBuilder extends DefaultC
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
     return [
       new ButtonBuilder({
-        label: translator('Default Content Button'),
+        label: translator('Default Message Content'),
         style: ButtonStyle.Primary,
-        customId: ETicketSetCommand.DEFAULT_CONTENT_BUTTON
+        customId: ETicketSetCommand.DEFAULT_CONTENT_MESSAGE
       })
     ]
   }

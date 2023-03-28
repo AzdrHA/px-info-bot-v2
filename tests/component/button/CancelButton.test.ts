@@ -4,7 +4,7 @@ import CancelButton from '@component/button/CancelButton'
 import { EGlobalButton } from '@enum/EGlobalButton'
 import translator from '@util/UtilTranslator'
 
-describe('CancelButtonBuilder', () => {
+describe('CancelButton', () => {
   it('should return an array of button', async () => {
     const button: Partial<ButtonComponentData> | Partial<APIButtonComponent> = {
       custom_id: EGlobalButton.CANCEL,

@@ -1,8 +1,8 @@
 import AbstractCommand from '@abstract/AbstractCommand'
 import translator from '@util/UtilTranslator'
-import SetCommandButtonBuilder from '@component/button/command/set/SetCommandButtonBuilder'
 import { EPermission } from '@enum/EPermission'
 import type ButtonCollector from '@collector/ButtonCollector'
+import SetCommandButton from '@component/button/command/set-command/SetCommandButton'
 
 /**
  * @class SetCommand
@@ -23,7 +23,7 @@ export default class SetCommand extends AbstractCommand {
 
     return await this.buttonCollector(await this.send({
       content: translator('What **Settings** would you like to change?'),
-      components: await this.buildButtons(SetCommandButtonBuilder)
+      components: await this.buildButtons(SetCommandButton)
     }))
   }
 }
