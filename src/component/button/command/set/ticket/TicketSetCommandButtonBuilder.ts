@@ -2,6 +2,7 @@ import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
 import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
 import { ETicketSetCommand } from '@enum/command/ETicketSetCommand'
+import ticketSettingRequest from '@/api/TicketSettingRequest'
 
 /**
  * @class TicketSetCommandButtonBuilder
@@ -13,6 +14,8 @@ export default class TicketSetCommandButtonBuilder extends DefaultCanceledButton
    * @return {Promise<ButtonBuilder[]>}
    */
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
+    const ticketSetting = await ticketSettingRequest.get()
+
     return [
       new ButtonBuilder({
         label: translator('Archived Category'),
@@ -27,7 +30,20 @@ export default class TicketSetCommandButtonBuilder extends DefaultCanceledButton
       new ButtonBuilder({
         label: translator('Channel'),
         style: ButtonStyle.Primary,
-        customId: ETicketSetCommand.CHANNEL
+        customId: ETicketSetCommand.CHANNEL,
+        disabled: ticketSetting.category == null
+      }),
+      new ButtonBuilder({
+        label: translator('Content Button'),
+        style: ButtonStyle.Primary,
+        customId: ETicketSetCommand.CONTENT_BUTTON,
+        disabled: ticketSetting.category == null
+      }),
+      new ButtonBuilder({
+        label: translator('Content Message'),
+        style: ButtonStyle.Primary,
+        customId: ETicketSetCommand.CONTENT_MESSAGE,
+        disabled: ticketSetting.category == null
       })
     ]
   }

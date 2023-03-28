@@ -4,5 +4,5 @@ export interface ITicketSetting {
   channel: string
   message: string
   content: string
-  button: string
+  contentButton: string
 }

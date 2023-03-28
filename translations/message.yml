@@ -7,6 +7,8 @@ Cancel: Cancel
 Channel: Channel
 Button content: Button content
 Message content: Message content
+Send the new content of the **{TYPE}**: Send the new content of the **{TYPE}**
+Send the ID or mention the **{TYPE}** you want to use: Send the ID or mention the **{TYPE}** you want to use
 Send the ID or mention the **{TYPE}** channel you want to use: Send the ID or mention the **{TYPE}** channel you want to use
 Send the new content of the verification button: Send the new content of the verification button
 Default Content Button: Default Content Button
@@ -70,3 +72,11 @@ menuNews: Menu News
 menuInfo: Menu Info
 shopNews: Shop News
 shopAnnouncement: Shop Announcement
+Archived Category: Archived Category
+Category: Category
+Content Message: Content Message
+Message Content: Message Content
+Send the new content of **{TYPE}**: Send the new content of **{TYPE}**
+Default Message Content: Default Message Content
+Menu FAQ: Menu FAQ
+Troubleshoot: Troubleshoot

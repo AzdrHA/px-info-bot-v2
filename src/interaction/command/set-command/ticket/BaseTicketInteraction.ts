@@ -1,7 +1,7 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
-import TicketSetCommandButtonBuilder from '@component/button/command/set/TicketSetCommandButtonBuilder'
+import TicketSetCommandButtonBuilder from '@component/button/command/set/ticket/TicketSetCommandButtonBuilder'
 
 /**
  * @class BaseTicketInteraction
