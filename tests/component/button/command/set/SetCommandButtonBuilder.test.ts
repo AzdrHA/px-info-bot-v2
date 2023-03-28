@@ -21,6 +21,11 @@ describe('SetCommandButtonBuilder', () => {
         customId: ESetCommand.ROLES
       }),
       new ButtonBuilder({
+        label: translator('Ticket'),
+        style: ButtonStyle.Primary,
+        customId: ESetCommand.TICKETS
+      }),
+      new ButtonBuilder({
         label: translator('Verification'),
         style: ButtonStyle.Primary,
         customId: ESetCommand.VERIFICATION,
@@ -55,6 +60,11 @@ describe('SetCommandButtonBuilder', () => {
           customId: ESetCommand.ROLES
         }),
         new ButtonBuilder({
+          label: translator('Ticket'),
+          style: ButtonStyle.Primary,
+          customId: ESetCommand.TICKETS
+        }),
+        new ButtonBuilder({
           label: translator('Verification'),
           style: ButtonStyle.Primary,
           customId: ESetCommand.VERIFICATION,
@@ -71,7 +81,9 @@ describe('SetCommandButtonBuilder', () => {
           style: ButtonStyle.Secondary,
           customId: ESetCommand.LOGS,
           disabled: !checkRoleCreate
-        }),
+        })
+      ]),
+      new DefaultButtonRowBuilder().setComponents([
         new ButtonBuilder({
           label: translator('Cancel'),
           style: ButtonStyle.Danger,
