@@ -4,10 +4,10 @@ import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCance
 import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 
 /**
- * @class ContentButtonVerificationSetCommandButtonBuilder
+ * @class MessageContentVerificationSetCommandButton
  * @extends DefaultButtonBuilder
  */
-export default class ContentButtonVerificationSetCommandButtonBuilder extends DefaultCanceledButtonBuilder {
+export default class MessageContentVerificationSetCommandButton extends DefaultCanceledButtonBuilder {
   /**
    * @public
    * @return {Promise<ButtonBuilder[]>}
@@ -15,9 +15,9 @@ export default class ContentButtonVerificationSetCommandButtonBuilder extends De
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
     return [
       new ButtonBuilder({
-        label: translator('Default Content Button'),
+        label: translator('Default Message Content'),
         style: ButtonStyle.Primary,
-        customId: EVerificationSetCommand.DEFAULT_BUTTON
+        customId: EVerificationSetCommand.DEFAULT_MESSAGE
       })
     ]
   }

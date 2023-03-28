@@ -1,7 +1,7 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
-import TicketSetCommandButtonBuilder from '@component/button/command/set/ticket/TicketSetCommandButtonBuilder'
+import TicketSetCommandButton from '@component/button/command/set-command/ticket/TicketSetCommandButton'
 
 /**
  * @class BaseTicketInteraction
@@ -21,7 +21,7 @@ export default class BaseTicketInteraction extends AbstractInteraction {
       content: translator('What **{TYPE}** settings would you like to change?', {
         TYPE: translator('Ticket')
       }),
-      components: await this.buildButtons(TicketSetCommandButtonBuilder)
+      components: await this.buildButtons(TicketSetCommandButton)
     }))
   }
 }

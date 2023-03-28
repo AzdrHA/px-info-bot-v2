@@ -4,10 +4,10 @@ import translator from '@util/UtilTranslator'
 import { EGlobalButton } from '@enum/EGlobalButton'
 
 /**
- * @class VerificationButtonBuilder
+ * @class VerificationButton
  * @extends DefaultButtonBuilder
  */
-export default class VerificationButtonBuilder extends DefaultButtonBuilder {
+export default class VerificationButton extends DefaultButtonBuilder {
   private readonly verifyText: string
 
   /**

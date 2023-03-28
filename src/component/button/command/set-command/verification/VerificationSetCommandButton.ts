@@ -1,13 +1,13 @@
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
-import { ERoleSetCommand } from '@enum/command/ERoleSetCommand'
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
 import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
 
 /**
- * @class RoleSetCommandButtonBuilder
+ * @class VerificationSetCommandButton
  * @extends DefaultButtonBuilder
  */
-export default class RoleSetCommandButtonBuilder extends DefaultCanceledButtonBuilder {
+export default class VerificationSetCommandButton extends DefaultCanceledButtonBuilder {
   /**
    * @public
    * @return {Promise<ButtonBuilder[]>}
@@ -15,19 +15,19 @@ export default class RoleSetCommandButtonBuilder extends DefaultCanceledButtonBu
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
     return [
       new ButtonBuilder({
-        label: translator('Member'),
+        label: translator('Channel'),
         style: ButtonStyle.Primary,
-        customId: ERoleSetCommand.MEMBER
+        customId: EVerificationSetCommand.CHANNEL
       }),
       new ButtonBuilder({
-        label: translator('Support'),
+        label: translator('Button content'),
         style: ButtonStyle.Primary,
-        customId: ERoleSetCommand.SUPPORT
+        customId: EVerificationSetCommand.CONTENT_BUTTON
       }),
       new ButtonBuilder({
-        label: translator('Administrator'),
+        label: translator('Message content'),
         style: ButtonStyle.Primary,
-        customId: ERoleSetCommand.ADMIN
+        customId: EVerificationSetCommand.MESSAGE
       })
     ]
   }

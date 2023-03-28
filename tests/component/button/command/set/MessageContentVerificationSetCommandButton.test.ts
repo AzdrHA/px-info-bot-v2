@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest'
 import { ButtonBuilder, ButtonStyle } from 'discord.js'
 import translator from '@util/UtilTranslator'
-import MessageContentVerificationSetCommandButtonBuilder
-  from '@component/button/command/set/MessageContentVerificationSetCommandButtonBuilder'
 import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
+import MessageContentVerificationSetCommandButton
+  from '@component/button/command/set-command/verification/MessageContentVerificationSetCommandButton'
 
-describe('MessageContentVerificationSetCommandButtonBuilder', () => {
+describe('MessageContentVerificationSetCommandButton', () => {
   it('should return an array of button', async () => {
-    const messageContentVerificationSetCommandButtonBuilder = new MessageContentVerificationSetCommandButtonBuilder()
+    const messageContentVerificationSetCommandButtonBuilder = new MessageContentVerificationSetCommandButton()
     const button = await messageContentVerificationSetCommandButtonBuilder.initializeButton()
     expect(button).toEqual([
       new ButtonBuilder({

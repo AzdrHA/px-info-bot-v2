@@ -2,7 +2,7 @@ import type Client from '@/Client'
 import { type BaseMessageOptions, type CategoryChannel, type Message, type TextChannel } from 'discord.js'
 import { type ITicketSetting } from '@interface/ITicketSetting'
 import ticketSettingRequest from '@/api/TicketSettingRequest'
-import TicketButtonBuilder from '@component/button/TicketButtonBuilder'
+import TicketButton from '@component/button/TicketButton'
 
 /**
  * Ticket setting service
@@ -40,7 +40,7 @@ export default class TicketSettingService {
   private readonly __message = async (ticket: ITicketSetting): Promise<BaseMessageOptions> => {
     return {
       content: ticket.content.replace(/\{CONTENT_BUTTON}/, ticket.contentButton),
-      components: await new TicketButtonBuilder().buildButton()
+      components: await new TicketButton().buildButton()
     }
   }
 

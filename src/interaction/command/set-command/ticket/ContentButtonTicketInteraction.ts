@@ -3,8 +3,8 @@ import translator from '@util/UtilTranslator'
 import UtilLogger from '@util/UtilLogger'
 import { ETicketSetCommand } from '@enum/command/ETicketSetCommand'
 import TicketSettingService from '@service/TicketSettingService'
-import ContentButtonTicketSetCommandButtonBuilder
-  from '@component/button/command/set/ticket/ContentButtonTicketSetCommandButtonBuilder'
+import ContentButtonTicketSetCommandButton
+  from '@component/button/command/set-command/ticket/ContentButtonTicketSetCommandButton'
 
 /**
  * @class ContentButtonTicketInteraction
@@ -32,7 +32,7 @@ export default class ContentButtonTicketInteraction extends AbstractInteraction 
 
     return await this.messageButtonCollector(await this.send({
       content: translator('Send the new content of the **{TYPE}**', { TYPE: translator('Content Message') }),
-      components: await new ContentButtonTicketSetCommandButtonBuilder().buildButton()
+      components: await new ContentButtonTicketSetCommandButton().buildButton()
     }), callback)
   }
 }

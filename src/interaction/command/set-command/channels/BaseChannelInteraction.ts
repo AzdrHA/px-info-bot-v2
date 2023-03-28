@@ -1,7 +1,7 @@
 import AbstractInteraction from '@abstract/AbstractInteraction'
 import { ESetCommand } from '@enum/command/ESetCommand'
 import translator from '@util/UtilTranslator'
-import ChannelSetCommandButtonBuilder from '@component/button/command/set/ChannelSetCommandButtonBuilder'
+import ChannelSetCommandButton from '@component/button/command/set-command/ChannelSetCommandButton'
 
 /**
  * @class BaseChannelInteraction
@@ -21,7 +21,7 @@ export default class BaseChannelInteraction extends AbstractInteraction {
       content: translator('What **{TYPE}** settings would you like to change?', {
         TYPE: translator('Channels')
       }),
-      components: await this.buildButtons(ChannelSetCommandButtonBuilder)
+      components: await this.buildButtons(ChannelSetCommandButton)
     }))
   }
 }

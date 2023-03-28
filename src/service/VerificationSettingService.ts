@@ -2,7 +2,7 @@ import type Client from '@/Client'
 import verificationSettingRequest from '@/api/VerificationSettingRequest'
 import { type IVerificationSetting } from '@interface/IVerificationSetting'
 import { type BaseMessageOptions, type Message, type TextChannel } from 'discord.js'
-import VerificationButtonBuilder from '@component/button/VerificationButtonBuilder'
+import VerificationButton from '@component/button/VerificationButton'
 
 /**
  * Verification setting service
@@ -31,7 +31,7 @@ export default class VerificationSettingService {
   private readonly __message = async (setting: IVerificationSetting): Promise<BaseMessageOptions> => {
     return {
       content: setting.content.replace('{CONTENT_BUTTON}', setting.contentButton),
-      components: await new VerificationButtonBuilder(setting.contentButton).buildButton()
+      components: await new VerificationButton(setting.contentButton).buildButton()
     }
   }
 
