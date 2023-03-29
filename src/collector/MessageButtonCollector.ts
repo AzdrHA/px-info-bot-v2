@@ -1,6 +1,7 @@
 import { type ButtonInteraction, type Message } from 'discord.js'
 import ButtonCollector from '@collector/ButtonCollector'
 import { MessageCollector } from '@collector/MessageCollector'
+import { type Callback } from '@abstract/AbstractAction'
 
 /**
  * @public
@@ -9,7 +10,7 @@ import { MessageCollector } from '@collector/MessageCollector'
 export class MessageButtonCollector {
   private readonly clientMessage: Message
   private readonly executorMessage: Message | ButtonInteraction
-  private readonly callback: ((content: string) => void) | undefined
+  private readonly callback: Callback | undefined
 
   /**
    * @public
@@ -18,11 +19,11 @@ export class MessageButtonCollector {
    * @param {Message | ButtonInteraction} executorMessage
    * @param {(content: string) => void} callback
    */
-  public constructor (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: (content: string) => void) {
+  public constructor (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: Callback) {
     this.clientMessage = clientMessage
     this.executorMessage = executorMessage
     this.callback = callback
-    this.__init()
+    void this.__init()
   }
 
   /**
@@ -30,14 +31,14 @@ export class MessageButtonCollector {
    * @description Initialize the collector
    * @returns {MessageCollector}
    */
-  private __init (): MessageCollector {
+  private async __init (): Promise<MessageCollector> {
     /**
      * @param content
      * @returns {void}
      */
-    const callback = (content: string): void => {
+    const callback = async (content: string): Promise<void> => {
       if (buttonCollector != null) buttonCollector.stop()
-      if (this.callback != null) this.callback(content)
+      if (this.callback != null) await this.callback(content)
     }
 
     const buttonCollector = new ButtonCollector(this.clientMessage, this.executorMessage).getCollector()
