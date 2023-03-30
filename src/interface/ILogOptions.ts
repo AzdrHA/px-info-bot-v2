@@ -4,5 +4,5 @@ import type DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuild
 export interface ILogOptions {
   client: Client
   embed: Promise<DefaultEmbedBuilder>
-  channel: string
+  channel: string | null
 }

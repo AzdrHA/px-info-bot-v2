@@ -4,9 +4,10 @@ import { DISCORD_PREFIX, DISCORD_TOKEN } from '@/config/AppConfig'
 import Client from '@/Client'
 import roleRequest from '@/api/RoleRequest'
 import AppException from '@exception/AppException'
+import channelLogRequest from '@/api/ChannelLogRequest'
 
 roleRequest.get().then((r) => {
-// eslint-disable-next-line no-new
+  // eslint-disable-next-line no-new
   new Client({
     intents: [
       IntentsBitField.Flags.Guilds,
