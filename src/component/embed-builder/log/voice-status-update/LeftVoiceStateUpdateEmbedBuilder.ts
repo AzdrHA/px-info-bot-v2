@@ -26,7 +26,6 @@ export const LeftVoiceStateUpdateEmbedBuilder = async (oldState: VoiceState, new
         CHANNEL: channelMention(getNested('newState.channelId', newState, 'Unknown'))
       })
     )
-    .setTimestamp(new Date())
     .setFooter({
       text: translator('User ID: {USER_ID}', {
         USER_ID: getNested('newState.member.id', newState, 'Unknown')

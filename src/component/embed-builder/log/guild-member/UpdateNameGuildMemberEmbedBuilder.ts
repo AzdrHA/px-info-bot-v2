@@ -1,4 +1,4 @@
-import { Colors, type GuildMember, userMention } from 'discord.js'
+import { Colors, type GuildMember, type Role, userMention } from 'discord.js'
 import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
 import util from 'util'
 import translator from '@util/UtilTranslator'
@@ -14,7 +14,7 @@ import translator from '@util/UtilTranslator'
  * @param {GuildMember} newMember
  * @constructor
  */
-export const AddGuildMemberEmbedBuilder = async (oldMember: GuildMember, newMember: GuildMember): Promise<DefaultEmbedBuilder> => {
+export const UpdateNameGuildMemberEmbedBuilder = async (oldMember: GuildMember, newMember: GuildMember): Promise<DefaultEmbedBuilder> => {
   return new DefaultEmbedBuilder()
     .setColor(Colors.Blue)
     .setAuthor({
@@ -30,7 +30,6 @@ export const AddGuildMemberEmbedBuilder = async (oldMember: GuildMember, newMemb
         MEMBER: userMention(newMember.id)
       })
     )
-    .setTimestamp(new Date())
     .setFields(
       {
         name: translator('Before'),

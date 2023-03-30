@@ -85,7 +85,7 @@ export default abstract class AbstractAction {
    * @returns {Promise<Message | false>}
    */
   public async log (options: ILogOptions): Promise<Message | false> {
-    const channel = options.client.channels.cache.get(options.channel)
+    const channel = (options.channel != null) ? options.client.channels.cache.get(options.channel) : null
     if (channel != null && channel instanceof TextChannel) {
       return await channel.send({
         embeds: [await options.embed]

@@ -55,6 +55,7 @@ export default class MessageCreateEvent extends AbstractEvent {
 
     // Check if the user has permission to run the command
     if ((await command.hasPermission()) === false) {
+      // TODO ADD TRANSLATION
       return await message.reply('You don\'t have permission to run this command!')
     }
 

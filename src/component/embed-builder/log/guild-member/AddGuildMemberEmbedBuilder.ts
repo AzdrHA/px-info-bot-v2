@@ -23,7 +23,6 @@ export const AddGuildMemberEmbedBuilder = async (member: GuildMember): Promise<D
     )
     .setThumbnail(member.avatarURL())
     // TODO ADD ACCOUNT AGE
-    .setTimestamp(new Date())
     .setFooter({
       text: translator('User ID: {USER_ID}', {
         USER_ID: member.id
