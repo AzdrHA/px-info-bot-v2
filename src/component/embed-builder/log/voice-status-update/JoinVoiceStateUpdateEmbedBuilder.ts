@@ -15,20 +15,20 @@ export const JoinVoiceStateUpdateEmbedBuilder = async (oldState: VoiceState, new
     .setAuthor({
       name: util.format(
         '%s#%s',
-        getNested('newState.member.user.username', newState, 'Unknown'),
-        getNested('newState.member.user.discriminator', newState, 'Unknown')
+        getNested('member.user.username', newState, 'Unknown'),
+        getNested('member.user.discriminator', newState, 'Unknown')
       ),
-      iconURL: getNested('newState.member.user.avatarURL', newState, undefined)
+      iconURL: newState.member?.displayAvatarURL() ?? undefined
     })
     .setDescription(
       translator('{USER} joined voice channel {CHANNEL}', {
-        USER: userMention(getNested('newState.member.id', newState, 'Unknown')),
-        CHANNEL: channelMention(getNested('newState.channelId', newState, 'Unknown'))
+        USER: userMention(getNested('member.id', newState, 'Unknown')),
+        CHANNEL: channelMention(getNested('channelId', newState, 'Unknown'))
       })
     )
     .setFooter({
       text: translator('User ID: {USER_ID}', {
-        USER_ID: getNested('newState.member.id', newState, 'Unknown')
+        USER_ID: getNested('member.id', newState, 'Unknown')
       })
     })
 }

@@ -80,3 +80,13 @@ Send the new content of **{TYPE}**: Send the new content of **{TYPE}**
 Default Message Content: Default Message Content
 Menu FAQ: Menu FAQ
 Troubleshoot: Troubleshoot
+"{USER} has executed the {COMMAND} command": "{USER} has executed the {COMMAND} command"
+"User ID: {USER} | Message ID: {MESSAGE}": "User ID: {USER} | Message ID: {MESSAGE}"
+"{USER} moved channel": "{USER} moved channel"
+Before: Before
+After: After
+"User ID: {USER_ID}": "User ID: {USER_ID}"
+"{USER} joined voice channel {CHANNEL}": "{USER} joined voice channel {CHANNEL}"
+Unknown: Unknown
+"{USER} left voice channel {CHANNEL}": "{USER} left voice channel {CHANNEL}"
+"Message sent by {USER} deleted in {CHANNEL}\nContent: {CONTENT}": "Message sent by {USER} deleted in {CHANNEL}\nContent: {CONTENT}"

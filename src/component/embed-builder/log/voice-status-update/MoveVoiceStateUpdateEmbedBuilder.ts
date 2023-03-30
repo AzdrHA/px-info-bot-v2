@@ -15,29 +15,29 @@ export const MoveVoiceStateUpdateEmbedBuilder = async (oldState: VoiceState, new
     .setAuthor({
       name: util.format(
         '%s#%s',
-        getNested('newState.member.user.username', newState, 'Unknown'),
-        getNested('newState.member.user.discriminator', newState, 'Unknown')
+        getNested('member.user.username', newState, translator('Unknown')),
+        getNested('member.user.discriminator', newState, translator('Unknown'))
       ),
-      iconURL: getNested('newState.member.user.avatarURL', newState, undefined)
+      iconURL: newState.member?.displayAvatarURL() ?? undefined
     })
     .setDescription(
       translator('{USER} moved channel', {
-        USER: userMention(getNested('newState.member.id', newState, 'Unknown'))
+        USER: userMention(getNested('member.id', newState, translator('Unknown')))
       })
     )
     .setFields(
       {
         name: translator('Before'),
-        value: channelMention(getNested('newState.channelId', newState, 'Unknown'))
+        value: channelMention(getNested('channelId', newState, translator('Unknown')))
       },
       {
         name: translator('After'),
-        value: channelMention(getNested('newState.channelId', newState, 'Unknown'))
+        value: channelMention(getNested('channelId', newState, translator('Unknown')))
       }
     )
     .setFooter({
       text: translator('User ID: {USER_ID}', {
-        USER_ID: getNested('newState.member.id', newState, 'Unknown')
+        USER_ID: getNested('member.id', newState, translator('Unknown'))
       })
     })
 }
