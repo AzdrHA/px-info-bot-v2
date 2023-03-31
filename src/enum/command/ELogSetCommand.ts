@@ -4,5 +4,7 @@ export enum ELogSetCommand {
   MESSAGE = 'admin_command_set_button/log/message',
   MEMBER = 'admin_command_set_button/log/member',
   NAME = 'admin_command_set_button/log/name',
-  VOICE_CHAT = 'admin_command_set_button/log/voice_chat'
+  VOICE_CHAT = 'admin_command_set_button/log/voice_chat',
+  INVITE = 'admin_command_set_button/log/invite',
+  COMMAND = 'admin_command_set_button/log/command'
 }
