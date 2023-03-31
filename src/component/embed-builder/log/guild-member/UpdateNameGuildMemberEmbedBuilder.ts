@@ -23,7 +23,7 @@ export const UpdateNameGuildMemberEmbedBuilder = async (oldMember: GuildMember, 
         newMember.user.username,
         newMember.user.discriminator
       ),
-      iconURL: newMember.avatarURL() ?? undefined
+      iconURL: newMember.displayAvatarURL() ?? undefined
     })
     .setDescription(
       translator('{MEMBER} nickname changed', {

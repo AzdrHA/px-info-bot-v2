@@ -16,7 +16,7 @@ export const MessageDeleteLogEmbedBuilder = async (message: Message): Promise<De
         message.author.username,
         message.author.discriminator
       ),
-      iconURL: message.author.avatarURL() ?? undefined
+      iconURL: message.author.displayAvatarURL() ?? undefined
     })
     .setDescription(
       translator(

@@ -15,7 +15,7 @@ export const CommandExecuteLogEmbedBuilder = async (commandName: string, executo
       executor.username,
       executor.discriminator
     ),
-    iconURL: executor.avatarURL() ?? undefined
+    iconURL: executor.displayAvatarURL() ?? undefined
   })
     .setDescription(
       translator('{USER} has executed the {COMMAND} command', {

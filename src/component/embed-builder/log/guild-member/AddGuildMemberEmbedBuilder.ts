@@ -16,12 +16,12 @@ export const AddGuildMemberEmbedBuilder = async (member: GuildMember): Promise<D
   return new DefaultEmbedBuilder().setColor(Colors.Green)
     .setAuthor({
       name: translator('Member Joined'),
-      iconURL: member.avatarURL() ?? undefined
+      iconURL: member.displayAvatarURL() ?? undefined
     })
     .setDescription(
       util.format('%s %s', member.toString(), member.user.username)
     )
-    .setThumbnail(member.avatarURL())
+    .setThumbnail(member.displayAvatarURL())
     // TODO ADD ACCOUNT AGE
     .setFooter({
       text: translator('User ID: {USER_ID}', {

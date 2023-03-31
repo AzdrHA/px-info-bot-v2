@@ -16,12 +16,12 @@ export const RemoveGuildMemberEmbedBuilder = async (member: GuildMember): Promis
   return new DefaultEmbedBuilder().setColor(Colors.Orange)
     .setAuthor({
       name: translator('Member Left'),
-      iconURL: member.avatarURL() ?? undefined
+      iconURL: member.displayAvatarURL() ?? undefined
     })
     .setDescription(
       util.format('%s %s', member.toString(), member.user.username)
     )
-    .setThumbnail(member.avatarURL())
+    .setThumbnail(member.displayAvatarURL())
     .setFooter({
       text: translator('User ID: {USER_ID}', {
         USER_ID: member.id

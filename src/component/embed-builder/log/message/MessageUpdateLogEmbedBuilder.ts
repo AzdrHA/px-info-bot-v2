@@ -18,7 +18,7 @@ export const MessageUpdateLogEmbedBuilder = async (oldMessage: Message, newMessa
         newMessage.author.username,
         newMessage.author.discriminator
       ),
-      iconURL: newMessage.author.avatarURL() ?? undefined
+      iconURL: newMessage.author.displayAvatarURL() ?? undefined
     })
     .setDescription(
       newMessage.content !== ''
