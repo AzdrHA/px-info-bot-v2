@@ -6,6 +6,8 @@ import { DEVELOPERS } from '@/config/AppConfig'
 import { DONT_PING_ME } from '@config/EmojiConfig'
 import { COMMAND_LIST } from '@config/Constant'
 import ExceptionService from '@service/ExceptionService'
+import { CommandExecuteLogEmbedBuilder } from '@component/embed-builder/log/CommandExecuteLogEmbedBuilder'
+import channelLogRequest from '@/api/ChannelLogRequest'
 
 /**
  * @class MessageCreateEvent
@@ -53,11 +55,16 @@ export default class MessageCreateEvent extends AbstractEvent {
 
     // Check if the user has permission to run the command
     if ((await command.hasPermission()) === false) {
+      // TODO ADD TRANSLATION
       return await message.reply('You don\'t have permission to run this command!')
     }
 
     // Run the command
     try {
+      await this.log({
+        embed: CommandExecuteLogEmbedBuilder(name, message.author),
+        channel: (await channelLogRequest.get()).command
+      })
       return await command.run()
     } catch (error) {
       return new ExceptionService(error as Error, message.channel as TextChannel)

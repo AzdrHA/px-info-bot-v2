@@ -13,5 +13,6 @@ export default class DefaultEmbedBuilder extends EmbedBuilder {
   public constructor (data?: EmbedData | APIEmbed) {
     super(data)
     this.setColor('Random')
+    this.setTimestamp()
   }
 }

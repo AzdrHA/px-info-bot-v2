@@ -10,5 +10,5 @@ import { type IChannelLog } from '@interface/IChannelLog'
 class BaseChannelLogRequest extends DefaultApiRequest<IChannelLog> {
 }
 
-const channelLogRequest = new BaseChannelLogRequest('/channels/logs')
+const channelLogRequest = new BaseChannelLogRequest('/channel-log')
 export default channelLogRequest

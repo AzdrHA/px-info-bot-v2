@@ -1,10 +1,11 @@
 import ButtonCollector from '@collector/ButtonCollector'
 import type DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder'
-import { type ButtonInteraction, type Message, type TextChannel } from 'discord.js'
+import { TextChannel, type ButtonInteraction, type Message } from 'discord.js'
 import { MessageCollector } from '@collector/MessageCollector'
 import util from 'util'
 import translator from '@util/UtilTranslator'
 import { MessageButtonCollector } from '@collector/MessageButtonCollector'
+import { type ILogOptions } from '@interface/ILogOptions'
 
 export type Callback = (content: string) => Promise<void>
 
@@ -74,5 +75,20 @@ export default abstract class AbstractAction {
       }, time * 1000)
       return message
     })
+  }
+
+  /**
+   * @public
+   * @param {ILogOptions} options
+   * @returns {Promise<Message | false>}
+   */
+  public async log (options: ILogOptions): Promise<Message | false> {
+    const channel = (options.channel != null) ? options.client.channels.cache.get(options.channel) : null
+    if (channel != null && channel instanceof TextChannel) {
+      return await channel.send({
+        embeds: [await options.embed]
+      })
+    }
+    return false
   }
 }
