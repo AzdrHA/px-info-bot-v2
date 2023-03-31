@@ -43,6 +43,16 @@ export default class LogSetCommandButton extends DefaultCanceledButtonBuilder {
         label: translator('Voice Chat'),
         style: ButtonStyle.Primary,
         customId: ELogSetCommand.VOICE_CHAT
+      }),
+      new ButtonBuilder({
+        label: translator('Invite'),
+        style: ButtonStyle.Primary,
+        customId: ELogSetCommand.INVITE
+      }),
+      new ButtonBuilder({
+        label: translator('Command'),
+        style: ButtonStyle.Primary,
+        customId: ELogSetCommand.COMMAND
       })
     ]
   }
