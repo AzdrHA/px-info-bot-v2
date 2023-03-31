@@ -1,7 +1,7 @@
-import { Colors, type GuildMember } from 'discord.js'
-import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
-import util from 'util'
-import translator from '@util/UtilTranslator'
+import { Colors, type GuildMember } from 'discord.js';
+import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
+import util from 'util';
+import translator from '@util/UtilTranslator';
 
 /**
  * @function RemoveGuildMemberEmbedBuilder
@@ -12,8 +12,11 @@ import translator from '@util/UtilTranslator'
  * @async
  * @param {GuildMember} member
  */
-export const RemoveGuildMemberEmbedBuilder = async (member: GuildMember): Promise<DefaultEmbedBuilder> => {
-  return new DefaultEmbedBuilder().setColor(Colors.Orange)
+export const RemoveGuildMemberEmbedBuilder = async (
+  member: GuildMember
+): Promise<DefaultEmbedBuilder> => {
+  return new DefaultEmbedBuilder()
+    .setColor(Colors.Orange)
     .setAuthor({
       name: translator('Member Left'),
       iconURL: member.displayAvatarURL() ?? undefined
@@ -26,5 +29,5 @@ export const RemoveGuildMemberEmbedBuilder = async (member: GuildMember): Promis
       text: translator('User ID: {USER_ID}', {
         USER_ID: member.id
       })
-    })
-}
+    });
+};

@@ -1,7 +1,7 @@
-import AbstractEvent from '@abstract/AbstractEvent'
-import { type Message } from 'discord.js'
-import channelLogRequest from '@/api/ChannelLogRequest'
-import { MessageDeleteLogEmbedBuilder } from '@component/embed-builder/log/message/MessageDeleteLogEmbedBuilder'
+import AbstractEvent from '@abstract/AbstractEvent';
+import { type Message } from 'discord.js';
+import channelLogRequest from '@/api/ChannelLogRequest';
+import { MessageDeleteLogEmbedBuilder } from '@component/embed-builder/log/message/MessageDeleteLogEmbedBuilder';
 
 /**
  * @class MessageDeleteEvent
@@ -16,12 +16,12 @@ export default class MessageDeleteEvent extends AbstractEvent {
    * @param {Message} message
    * @returns {Promise<any>}
    */
-  public async run (message: Message): Promise<any> {
-    if (message.author?.bot) return false
-    if (message.author.id === this.client.user?.id) return false
+  public async run(message: Message): Promise<any> {
+    if (message.author?.bot) return false;
+    if (message.author.id === this.client.user?.id) return false;
     return await this.log({
       channel: (await channelLogRequest.get()).message,
       embed: MessageDeleteLogEmbedBuilder(message)
-    })
+    });
   }
 }

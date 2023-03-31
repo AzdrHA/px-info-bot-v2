@@ -1,5 +1,5 @@
-import axios, { type Method } from 'axios'
-import { API_KEY, API_URL } from '@config/AppConfig'
+import axios, { type Method } from 'axios';
+import { API_KEY, API_URL } from '@config/AppConfig';
 
 /**
  * Make a request to the API
@@ -11,8 +11,12 @@ import { API_KEY, API_URL } from '@config/AppConfig'
  * @example
  * const data = await MakeRequest('/users', 'GET')
  */
-export const MakeRequest = async (url: string, method: Method, data: Record<string, unknown> = {}): Promise<any> => {
-  data.apiKey = API_KEY
+export const MakeRequest = async (
+  url: string,
+  method: Method,
+  data: Record<string, unknown> = {}
+): Promise<any> => {
+  data.apiKey = API_KEY;
   return await new Promise((resolve, reject) => {
     axios({
       baseURL: API_URL,
@@ -20,7 +24,11 @@ export const MakeRequest = async (url: string, method: Method, data: Record<stri
       method,
       data
     })
-      .then((r) => { resolve(r.data) })
-      .catch((e) => { reject(e) })
-  })
-}
+      .then((r) => {
+        resolve(r.data);
+      })
+      .catch((e) => {
+        reject(e);
+      });
+  });
+};

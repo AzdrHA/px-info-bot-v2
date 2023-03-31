@@ -5,9 +5,9 @@ import {
   type InteractionEditReplyOptions,
   type Message,
   type MessagePayload
-} from 'discord.js'
-import type Client from '@/Client'
-import AbstractAction from '@abstract/AbstractAction'
+} from 'discord.js';
+import type Client from '@/Client';
+import AbstractAction from '@abstract/AbstractAction';
 
 /**
  * @abstract
@@ -23,10 +23,10 @@ import AbstractAction from '@abstract/AbstractAction'
  * @example
  */
 export default abstract class AbstractInteraction extends AbstractAction {
-  public abstract id: string
-  public abstract global: boolean
-  public abstract run (): Promise<any>
-  public interaction: ButtonInteraction
+  public abstract id: string;
+  public abstract global: boolean;
+  public abstract run(): Promise<any>;
+  public interaction: ButtonInteraction;
 
   /**
    * @constructor
@@ -34,9 +34,9 @@ export default abstract class AbstractInteraction extends AbstractAction {
    * @param {ButtonInteraction} interaction
    * @protected
    */
-  public constructor (client: Client, interaction: ButtonInteraction) {
-    super(client, interaction)
-    this.interaction = interaction
+  public constructor(client: Client, interaction: ButtonInteraction) {
+    super(client, interaction);
+    this.interaction = interaction;
   }
 
   /**
@@ -47,7 +47,9 @@ export default abstract class AbstractInteraction extends AbstractAction {
    * @example
    * await this.send('hello world')
    */
-  public async send (options: string | MessagePayload | InteractionEditReplyOptions): Promise<Message<BooleanCache<CacheType>>> {
-    return await this.interaction.editReply(options)
+  public async send(
+    options: string | MessagePayload | InteractionEditReplyOptions
+  ): Promise<Message<BooleanCache<CacheType>>> {
+    return await this.interaction.editReply(options);
   }
 }

@@ -1,9 +1,9 @@
-import Client from '@/Client'
-import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig'
-import { describe, it, beforeAll } from 'vitest'
+import Client from '@/Client';
+import { DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig';
+import { describe, it, beforeAll } from 'vitest';
 
 describe('ReadyEvent', () => {
-  let client: Client
+  let client: Client;
 
   beforeAll(() => {
     client = new Client({
@@ -12,8 +12,8 @@ describe('ReadyEvent', () => {
       intents: [],
       partials: [],
       autoStart: false
-    })
-  })
+    });
+  });
 
   it('should be emitted when the client is ready', async () => {
     // await client.login(DISCORD_TOKEN)
@@ -23,6 +23,6 @@ describe('ReadyEvent', () => {
     // expect(console.log).toHaveBeenCalledWith(
     //   'Logged in as', client.user?.tag
     // )
-    client.destroy()
-  })
-})
+    client.destroy();
+  });
+});

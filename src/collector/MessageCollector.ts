@@ -1,20 +1,21 @@
 import {
   type ButtonInteraction,
   Message,
-  type MessageCollector as BaseMessageCollector, type TextChannel
-} from 'discord.js'
-import { type Callback } from '@abstract/AbstractAction'
-import ExceptionService from '@service/ExceptionService'
+  type MessageCollector as BaseMessageCollector,
+  type TextChannel
+} from 'discord.js';
+import { type Callback } from '@abstract/AbstractAction';
+import ExceptionService from '@service/ExceptionService';
 
 /**
  * @public
  * Class MessageCollector
  */
 export class MessageCollector {
-  private readonly clientMessage: Message
-  private readonly executorMessage: Message | ButtonInteraction
-  private collector: BaseMessageCollector | undefined
-  private readonly callback: Callback | undefined
+  private readonly clientMessage: Message;
+  private readonly executorMessage: Message | ButtonInteraction;
+  private collector: BaseMessageCollector | undefined;
+  private readonly callback: Callback | undefined;
 
   /**
    * @public
@@ -22,15 +23,15 @@ export class MessageCollector {
    * @param executorMessage
    * @param {Message} callback
    */
-  public constructor (
+  public constructor(
     clientMessage: Message,
     executorMessage: Message | ButtonInteraction,
     callback?: Callback
   ) {
-    this.clientMessage = clientMessage
-    this.executorMessage = executorMessage
-    this.callback = callback
-    this.__init()
+    this.clientMessage = clientMessage;
+    this.executorMessage = executorMessage;
+    this.callback = callback;
+    this.__init();
   }
 
   /**
@@ -38,15 +39,18 @@ export class MessageCollector {
    * @description Initialize the collector
    * @returns {void}
    */
-  private __init (): void {
-    const author = this.executorMessage instanceof Message ? this.executorMessage.author : this.executorMessage.user
+  private __init(): void {
+    const author =
+      this.executorMessage instanceof Message
+        ? this.executorMessage.author
+        : this.executorMessage.user;
     this.collector = this.clientMessage.channel.createMessageCollector({
       filter: (message: Message) => message.author.id === author.id,
       time: 60000,
       max: 1
-    })
+    });
 
-    this.collector.on('collect', this.__collect)
+    this.collector.on('collect', this.__collect);
   }
 
   /**
@@ -57,18 +61,22 @@ export class MessageCollector {
    */
   private readonly __collect = async (message: Message): Promise<any> => {
     // Delete the message from the bot
-    if (this.clientMessage.deletable) await this.clientMessage.delete().catch(() => null)
+    if (this.clientMessage.deletable)
+      await this.clientMessage.delete().catch(() => null);
     // Delete the message from the user
-    if (message.deletable) await message.delete().catch(() => null)
+    if (message.deletable) await message.delete().catch(() => null);
     // Call the callback if it exists
     try {
-      if (this.callback != null) await this.callback(message.content)
+      if (this.callback != null) await this.callback(message.content);
     } catch (e) {
-      return new ExceptionService(e as Error, this.executorMessage.channel as TextChannel)
+      return new ExceptionService(
+        e as Error,
+        this.executorMessage.channel as TextChannel
+      );
     }
-  }
+  };
 
   public getCollector = (): BaseMessageCollector | undefined => {
-    return this.collector
-  }
+    return this.collector;
+  };
 }

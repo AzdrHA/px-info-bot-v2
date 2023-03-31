@@ -1,13 +1,15 @@
-import { bold, channelMention, Colors, type Message } from 'discord.js'
-import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
-import util from 'util'
-import translator from '@util/UtilTranslator'
+import { bold, channelMention, Colors, type Message } from 'discord.js';
+import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
+import util from 'util';
+import translator from '@util/UtilTranslator';
 
 /**
  * @param {Message} message
  * @constructor
  */
-export const MessageDeleteLogEmbedBuilder = async (message: Message): Promise<DefaultEmbedBuilder> => {
+export const MessageDeleteLogEmbedBuilder = async (
+  message: Message
+): Promise<DefaultEmbedBuilder> => {
   return new DefaultEmbedBuilder()
     .setColor(Colors.Red)
     .setAuthor({
@@ -23,23 +25,17 @@ export const MessageDeleteLogEmbedBuilder = async (message: Message): Promise<De
         'Message sent by {USER} deleted in {CHANNEL}\nContent: {CONTENT}',
         {
           USER:
-            message.author?.toString() ??
-            bold(translator('Not user provided')),
+            message.author?.toString() ?? bold(translator('Not user provided')),
           CHANNEL: channelMention(message.channel.id),
-          CONTENT: bold(
-            message.content ?? translator('No content provided')
-          )
+          CONTENT: bold(message.content ?? translator('No content provided'))
         }
       )
     )
     .setTimestamp(new Date())
     .setFooter({
-      text: translator(
-        'User ID: {USER} | Message ID: {MESSAGE}',
-        {
-          USER: message.author.id,
-          MESSAGE: message.id
-        }
-      )
-    })
-}
+      text: translator('User ID: {USER} | Message ID: {MESSAGE}', {
+        USER: message.author.id,
+        MESSAGE: message.id
+      })
+    });
+};

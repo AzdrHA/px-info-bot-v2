@@ -21,26 +21,26 @@ You are already verified: You are already verified
 You are now verified: You are now verified
 I do not have the necessary authorizations to give you the member role: I do not have the necessary authorizations to give you the member role
 Not yet defined: Not yet defined
-"__**My current settings:**__": "__**My current settings:**__"
-"__**Roles:**__": "__**Roles:**__"
-"Administrator:": "Administrator:"
-"Support:": "Support:"
-"Member:": "Member:"
-"__**Ticket Settings:**__": "__**Ticket Settings:**__"
-"Ticket Creation channel:": "Ticket Creation channel:"
-"Ticket Category ID:": "Ticket Category ID:"
-"__**Channels:**__": "__**Channels:**__"
-"Verification:": "Verification:"
-"Info:": "Info:"
-"Menu Info:": "Menu Info:"
-"Menu News:": "Menu News:"
-"Shop News:": "Shop News:"
-"__**Logs:**__": "__**Logs:**__"
-"Member Role:": "Member Role:"
-"Ticket:": "Ticket:"
-"Message:": "Message:"
-"Name:": "Name:"
-"Voice Chat:": "Voice Chat:"
+'__**My current settings:**__': '__**My current settings:**__'
+'__**Roles:**__': '__**Roles:**__'
+'Administrator:': 'Administrator:'
+'Support:': 'Support:'
+'Member:': 'Member:'
+'__**Ticket Settings:**__': '__**Ticket Settings:**__'
+'Ticket Creation channel:': 'Ticket Creation channel:'
+'Ticket Category ID:': 'Ticket Category ID:'
+'__**Channels:**__': '__**Channels:**__'
+'Verification:': 'Verification:'
+'Info:': 'Info:'
+'Menu Info:': 'Menu Info:'
+'Menu News:': 'Menu News:'
+'Shop News:': 'Shop News:'
+'__**Logs:**__': '__**Logs:**__'
+'Member Role:': 'Member Role:'
+'Ticket:': 'Ticket:'
+'Message:': 'Message:'
+'Name:': 'Name:'
+'Voice Chat:': 'Voice Chat:'
 Roles: Roles
 Member: Member
 Support: Support
@@ -80,24 +80,24 @@ Send the new content of **{TYPE}**: Send the new content of **{TYPE}**
 Default Message Content: Default Message Content
 Menu FAQ: Menu FAQ
 Troubleshoot: Troubleshoot
-"{USER} has executed the {COMMAND} command": "{USER} has executed the {COMMAND} command"
-"User ID: {USER} | Message ID: {MESSAGE}": "User ID: {USER} | Message ID: {MESSAGE}"
-"{USER} moved channel": "{USER} moved channel"
+'{USER} has executed the {COMMAND} command': '{USER} has executed the {COMMAND} command'
+'User ID: {USER} | Message ID: {MESSAGE}': 'User ID: {USER} | Message ID: {MESSAGE}'
+'{USER} moved channel': '{USER} moved channel'
 Before: Before
 After: After
-"User ID: {USER_ID}": "User ID: {USER_ID}"
-"{USER} joined voice channel {CHANNEL}": "{USER} joined voice channel {CHANNEL}"
+'User ID: {USER_ID}': 'User ID: {USER_ID}'
+'{USER} joined voice channel {CHANNEL}': '{USER} joined voice channel {CHANNEL}'
 Unknown: Unknown
-"{USER} left voice channel {CHANNEL}": "{USER} left voice channel {CHANNEL}"
+'{USER} left voice channel {CHANNEL}': '{USER} left voice channel {CHANNEL}'
 "Message sent by {USER} deleted in {CHANNEL}\nContent: {CONTENT}": "Message sent by {USER} deleted in {CHANNEL}\nContent: {CONTENT}"
 Member Joined: Member Joined
 Member Left: Member Left
 Role {ROLE} was juste added to {MEMBER}: Role {ROLE} was juste added to {MEMBER}
-"{MEMBER} nickname changed": "{MEMBER} nickname changed"
+'{MEMBER} nickname changed': '{MEMBER} nickname changed'
 Message sent by {USER} edited in {CHANNEL} [Jump to Message]({LINK}): Message sent by {USER} edited in {CHANNEL} [Jump to Message]({LINK})
 "You don't have permission to run this command!": "You don't have permission to run this command!"
 Checking members...: Checking members...
 Found {SIZE} members with bad name: Found {SIZE} members with bad name
-"{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed.": "{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed."
+'{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed.': '{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed.'
 Invite: Invite
 Command: Command

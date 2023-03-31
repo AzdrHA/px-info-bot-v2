@@ -1,4 +1,4 @@
-import * as util from 'util'
+import * as util from 'util';
 
 /**
  * @public
@@ -9,8 +9,8 @@ import * as util from 'util'
  * lcFirst('Hello') // hello
  */
 export const lcFirst = (content: string): string => {
-  return content.charAt(0).toLowerCase() + content.slice(1)
-}
+  return content.charAt(0).toLowerCase() + content.slice(1);
+};
 
 /**
  * @public
@@ -21,8 +21,8 @@ export const lcFirst = (content: string): string => {
  * ucFirst('hello') // Hello
  */
 export const ucFirst = (content: string): string => {
-  return content.charAt(0).toUpperCase() + content.slice(1)
-}
+  return content.charAt(0).toUpperCase() + content.slice(1);
+};
 
 /**
  * @public
@@ -33,8 +33,8 @@ export const ucFirst = (content: string): string => {
  * formalizeEventName('MessageCreateEvent') // messageCreate
  */
 export const formalizeEventName = (eventName: string): string => {
-  return lcFirst(eventName.replace('Event', ''))
-}
+  return lcFirst(eventName.replace('Event', ''));
+};
 
 /**
  * @public
@@ -47,8 +47,8 @@ export const formalizeEventName = (eventName: string): string => {
  * isScriptFile('index.txt') // false
  */
 export const isScriptFile = (file: string): boolean => {
-  return file.endsWith('.js') || file.endsWith('.ts')
-}
+  return file.endsWith('.js') || file.endsWith('.ts');
+};
 
 /**
  * @public
@@ -60,8 +60,8 @@ export const isScriptFile = (file: string): boolean => {
  * leadingZero(10) // 10
  */
 export const leadingZero = (num: number): string => {
-  return num < 10 ? util.format('0%s', num) : num.toString()
-}
+  return num < 10 ? util.format('0%s', num) : num.toString();
+};
 
 /**
  * @public
@@ -72,13 +72,19 @@ export const leadingZero = (num: number): string => {
  * @example
  * replace('Hello {name}', { name: 'World' }) // Hello World
  */
-export const replace = (content: string, params: Record<string, string>): string => {
-  let result = content
+export const replace = (
+  content: string,
+  params: Record<string, string>
+): string => {
+  let result = content;
   for (const key in params) {
-    result = result.replace(new RegExp(util.format('{%s}', key), 'gi'), params[key])
+    result = result.replace(
+      new RegExp(util.format('{%s}', key), 'gi'),
+      params[key]
+    );
   }
-  return result
-}
+  return result;
+};
 
 /**
  * @public
@@ -86,6 +92,15 @@ export const replace = (content: string, params: Record<string, string>): string
  * @param {Record<string, any>} obj
  * @param {string|null} defaultValue
  */
-export const getNested = (content: string, obj: Record<string, any>, defaultValue: string | null = null): any => {
-  return content.split('.').reduce((obj, level) => (obj[level] != null) ? obj[level] : defaultValue, obj)
-}
+export const getNested = (
+  content: string,
+  obj: Record<string, any>,
+  defaultValue: string | null = null
+): any => {
+  return content
+    .split('.')
+    .reduce(
+      (obj, level) => (obj[level] != null ? obj[level] : defaultValue),
+      obj
+    );
+};

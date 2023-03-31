@@ -1,6 +1,6 @@
-import DefaultApiRequest from './DefaultApiRequest'
-import { type ITicketSetting } from '@interface/ITicketSetting'
-import { type CategoryChannel, type TextChannel } from 'discord.js'
+import DefaultApiRequest from './DefaultApiRequest';
+import { type ITicketSetting } from '@interface/ITicketSetting';
+import { type CategoryChannel, type TextChannel } from 'discord.js';
 
 /**
  * Role request
@@ -14,8 +14,8 @@ class BaseTicketSettingRequest extends DefaultApiRequest<ITicketSetting> {
    * @param {TextChannel} channel
    * @returns {Promise<ITicketSetting>}
    */
-  public async updateChannel (channel: TextChannel): Promise<ITicketSetting> {
-    return await this.update('channel', channel.id)
+  public async updateChannel(channel: TextChannel): Promise<ITicketSetting> {
+    return await this.update('channel', channel.id);
   }
 
   /**
@@ -23,8 +23,10 @@ class BaseTicketSettingRequest extends DefaultApiRequest<ITicketSetting> {
    * @param {CategoryChannel} category
    * @returns {Promise<ITicketSetting>}
    */
-  public async updateCategory (category: CategoryChannel): Promise<ITicketSetting> {
-    return await this.update('category', category.id)
+  public async updateCategory(
+    category: CategoryChannel
+  ): Promise<ITicketSetting> {
+    return await this.update('category', category.id);
   }
 
   /**
@@ -32,8 +34,10 @@ class BaseTicketSettingRequest extends DefaultApiRequest<ITicketSetting> {
    * @param {CategoryChannel} category
    * @returns {Promise<ITicketSetting>}
    */
-  public async updateArchivedCategory (category: CategoryChannel): Promise<ITicketSetting> {
-    return await this.update('archivedCategory', category.id)
+  public async updateArchivedCategory(
+    category: CategoryChannel
+  ): Promise<ITicketSetting> {
+    return await this.update('archivedCategory', category.id);
   }
 
   /**
@@ -41,8 +45,8 @@ class BaseTicketSettingRequest extends DefaultApiRequest<ITicketSetting> {
    * @param {Message | null} message
    * @returns {Promise<ITicketSetting>}
    */
-  public async updateMessage (message?: string | null): Promise<ITicketSetting> {
-    return await this.update('message', (message != null) ? message : null)
+  public async updateMessage(message?: string | null): Promise<ITicketSetting> {
+    return await this.update('message', message != null ? message : null);
   }
 
   /**
@@ -50,8 +54,10 @@ class BaseTicketSettingRequest extends DefaultApiRequest<ITicketSetting> {
    * @param {string} contentButton
    * @returns {Promise<ITicketSetting>}
    */
-  public async updateContentButton (contentButton: string): Promise<ITicketSetting> {
-    return await this.update('contentButton', contentButton)
+  public async updateContentButton(
+    contentButton: string
+  ): Promise<ITicketSetting> {
+    return await this.update('contentButton', contentButton);
   }
 
   /**
@@ -59,10 +65,10 @@ class BaseTicketSettingRequest extends DefaultApiRequest<ITicketSetting> {
    * @param {string} content
    * @returns {Promise<ITicketSetting>}
    */
-  public async updateContentMessage (content: string): Promise<ITicketSetting> {
-    return await this.update('content', content)
+  public async updateContentMessage(content: string): Promise<ITicketSetting> {
+    return await this.update('content', content);
   }
 }
 
-const ticketSettingRequest = new BaseTicketSettingRequest('/ticket_setting')
-export default ticketSettingRequest
+const ticketSettingRequest = new BaseTicketSettingRequest('/ticket_setting');
+export default ticketSettingRequest;

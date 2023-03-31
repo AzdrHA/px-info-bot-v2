@@ -5,5 +5,5 @@ export enum ETicketSetCommand {
   CONTENT_BUTTON = 'admin_command_set_button/ticket/content_button',
   CONTENT_MESSAGE = 'admin_command_set_button/ticket/content_message',
   DEFAULT_CONTENT_BUTTON = 'admin_command_set_button/ticket/default_content_button',
-  DEFAULT_CONTENT_MESSAGE = 'admin_command_set_button/ticket/default_content_message',
+  DEFAULT_CONTENT_MESSAGE = 'admin_command_set_button/ticket/default_content_message'
 }

@@ -1,5 +1,5 @@
-import DefaultApiRequest from './DefaultApiRequest'
-import { type IChannelLog } from '@interface/IChannelLog'
+import DefaultApiRequest from './DefaultApiRequest';
+import { type IChannelLog } from '@interface/IChannelLog';
 
 /**
  * Role request
@@ -7,8 +7,7 @@ import { type IChannelLog } from '@interface/IChannelLog'
  * @extends DefaultApiRequest<IRole>
  * @property {IRole} IRole
  */
-class BaseChannelLogRequest extends DefaultApiRequest<IChannelLog> {
-}
+class BaseChannelLogRequest extends DefaultApiRequest<IChannelLog> {}
 
-const channelLogRequest = new BaseChannelLogRequest('/channel-log')
-export default channelLogRequest
+const channelLogRequest = new BaseChannelLogRequest('/channel-log');
+export default channelLogRequest;

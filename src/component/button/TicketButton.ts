@@ -1,9 +1,9 @@
-import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder'
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import ticketSettingRequest from '@/api/TicketSettingRequest'
-import { EGlobalButton } from '@enum/EGlobalButton'
-import { MENU_FAQ_LINK, TROUBLESHOOT_LINK } from '@config/Constant'
+import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder';
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import ticketSettingRequest from '@/api/TicketSettingRequest';
+import { EGlobalButton } from '@enum/EGlobalButton';
+import { MENU_FAQ_LINK, TROUBLESHOOT_LINK } from '@config/Constant';
 
 /**
  * @class TicketButton
@@ -14,8 +14,8 @@ export default class TicketButton extends DefaultButtonBuilder {
    * @public
    * @returns {Promise<ButtonBuilder[]>}
    */
-  public async initializeButton (): Promise<ButtonBuilder[]> {
-    const ticketSetting = await ticketSettingRequest.get()
+  public async initializeButton(): Promise<ButtonBuilder[]> {
+    const ticketSetting = await ticketSettingRequest.get();
 
     return [
       new ButtonBuilder({
@@ -34,6 +34,6 @@ export default class TicketButton extends DefaultButtonBuilder {
         style: ButtonStyle.Link,
         url: TROUBLESHOOT_LINK
       })
-    ]
+    ];
   }
 }

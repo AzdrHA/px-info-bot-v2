@@ -1,15 +1,23 @@
-import { channelMention, Colors, userMention, type VoiceState } from 'discord.js'
-import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
-import util from 'util'
-import translator from '@util/UtilTranslator'
-import { getNested } from '@util/UtilStr'
+import {
+  channelMention,
+  Colors,
+  userMention,
+  type VoiceState
+} from 'discord.js';
+import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
+import util from 'util';
+import translator from '@util/UtilTranslator';
+import { getNested } from '@util/UtilStr';
 
 /**
  * @constructor
  * @param oldState
  * @param newState
  */
-export const JoinVoiceStateUpdateEmbedBuilder = async (oldState: VoiceState, newState: VoiceState): Promise<DefaultEmbedBuilder> => {
+export const JoinVoiceStateUpdateEmbedBuilder = async (
+  oldState: VoiceState,
+  newState: VoiceState
+): Promise<DefaultEmbedBuilder> => {
   return new DefaultEmbedBuilder()
     .setColor(Colors.Green)
     .setAuthor({
@@ -30,5 +38,5 @@ export const JoinVoiceStateUpdateEmbedBuilder = async (oldState: VoiceState, new
       text: translator('User ID: {USER_ID}', {
         USER_ID: getNested('member.id', newState, 'Unknown')
       })
-    })
-}
+    });
+};

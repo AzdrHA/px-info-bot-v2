@@ -1,7 +1,7 @@
-import { Colors, type GuildMember, userMention } from 'discord.js'
-import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
-import util from 'util'
-import translator from '@util/UtilTranslator'
+import { Colors, type GuildMember, userMention } from 'discord.js';
+import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
+import util from 'util';
+import translator from '@util/UtilTranslator';
 
 /**
  * @function AddGuildMemberEmbedBuilder
@@ -14,7 +14,10 @@ import translator from '@util/UtilTranslator'
  * @param {GuildMember} newMember
  * @constructor
  */
-export const UpdateNameGuildMemberEmbedBuilder = async (oldMember: GuildMember, newMember: GuildMember): Promise<DefaultEmbedBuilder> => {
+export const UpdateNameGuildMemberEmbedBuilder = async (
+  oldMember: GuildMember,
+  newMember: GuildMember
+): Promise<DefaultEmbedBuilder> => {
   return new DefaultEmbedBuilder()
     .setColor(Colors.Blue)
     .setAuthor({
@@ -46,5 +49,5 @@ export const UpdateNameGuildMemberEmbedBuilder = async (oldMember: GuildMember, 
       text: translator('User ID: {USER_ID}', {
         USER_ID: newMember.id
       })
-    })
-}
+    });
+};

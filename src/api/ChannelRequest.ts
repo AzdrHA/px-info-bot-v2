@@ -1,5 +1,5 @@
-import DefaultApiRequest from './DefaultApiRequest'
-import { type IChannels } from '@interface/IChannels'
+import DefaultApiRequest from './DefaultApiRequest';
+import { type IChannels } from '@interface/IChannels';
 
 /**
  * Role request
@@ -7,8 +7,7 @@ import { type IChannels } from '@interface/IChannels'
  * @extends DefaultApiRequest<IRole>
  * @property {IRole} IRole
  */
-class BaseChannelRequest extends DefaultApiRequest<IChannels> {
-}
+class BaseChannelRequest extends DefaultApiRequest<IChannels> {}
 
-const channelRequest = new BaseChannelRequest('/channels')
-export default channelRequest
+const channelRequest = new BaseChannelRequest('/channels');
+export default channelRequest;

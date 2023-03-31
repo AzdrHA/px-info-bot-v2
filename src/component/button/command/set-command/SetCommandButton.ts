@@ -1,8 +1,8 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import { ESetCommand } from '@enum/command/ESetCommand'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import roleRequest from '@/api/RoleRequest'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import { ESetCommand } from '@enum/command/ESetCommand';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
+import roleRequest from '@/api/RoleRequest';
 
 /**
  * @class SetCommandButton
@@ -10,8 +10,8 @@ import roleRequest from '@/api/RoleRequest'
  */
 export default class SetCommandButton extends DefaultCanceledButtonBuilder {
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
-    const roles = (await roleRequest.get())
-    const checkRoleCreate = (roles.support != null) && (roles.member != null)
+    const roles = await roleRequest.get();
+    const checkRoleCreate = roles.support != null && roles.member != null;
 
     return [
       new ButtonBuilder({
@@ -42,6 +42,6 @@ export default class SetCommandButton extends DefaultCanceledButtonBuilder {
         customId: ESetCommand.LOGS,
         disabled: !checkRoleCreate
       })
-    ]
-  }
+    ];
+  };
 }
