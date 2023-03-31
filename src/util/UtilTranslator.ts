@@ -5,6 +5,7 @@ import UtilLogger from './UtilLogger'
 import { replace } from './UtilStr'
 import { type TUtilTranslatorOptions } from '@/interface/IUtilTranslator'
 import { PROJECT_DIR } from '@config/Constant'
+const cacheTranslation: Record<string, Record<string, string>> = {}
 
 /**
  * @public
@@ -22,7 +23,9 @@ class BaseUtilTranslator {
    * getTranslationFile('message') // ['test: test']
    */
   private getTranslationFile (file: string): Record<string, string> {
-    return parse(fs.readFileSync(util.format('%s/%s.yml', this.TRANSLATION_DIR, file), 'utf8'))
+    if (cacheTranslation[file] !== undefined) return cacheTranslation[file]
+    cacheTranslation[file] = parse(fs.readFileSync(util.format('%s/%s.yml', this.TRANSLATION_DIR, file), 'utf8'))
+    return cacheTranslation[file]
   }
 
   /**

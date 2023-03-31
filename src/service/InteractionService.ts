@@ -21,10 +21,12 @@ export default class InteractionService {
    */
   public async run (interaction: ButtonInteraction, global = false): Promise<any> {
     // Get the interaction
-    const _interaction: AbstractInteraction = INTERACTION_LIST.get(interaction.customId)
+    const Action = INTERACTION_LIST.get(interaction.customId)
 
     // Ignore if interaction is not found
-    if (_interaction == null) return false
+    if (Action == null) return false
+
+    const _interaction: AbstractInteraction = new Action(interaction.client, interaction)
 
     // Ignore if interaction is not global
     if (_interaction.global !== global) return false

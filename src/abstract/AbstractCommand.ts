@@ -1,19 +1,15 @@
-import AbstractAction, { type Callback } from '@abstract/AbstractAction'
+import AbstractAction from '@abstract/AbstractAction'
 import type Client from '@/Client'
-import { type Message, type MessageCreateOptions, type MessagePayload, type TextChannel } from 'discord.js'
+import { type Message, type MessageCreateOptions, type MessagePayload } from 'discord.js'
 import { EPermission } from '@enum/EPermission'
 import roleRequest from '@/api/RoleRequest'
 import { type IRole } from '@interface/IRole'
-import { type MessageCollector } from '@collector/MessageCollector'
-import type ButtonCollector from '@collector/ButtonCollector'
-import { type MessageButtonCollector } from '@collector/MessageButtonCollector'
 
 /**
  * @class AbstractCommand
  * @abstract
  */
 export default abstract class AbstractCommand extends AbstractAction {
-  public client: Client
   public message: Message
   public abstract alias: string[]
   public args: string[] = []
@@ -28,8 +24,7 @@ export default abstract class AbstractCommand extends AbstractAction {
    * @protected
    */
   public constructor (client: Client, message: Message) {
-    super()
-    this.client = client
+    super(client, message)
     this.message = message
   }
   public abstract run (): Promise<any>
@@ -55,35 +50,6 @@ export default abstract class AbstractCommand extends AbstractAction {
   }
 
   /**
-   * @public
-   * @param {Message} message
-   * @returns {Promise<Message>}
-   */
-  public async buttonCollector (message: Message): Promise<ButtonCollector> {
-    return await super.parentButtonCollector(message, this.message)
-  }
-
-  /**
-   * @public
-   * @param {Message} message
-   * @param {(message: Message) => void} callback
-   * @returns {Promise<Message>}
-   */
-  public async messageCollector (message: Message, callback?: Callback): Promise<MessageCollector> {
-    return await super.parentMessageCollector(message, this.message, callback)
-  }
-
-  /**
-   * @public
-   * @param {Message} message
-   * @param {(message: content) => void} callback
-   * @returns {Promise<MessageButtonCollector>}
-   */
-  public async messageButtonCollector (message: Message, callback?: Callback): Promise<MessageButtonCollector> {
-    return await super.parentMessageButtonCollector(message, this.message, callback)
-  }
-
-  /**
    * Check if the member has permission to run the command
    * @public
    * @returns {boolean}
@@ -98,15 +64,5 @@ export default abstract class AbstractCommand extends AbstractAction {
     }
     const resourcePermission = resourcePermissionList[this.permission]
     return this.message.member?.roles.cache.some(userRole => resourcePermission.includes(userRole.id))
-  }
-
-  /**
-   * @public
-   * @param {content} content
-   * @param {time} time
-   * @returns {Promise<any>}
-   */
-  public async success (content: string, time: number = 5): Promise<Message<true>> {
-    return await this.tempMessage(content, this.message.channel as TextChannel, time)
   }
 }

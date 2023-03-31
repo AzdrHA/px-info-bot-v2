@@ -95,3 +95,4 @@ Member Left: Member Left
 Role {ROLE} was juste added to {MEMBER}: Role {ROLE} was juste added to {MEMBER}
 "{MEMBER} nickname changed": "{MEMBER} nickname changed"
 Message sent by {USER} edited in {CHANNEL} [Jump to Message]({LINK}): Message sent by {USER} edited in {CHANNEL} [Jump to Message]({LINK})
+"You don't have permission to run this command!": "You don't have permission to run this command!"
