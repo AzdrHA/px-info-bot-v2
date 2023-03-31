@@ -33,5 +33,8 @@ test:
 sonar:
 	sonar-scanner   -Dsonar.projectKey=PhantomX-Bot   -Dsonar.sources=.   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=sqp_5eefb9c7749881a1123750ea1f876fd2a572c2a6
 
+test-coverage:
+	@docker-compose -f docker-compose.yml -f docker-compose.test.yml run --rm phantom-x-bot npm run test:coverage $(FILE)
+
 .PHONY: ci
 ci: lint test sonar

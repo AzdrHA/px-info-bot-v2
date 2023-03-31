@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
+    "test:coverage": "vitest --coverage",
     "start": "ts-node-dev src/App.ts",
     "build": "tsc",
     "lint": "eslint --ext .ts . --fix",

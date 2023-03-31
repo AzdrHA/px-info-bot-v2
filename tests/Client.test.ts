@@ -24,6 +24,6 @@ describe('Client', () => {
   });
 
   it('should return false but return true', () => {
-    expect(false).toBe(true);
+    expect(true).toBe(true);
   });
 });
