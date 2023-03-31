@@ -23,7 +23,7 @@ describe('Client', () => {
     expect(client.token).toBe(DISCORD_TOKEN);
   });
 
-  it('should return true but return false', () => {
-    expect(true).toBe(false);
+  it('should return false but return true', () => {
+    expect(false).toBe(true);
   });
 });
