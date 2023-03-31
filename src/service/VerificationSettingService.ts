@@ -15,6 +15,7 @@ import VerificationButton from '@component/button/VerificationButton';
 export default class VerificationSettingService {
   public static readonly DEFAULT_MESSAGE_CONTENT =
     'Hello, to access the other channels you need to fullfill the verification. To do this just click the **{CONTENT_BUTTON}** button below this message.';
+
   public static readonly DEFAULT_BUTTON_CONTENT = 'Verify';
 
   public updateChannel = async (

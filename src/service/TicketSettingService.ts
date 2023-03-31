@@ -16,6 +16,7 @@ import TicketButton from '@component/button/TicketButton';
 export default class TicketSettingService {
   public static readonly DEFAULT_MESSAGE_CONTENT =
     'Open a ticket by clicking on `{CONTENT_BUTTON}` button.\n*Make sure to read https://phantom-x.info/menu-faq and https://phantom-x.info/troubleshoot before you open a ticket!*';
+
   public static readonly DEFAULT_BUTTON_CONTENT = 'Create Ticket';
   public updateChannel = async (
     client: Client,
