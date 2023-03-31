@@ -1,30 +1,30 @@
-import { readdirSync, statSync } from 'fs'
-import { parse, resolve } from 'path'
-import { Guild } from 'discord.js'
-import * as util from 'util'
-import type Client from '@/Client'
-import { formalizeEventName, isScriptFile } from '@/util/UtilStr'
-import AppException from '@exception/AppException'
-import AbstractEvent from '@abstract/AbstractEvent'
-import AbstractCommand from '@abstract/AbstractCommand'
-import AbstractInteraction from '@abstract/AbstractInteraction'
-import { COMMAND_LIST, EVENT_LIST, INTERACTION_LIST } from '@/config/Constant'
-import { ENodeEnv } from '@/enum/ENodeEnv'
-import { SUPPORT_DISCORD } from '@config/AppConfig'
-import UtilLogger from '@/util/UtilLogger'
+import { readdirSync, statSync } from 'fs';
+import { parse, resolve } from 'path';
+import { Guild } from 'discord.js';
+import * as util from 'util';
+import type Client from '@/Client';
+import { formalizeEventName, isScriptFile } from '@/util/UtilStr';
+import AppException from '@exception/AppException';
+import AbstractEvent from '@abstract/AbstractEvent';
+import AbstractCommand from '@abstract/AbstractCommand';
+import AbstractInteraction from '@abstract/AbstractInteraction';
+import { COMMAND_LIST, EVENT_LIST, INTERACTION_LIST } from '@/config/Constant';
+import { ENodeEnv } from '@/enum/ENodeEnv';
+import { SUPPORT_DISCORD } from '@config/AppConfig';
+import UtilLogger from '@/util/UtilLogger';
 
 /**
  * @class LoadFileService
  */
 export default class LoadFileService {
-  public client: Client
+  public client: Client;
 
   /**
    * @constructor
    * @param {client} client
    */
-  constructor (client: Client) {
-    this.client = client
+  constructor(client: Client) {
+    this.client = client;
   }
 
   /**
@@ -32,12 +32,12 @@ export default class LoadFileService {
    * @param path
    * @returns {Promise<any>}
    */
-  public async searchFolder (path: string): Promise<any> {
+  public async searchFolder(path: string): Promise<any> {
     for (const file of readdirSync(path)) {
-      const filePath = resolve(path, file)
+      const filePath = resolve(path, file);
 
-      if (statSync(filePath).isDirectory()) await this.searchFolder(filePath)
-      await this.loadFile(filePath)
+      if (statSync(filePath).isDirectory()) await this.searchFolder(filePath);
+      await this.loadFile(filePath);
     }
   }
 
@@ -46,27 +46,32 @@ export default class LoadFileService {
    * @param {string} filePath
    * @returns {Promise<any>}
    */
-  public async loadFile (filePath: string): Promise<any> {
+  public async loadFile(filePath: string): Promise<any> {
     // Ignore if file is not a script file (.js) or (.ts)
-    if (!isScriptFile(filePath)) return
+    if (!isScriptFile(filePath)) return;
 
-    const fileName = parse(filePath).name
-    const { default: Action } = await import(filePath)
+    const fileName = parse(filePath).name;
+    const { default: Action } = await import(filePath);
 
-    const event = new Action(this.client)
+    const event = new Action(this.client);
     if (event.constructor.name !== fileName) {
-      throw new AppException(util.format('The file %s and its class name are not identical', fileName))
+      throw new AppException(
+        util.format(
+          'The file %s and its class name are not identical',
+          fileName
+        )
+      );
     }
 
     if (event instanceof AbstractEvent) {
-      await this.loadEvent(fileName, event, Action)
+      await this.loadEvent(fileName, event, Action);
     } else if (event instanceof AbstractCommand) {
-      await this.loadCommand(fileName, event, Action)
+      await this.loadCommand(fileName, event, Action);
     } else if (event instanceof AbstractInteraction) {
-      await this.loadInteraction(fileName, event, Action)
+      await this.loadInteraction(fileName, event, Action);
     }
 
-    console.log(util.format('Loaded %s', fileName))
+    console.log(util.format('Loaded %s', fileName));
   }
 
   /**
@@ -77,24 +82,34 @@ export default class LoadFileService {
    * @returns {Promise<any>}
    * @private
    */
-  private async loadEvent (fileName: string, event: AbstractEvent, Action: () => AbstractEvent): Promise<any> {
+  private async loadEvent(
+    fileName: string,
+    event: AbstractEvent,
+    Action: () => AbstractEvent
+  ): Promise<any> {
     if (EVENT_LIST.has(fileName)) {
-      throw new AppException(util.format('The event %s is already registered', fileName))
+      throw new AppException(
+        util.format('The event %s is already registered', fileName)
+      );
     }
 
-    EVENT_LIST.set(fileName, Action)
+    EVENT_LIST.set(fileName, Action);
 
     this.client.on(formalizeEventName(fileName), (...args) => {
-      const firstArg = args[0]
-      if ((Boolean(firstArg)) && firstArg.guild instanceof Guild && firstArg.guild.id !== SUPPORT_DISCORD) {
-        return
+      const firstArg = args[0];
+      if (
+        Boolean(firstArg) &&
+        firstArg.guild instanceof Guild &&
+        firstArg.guild.id !== SUPPORT_DISCORD
+      ) {
+        return;
       }
 
       if (!UtilLogger.DISABLE_EVENT_LOG.includes(fileName)) {
-        UtilLogger.event(util.format('%s called', fileName))
+        UtilLogger.event(util.format('%s called', fileName));
       }
-      void event.run(...args)
-    })
+      void event.run(...args);
+    });
   }
 
   /**
@@ -104,13 +119,19 @@ export default class LoadFileService {
    * @param {() => AbstractCommand} Action
    * @private
    */
-  private async loadCommand (fileName: string, event: AbstractCommand, Action: () => AbstractCommand): Promise<any> {
+  private async loadCommand(
+    fileName: string,
+    event: AbstractCommand,
+    Action: () => AbstractCommand
+  ): Promise<any> {
     event.alias.forEach((name) => {
       if (COMMAND_LIST.has(name) && process.env.NODE_ENV !== ENodeEnv.TEST) {
-        throw new AppException(util.format('The command %s is already registered', fileName))
+        throw new AppException(
+          util.format('The command %s is already registered', fileName)
+        );
       }
-      COMMAND_LIST.set(name, Action)
-    })
+      COMMAND_LIST.set(name, Action);
+    });
   }
 
   /**
@@ -120,10 +141,19 @@ export default class LoadFileService {
    * @param {() => AbstractCommand} Action
    * @private
    */
-  private async loadInteraction (fileName: string, event: AbstractInteraction, Action: () => AbstractInteraction): Promise<any> {
-    if (INTERACTION_LIST.has(event.id) && process.env.NODE_ENV !== ENodeEnv.TEST) {
-      throw new AppException(util.format('The interaction %s is already registered', fileName))
+  private async loadInteraction(
+    fileName: string,
+    event: AbstractInteraction,
+    Action: () => AbstractInteraction
+  ): Promise<any> {
+    if (
+      INTERACTION_LIST.has(event.id) &&
+      process.env.NODE_ENV !== ENodeEnv.TEST
+    ) {
+      throw new AppException(
+        util.format('The interaction %s is already registered', fileName)
+      );
     }
-    INTERACTION_LIST.set(event.id, Action)
+    INTERACTION_LIST.set(event.id, Action);
   }
 }

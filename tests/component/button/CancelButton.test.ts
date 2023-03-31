@@ -1,8 +1,13 @@
-import { type APIButtonComponent, type ButtonComponentData, ButtonStyle, ComponentType } from 'discord.js'
-import { describe, it, expect } from 'vitest'
-import CancelButton from '@component/button/CancelButton'
-import { EGlobalButton } from '@enum/EGlobalButton'
-import translator from '@util/UtilTranslator'
+import {
+  type APIButtonComponent,
+  type ButtonComponentData,
+  ButtonStyle,
+  ComponentType
+} from 'discord.js';
+import { describe, it, expect } from 'vitest';
+import CancelButton from '@component/button/CancelButton';
+import { EGlobalButton } from '@enum/EGlobalButton';
+import translator from '@util/UtilTranslator';
 
 describe('CancelButton', () => {
   it('should return an array of button', async () => {
@@ -12,7 +17,7 @@ describe('CancelButton', () => {
       style: ButtonStyle.Danger,
       type: ComponentType.Button,
       emoji: undefined
-    }
-    expect(new CancelButton().data).toStrictEqual(button)
-  })
-})
+    };
+    expect(new CancelButton().data).toStrictEqual(button);
+  });
+});

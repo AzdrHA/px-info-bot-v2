@@ -1,7 +1,7 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import { ELogSetCommand } from '@enum/command/ELogSetCommand'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
+import { ELogSetCommand } from '@enum/command/ELogSetCommand';
 
 /**
  * @class LogSetCommandButton
@@ -54,6 +54,6 @@ export default class LogSetCommandButton extends DefaultCanceledButtonBuilder {
         style: ButtonStyle.Primary,
         customId: ELogSetCommand.COMMAND
       })
-    ]
-  }
+    ];
+  };
 }

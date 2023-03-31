@@ -1,8 +1,8 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import { ETicketSetCommand } from '@enum/command/ETicketSetCommand'
-import ticketSettingRequest from '@/api/TicketSettingRequest'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
+import { ETicketSetCommand } from '@enum/command/ETicketSetCommand';
+import ticketSettingRequest from '@/api/TicketSettingRequest';
 
 /**
  * @class TicketSetCommandButton
@@ -14,7 +14,7 @@ export default class TicketSetCommandButton extends DefaultCanceledButtonBuilder
    * @return {Promise<ButtonBuilder[]>}
    */
   public initializeButton = async (): Promise<ButtonBuilder[]> => {
-    const ticketSetting = await ticketSettingRequest.get()
+    const ticketSetting = await ticketSettingRequest.get();
 
     return [
       new ButtonBuilder({
@@ -45,6 +45,6 @@ export default class TicketSetCommandButton extends DefaultCanceledButtonBuilder
         customId: ETicketSetCommand.CONTENT_MESSAGE,
         disabled: ticketSetting.category == null
       })
-    ]
-  }
+    ];
+  };
 }

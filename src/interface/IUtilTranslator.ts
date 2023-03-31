@@ -1,1 +1,1 @@
-export type TUtilTranslatorOptions = Record<string, string>
+export type TUtilTranslatorOptions = Record<string, string>;

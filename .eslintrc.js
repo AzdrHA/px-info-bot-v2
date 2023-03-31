@@ -5,22 +5,26 @@ module.exports = {
     commonjs: true,
     es2021: true
   },
-  extends: 'standard-with-typescript',
-  overrides: [
-  ],
+  plugins: ['prettier'],
+  extends: ['standard-with-typescript', 'prettier'],
+  overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
     project: ['./tsconfig.json']
   },
   rules: {
-    'require-jsdoc': ['error', {
-      require: {
-        FunctionDeclaration: true,
-        MethodDefinition: true,
-        ClassDeclaration: true,
-        ArrowFunctionExpression: true,
-        FunctionExpression: true
+    'prettier/prettier': 2, // Means error,
+    'require-jsdoc': [
+      'error',
+      {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: true,
+          ClassDeclaration: true,
+          ArrowFunctionExpression: true,
+          FunctionExpression: true
+        }
       }
-    }]
+    ]
   }
-}
+};

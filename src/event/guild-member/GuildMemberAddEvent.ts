@@ -1,10 +1,14 @@
-import AbstractEvent from '@abstract/AbstractEvent'
-import { type ButtonInteraction, type GuildMember, type Message } from 'discord.js'
-import { updateMemberCountRequest } from '@/api/ApiRequest'
-import { AddGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/AddGuildMemberEmbedBuilder'
-import channelLogRequest from '@/api/ChannelLogRequest'
-import GuildMemberService from '@service/GuildMemberService'
-import type Client from '@/Client'
+import AbstractEvent from '@abstract/AbstractEvent';
+import {
+  type ButtonInteraction,
+  type GuildMember,
+  type Message
+} from 'discord.js';
+import { updateMemberCountRequest } from '@/api/ApiRequest';
+import { AddGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/AddGuildMemberEmbedBuilder';
+import channelLogRequest from '@/api/ChannelLogRequest';
+import GuildMemberService from '@service/GuildMemberService';
+import type Client from '@/Client';
 
 /**
  * @class GuildMemberAddEvent
@@ -19,8 +23,12 @@ export default class GuildMemberAddEvent extends AbstractEvent {
    * @param interaction
    * @param guildMemberService
    */
-  public constructor (client: Client, interaction: ButtonInteraction | Message, private readonly guildMemberService = new GuildMemberService()) {
-    super(client, interaction)
+  public constructor(
+    client: Client,
+    interaction: ButtonInteraction | Message,
+    private readonly guildMemberService = new GuildMemberService()
+  ) {
+    super(client, interaction);
   }
 
   /**
@@ -31,12 +39,12 @@ export default class GuildMemberAddEvent extends AbstractEvent {
    * @public
    * @param {GuildMember} member
    */
-  public async run (member: GuildMember): Promise<any> {
-    await updateMemberCountRequest(member.guild)
-    await this.guildMemberService.checkAntiHoist(member, true).catch(() => {})
+  public async run(member: GuildMember): Promise<any> {
+    await updateMemberCountRequest(member.guild);
+    await this.guildMemberService.checkAntiHoist(member, true).catch(() => {});
     await this.log({
       embed: AddGuildMemberEmbedBuilder(member),
       channel: (await channelLogRequest.get()).member
-    })
+    });
   }
 }

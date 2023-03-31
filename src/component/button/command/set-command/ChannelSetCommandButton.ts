@@ -1,7 +1,7 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import { EChannelSetCommand } from '@enum/command/EChannelSetCommand'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import { EChannelSetCommand } from '@enum/command/EChannelSetCommand';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
 
 /**
  * @class ChannelSetCommandButton
@@ -39,6 +39,6 @@ export default class ChannelSetCommandButton extends DefaultCanceledButtonBuilde
         style: ButtonStyle.Primary,
         customId: EChannelSetCommand.SHOP_ANNOUNCEMENT
       })
-    ]
-  }
+    ];
+  };
 }

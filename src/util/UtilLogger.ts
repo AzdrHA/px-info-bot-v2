@@ -1,27 +1,27 @@
-import chalk from 'chalk'
-import * as util from 'util'
-import { leadingZero } from './UtilStr'
+import chalk from 'chalk';
+import * as util from 'util';
+import { leadingZero } from './UtilStr';
 
 /**
  * @class BaseUtilLogger
  */
 class BaseUtilLogger {
-  public DISABLE_EVENT_LOG = ['MessageCreateEvent']
+  public DISABLE_EVENT_LOG = ['MessageCreateEvent'];
   /**
    * @public
    * @static
    * @return {string}
    */
   readonly dateFormat = (): string => {
-    const date = new Date()
-    const day = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-    const hours = leadingZero(date.getHours())
-    const minutes = leadingZero(date.getMinutes())
-    const seconds = leadingZero(date.getSeconds())
-    return chalk.gray(`${month}/${day}/${year} ${hours}:${minutes}:${seconds}`)
-  }
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const hours = leadingZero(date.getHours());
+    const minutes = leadingZero(date.getMinutes());
+    const seconds = leadingZero(date.getSeconds());
+    return chalk.gray(`${month}/${day}/${year} ${hours}:${minutes}:${seconds}`);
+  };
 
   /**
    * @public
@@ -30,10 +30,8 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public log = (type: string, message: string): void => {
-    console.log(
-      util.format('[%s] %s: %s', type, this.dateFormat(), message)
-    )
-  }
+    console.log(util.format('[%s] %s: %s', type, this.dateFormat(), message));
+  };
 
   /**
    * @public
@@ -41,9 +39,9 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public info = (message: string): void => {
-    const info = chalk.cyan('INFO')
-    this.log(info, message)
-  }
+    const info = chalk.cyan('INFO');
+    this.log(info, message);
+  };
 
   /**
    * @public
@@ -51,9 +49,9 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public success = (message: string): void => {
-    const success = chalk.green('SUCCESS')
-    this.log(success, message)
-  }
+    const success = chalk.green('SUCCESS');
+    this.log(success, message);
+  };
 
   /**
    * @public
@@ -61,9 +59,9 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public event = (message: string): void => {
-    const event = chalk.magenta('EVENT')
-    this.log(event, message)
-  }
+    const event = chalk.magenta('EVENT');
+    this.log(event, message);
+  };
 
   /**
    * @public
@@ -71,9 +69,9 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public command = (message: string): void => {
-    const command = chalk.yellow('COMMAND')
-    this.log(command, message)
-  }
+    const command = chalk.yellow('COMMAND');
+    this.log(command, message);
+  };
 
   /**
    * @public
@@ -81,9 +79,9 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public interaction = (message: string): void => {
-    const interaction = chalk.blue('INTERACTION')
-    this.log(interaction, message)
-  }
+    const interaction = chalk.blue('INTERACTION');
+    this.log(interaction, message);
+  };
 
   /**
    * @public
@@ -91,9 +89,9 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public error = (message: string): void => {
-    const error = chalk.red('ERROR')
-    this.log(error, message)
-  }
+    const error = chalk.red('ERROR');
+    this.log(error, message);
+  };
 
   /**
    * @public
@@ -101,19 +99,19 @@ class BaseUtilLogger {
    * @param {string} message
    */
   public warn = (message: string): void => {
-    const warn = chalk.yellow('WARN')
-    this.log(warn, message)
-  }
+    const warn = chalk.yellow('WARN');
+    this.log(warn, message);
+  };
 
   public apiRequest = (message: string): void => {
-    const apiRequest = chalk.blue('API REQUEST')
-    this.log(apiRequest, message)
-  }
+    const apiRequest = chalk.blue('API REQUEST');
+    this.log(apiRequest, message);
+  };
 
   public cacheRequest = (message: string): void => {
-    const cacheRequest = chalk.magenta('CACHE REQUEST')
-    this.log(cacheRequest, message)
-  }
+    const cacheRequest = chalk.magenta('CACHE REQUEST');
+    this.log(cacheRequest, message);
+  };
 }
 
-export default new BaseUtilLogger()
+export default new BaseUtilLogger();

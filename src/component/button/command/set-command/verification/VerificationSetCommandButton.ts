@@ -1,7 +1,7 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import { EVerificationSetCommand } from '@enum/command/EVerificationSetCommand';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
 
 /**
  * @class VerificationSetCommandButton
@@ -29,6 +29,6 @@ export default class VerificationSetCommandButton extends DefaultCanceledButtonB
         style: ButtonStyle.Primary,
         customId: EVerificationSetCommand.MESSAGE
       })
-    ]
-  }
+    ];
+  };
 }

@@ -1,6 +1,6 @@
-import DefaultApiRequest from './DefaultApiRequest'
-import { type IVerificationSetting } from '@interface/IVerificationSetting'
-import { type TextChannel } from 'discord.js'
+import DefaultApiRequest from './DefaultApiRequest';
+import { type IVerificationSetting } from '@interface/IVerificationSetting';
+import { type TextChannel } from 'discord.js';
 
 /**
  * Role request
@@ -14,8 +14,10 @@ class BaseVerificationSettingRequest extends DefaultApiRequest<IVerificationSett
    * @param {string} channel
    * @returns {Promise<IVerificationSetting>}
    */
-  public async updateChannel (channel: TextChannel): Promise<IVerificationSetting> {
-    return await this.update('channel', channel.id)
+  public async updateChannel(
+    channel: TextChannel
+  ): Promise<IVerificationSetting> {
+    return await this.update('channel', channel.id);
   }
 
   /**
@@ -23,8 +25,10 @@ class BaseVerificationSettingRequest extends DefaultApiRequest<IVerificationSett
    * @param {?: string | null} message
    * @returns {Promise<IVerificationSetting>}
    */
-  public async updateMessage (message?: string | null): Promise<IVerificationSetting> {
-    return await this.update('message', message)
+  public async updateMessage(
+    message?: string | null
+  ): Promise<IVerificationSetting> {
+    return await this.update('message', message);
   }
 
   /**
@@ -32,8 +36,10 @@ class BaseVerificationSettingRequest extends DefaultApiRequest<IVerificationSett
    * @param {string} content
    * @returns {Promise<IVerificationSetting>}
    */
-  public async updateContentButton (content: string): Promise<IVerificationSetting> {
-    return await this.update('contentButton', content)
+  public async updateContentButton(
+    content: string
+  ): Promise<IVerificationSetting> {
+    return await this.update('contentButton', content);
   }
 
   /**
@@ -41,10 +47,14 @@ class BaseVerificationSettingRequest extends DefaultApiRequest<IVerificationSett
    * @param {string} content
    * @returns {Promise<IVerificationSetting>}
    */
-  public async updateMessageContent (content: string): Promise<IVerificationSetting> {
-    return await this.update('content', content)
+  public async updateMessageContent(
+    content: string
+  ): Promise<IVerificationSetting> {
+    return await this.update('content', content);
   }
 }
 
-const verificationSettingRequest = new BaseVerificationSettingRequest('/verification')
-export default verificationSettingRequest
+const verificationSettingRequest = new BaseVerificationSettingRequest(
+  '/verification'
+);
+export default verificationSettingRequest;

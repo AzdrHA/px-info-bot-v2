@@ -3,5 +3,5 @@ export enum EVerificationSetCommand {
   MESSAGE = 'admin_command_set_button/verification/message',
   CONTENT_BUTTON = 'admin_command_set_button/verification/content_button',
   DEFAULT_MESSAGE = 'verification/default_message',
-  DEFAULT_BUTTON = 'verification/default_button',
+  DEFAULT_BUTTON = 'verification/default_button'
 }

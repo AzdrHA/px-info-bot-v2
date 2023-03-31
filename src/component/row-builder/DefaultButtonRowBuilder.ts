@@ -1,4 +1,4 @@
-import { ActionRowBuilder, type ButtonBuilder } from 'discord.js'
+import { ActionRowBuilder, type ButtonBuilder } from 'discord.js';
 
 /**
  * @return {DefaultButtonRowBuilder}

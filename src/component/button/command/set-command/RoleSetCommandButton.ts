@@ -1,7 +1,7 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import { ERoleSetCommand } from '@enum/command/ERoleSetCommand'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import { ERoleSetCommand } from '@enum/command/ERoleSetCommand';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
 
 /**
  * @class RoleSetCommandButton
@@ -29,6 +29,6 @@ export default class RoleSetCommandButton extends DefaultCanceledButtonBuilder {
         style: ButtonStyle.Primary,
         customId: ERoleSetCommand.ADMIN
       })
-    ]
-  }
+    ];
+  };
 }

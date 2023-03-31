@@ -1,7 +1,7 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import translator from '@util/UtilTranslator'
-import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder'
-import { ETicketSetCommand } from '@enum/command/ETicketSetCommand'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import translator from '@util/UtilTranslator';
+import DefaultCanceledButtonBuilder from '@component/button-builder/DefaultCanceledButtonBuilder';
+import { ETicketSetCommand } from '@enum/command/ETicketSetCommand';
 
 /**
  * @class ContentButtonTicketSetCommandButton
@@ -19,6 +19,6 @@ export default class ContentButtonTicketSetCommandButton extends DefaultCanceled
         style: ButtonStyle.Primary,
         customId: ETicketSetCommand.DEFAULT_CONTENT_BUTTON
       })
-    ]
-  }
+    ];
+  };
 }

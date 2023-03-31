@@ -4,5 +4,5 @@ export enum EGlobalButton {
   REFUSE = 'verification/refuse',
   CREATE_TICKET = 'ticket/create',
   CLOSE_TICKET = 'ticket/close',
-  ARCHIVE_TICKET = 'ticket/archive',
+  ARCHIVE_TICKET = 'ticket/archive'
 }

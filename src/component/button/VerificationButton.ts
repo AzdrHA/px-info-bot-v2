@@ -1,23 +1,23 @@
-import { ButtonBuilder, ButtonStyle } from 'discord.js'
-import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder'
-import translator from '@util/UtilTranslator'
-import { EGlobalButton } from '@enum/EGlobalButton'
+import { ButtonBuilder, ButtonStyle } from 'discord.js';
+import DefaultButtonBuilder from '@component/button-builder/DefaultButtonBuilder';
+import translator from '@util/UtilTranslator';
+import { EGlobalButton } from '@enum/EGlobalButton';
 
 /**
  * @class VerificationButton
  * @extends DefaultButtonBuilder
  */
 export default class VerificationButton extends DefaultButtonBuilder {
-  private readonly verifyText: string
+  private readonly verifyText: string;
 
   /**
    * @constructor
    * @param verifyText
    */
-  public constructor (verifyText: string = translator('Verify')) {
-    super()
+  public constructor(verifyText: string = translator('Verify')) {
+    super();
 
-    this.verifyText = verifyText
+    this.verifyText = verifyText;
   }
 
   /**
@@ -36,6 +36,6 @@ export default class VerificationButton extends DefaultButtonBuilder {
         style: ButtonStyle.Danger,
         customId: EGlobalButton.REFUSE
       })
-    ]
-  }
+    ];
+  };
 }
