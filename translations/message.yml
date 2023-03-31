@@ -96,3 +96,8 @@ Role {ROLE} was juste added to {MEMBER}: Role {ROLE} was juste added to {MEMBER}
 "{MEMBER} nickname changed": "{MEMBER} nickname changed"
 Message sent by {USER} edited in {CHANNEL} [Jump to Message]({LINK}): Message sent by {USER} edited in {CHANNEL} [Jump to Message]({LINK})
 "You don't have permission to run this command!": "You don't have permission to run this command!"
+Checking members...: Checking members...
+Found {SIZE} members with bad name: Found {SIZE} members with bad name
+"{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed.": "{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed."
+Invite: Invite
+Command: Command

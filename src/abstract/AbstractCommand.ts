@@ -10,7 +10,7 @@ import { type IRole } from '@interface/IRole'
  * @abstract
  */
 export default abstract class AbstractCommand extends AbstractAction {
-  public message: Message
+  public message: Message<true>
   public abstract alias: string[]
   public args: string[] = []
   public description: string = 'No description provided.'
@@ -23,7 +23,7 @@ export default abstract class AbstractCommand extends AbstractAction {
    * @param {Message} message
    * @protected
    */
-  public constructor (client: Client, message: Message) {
+  public constructor (client: Client, message: Message<true>) {
     super(client, message)
     this.message = message
   }
