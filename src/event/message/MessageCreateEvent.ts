@@ -8,6 +8,7 @@ import { COMMAND_LIST } from '@config/Constant'
 import ExceptionService from '@service/ExceptionService'
 import { CommandExecuteLogEmbedBuilder } from '@component/embed-builder/log/CommandExecuteLogEmbedBuilder'
 import channelLogRequest from '@/api/ChannelLogRequest'
+import translator from '@util/UtilTranslator'
 
 /**
  * @class MessageCreateEvent
@@ -44,19 +45,20 @@ export default class MessageCreateEvent extends AbstractEvent {
     if (name == null || name === '') return false
 
     // Get the command
-    const command: AbstractCommand | null = COMMAND_LIST.get(name)
+    const Actions = COMMAND_LIST.get(name)
 
     // Ignore if command is not found
-    if (command == null) return false
+    if (Actions == null) return false
+
+    // Create a new instance of the command
+    const command: AbstractCommand = new Actions(this.client, message)
 
     // add attribute args, message to command
     command.args = args
-    command.message = message
 
     // Check if the user has permission to run the command
     if ((await command.hasPermission()) === false) {
-      // TODO ADD TRANSLATION
-      return await message.reply('You don\'t have permission to run this command!')
+      return await message.reply(translator("You don't have permission to run this command!"))
     }
 
     // Run the command

@@ -109,7 +109,7 @@ export default class LoadFileService {
       if (COMMAND_LIST.has(name) && process.env.NODE_ENV !== ENodeEnv.TEST) {
         throw new AppException(util.format('The command %s is already registered', fileName))
       }
-      COMMAND_LIST.set(name, event)
+      COMMAND_LIST.set(name, Action)
     })
   }
 
@@ -124,6 +124,6 @@ export default class LoadFileService {
     if (INTERACTION_LIST.has(event.id) && process.env.NODE_ENV !== ENodeEnv.TEST) {
       throw new AppException(util.format('The interaction %s is already registered', fileName))
     }
-    INTERACTION_LIST.set(event.id, event)
+    INTERACTION_LIST.set(event.id, Action)
   }
 }

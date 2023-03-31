@@ -39,6 +39,7 @@ export default class ButtonCollector {
       UtilLogger.warn('No buttons found in the message')
       return
     }
+
     const author = this.interaction instanceof Message ? this.interaction.author : this.interaction.user
 
     this.collector = this.message.createMessageComponentCollector({

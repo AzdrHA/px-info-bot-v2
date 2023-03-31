@@ -6,6 +6,7 @@ import util from 'util'
 import translator from '@util/UtilTranslator'
 import { MessageButtonCollector } from '@collector/MessageButtonCollector'
 import { type ILogOptions } from '@interface/ILogOptions'
+import type Client from '@/Client'
 
 export type Callback = (content: string) => Promise<void>
 
@@ -14,37 +15,49 @@ export type Callback = (content: string) => Promise<void>
  * @class AbstractAction
  */
 export default abstract class AbstractAction {
+  public client: Client
+
+  private readonly _interaction: Message | ButtonInteraction
+
+  /**
+   * @constructor
+   * @param {Client} client
+   * @param {ButtonInteraction | Message} interaction
+   * @protected
+   */
+  public constructor (client: Client, interaction: ButtonInteraction | Message) {
+    this.client = client
+    this._interaction = interaction
+  }
+
   /**
    * @public
    * @param {Message} message
-   * @param {Message | ButtonInteraction} interaction
    * @returns {Promise<Message>}
    */
-  public async parentButtonCollector (message: Message, interaction: Message | ButtonInteraction): Promise<ButtonCollector> {
-    return new ButtonCollector(message, interaction)
+  public async buttonCollector (message: Message): Promise<ButtonCollector> {
+    return new ButtonCollector(message, this._interaction)
   }
 
   /**
    * @public
    * @param {Message} clientMessage
-   * @param {Message} executorMessage
    * @param {(message: Message) => void} callback
    * @returns {Promise<Message>}
    */
-  public async parentMessageCollector (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: Callback): Promise<MessageCollector> {
-    return new MessageCollector(clientMessage, executorMessage, callback)
+  public async messageCollector (clientMessage: Message, callback?: Callback): Promise<MessageCollector> {
+    return new MessageCollector(clientMessage, this._interaction, callback)
   }
 
   /**
    * @public
    * @param {Message} clientMessage
-   * @param executorMessage
    * @param callback
    * @returns {Promise<MessageButtonCollector>}
    * @description Create a message button collector
    */
-  public async parentMessageButtonCollector (clientMessage: Message, executorMessage: Message | ButtonInteraction, callback?: Callback): Promise<MessageButtonCollector> {
-    return new MessageButtonCollector(clientMessage, executorMessage, callback)
+  public async messageButtonCollector (clientMessage: Message, callback?: Callback): Promise<MessageButtonCollector> {
+    return new MessageButtonCollector(clientMessage, this._interaction, callback)
   }
 
   /**
@@ -54,6 +67,16 @@ export default abstract class AbstractAction {
    */
   public async buildButtons (DataClass: any): Promise<DefaultButtonRowBuilder[]> {
     return new DataClass().buildButton()
+  }
+
+  /**
+   * @public
+   * @param {content} content
+   * @param {time} time
+   * @returns {Promise<any>}
+   */
+  public async success (content: string, time: number = 5): Promise<Message<true>> {
+    return await this.tempMessage(content, this._interaction.channel as TextChannel, time)
   }
 
   /**
@@ -83,7 +106,7 @@ export default abstract class AbstractAction {
    * @returns {Promise<Message | false>}
    */
   public async log (options: ILogOptions): Promise<Message | false> {
-    const channel = (options.channel != null) ? options.client.channels.cache.get(options.channel) : null
+    const channel = (options.channel != null) ? this.client.channels.cache.get(options.channel) : null
     if (channel != null && channel instanceof TextChannel) {
       return await channel.send({
         embeds: [await options.embed]
