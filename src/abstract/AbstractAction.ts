@@ -5,8 +5,6 @@ import { MessageCollector } from '@collector/MessageCollector'
 import util from 'util'
 import translator from '@util/UtilTranslator'
 import { MessageButtonCollector } from '@collector/MessageButtonCollector'
-import type Client from '@/Client'
-import type DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
 import { type ILogOptions } from '@interface/ILogOptions'
 
 export type Callback = (content: string) => Promise<void>

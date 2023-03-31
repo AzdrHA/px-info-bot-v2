@@ -1,4 +1,4 @@
-import { Colors, type GuildMember, type Role, userMention } from 'discord.js'
+import { Colors, type GuildMember, userMention } from 'discord.js'
 import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder'
 import util from 'util'
 import translator from '@util/UtilTranslator'
