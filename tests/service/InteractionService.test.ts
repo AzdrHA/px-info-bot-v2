@@ -10,6 +10,7 @@ import {
 import InteractionService from '@service/InteractionService';
 import { type ButtonInteraction } from 'discord.js';
 import { INTERACTION_LIST } from '@config/Constant';
+import AbstractInteraction from '@abstract/AbstractInteraction';
 
 describe('InteractionService', () => {
   let interactionService: InteractionService;
@@ -18,11 +19,17 @@ describe('InteractionService', () => {
   beforeAll(() => {
     interactionService = new InteractionService();
 
-    INTERACTION_LIST.set('test/i', {
-      global: false,
-      setInteraction: vi.fn(),
-      run: vi.fn()
-    });
+    /**
+     * @class TestInteraction
+     * @extends AbstractInteraction
+     */
+    class TestInteraction extends AbstractInteraction {
+      global = false;
+      run = vi.fn();
+      id: string = 'test/i';
+    }
+
+    INTERACTION_LIST.set('test/i', TestInteraction);
   });
 
   beforeEach(() => {
