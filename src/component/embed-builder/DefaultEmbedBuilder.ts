@@ -1,4 +1,9 @@
-import { type APIEmbed, EmbedBuilder, type EmbedData } from 'discord.js';
+import {
+  type APIEmbed,
+  Colors,
+  EmbedBuilder,
+  type EmbedData
+} from 'discord.js';
 
 /**
  * @class DefaultEmbedBuilder
@@ -11,8 +16,12 @@ export default class DefaultEmbedBuilder extends EmbedBuilder {
    * @param data
    */
   public constructor(data?: EmbedData | APIEmbed) {
+    if (data == null) data = {};
+    if (data.color == null) {
+      const colorKeys = Object.values(Colors);
+      data.color = colorKeys[Math.floor(Math.random() * colorKeys.length)];
+    }
+    if (data.timestamp == null) data.timestamp = new Date();
     super(data);
-    this.setColor('Random');
-    this.setTimestamp();
   }
 }
