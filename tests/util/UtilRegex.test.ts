@@ -2,7 +2,8 @@ import { describe, it, expect } from 'vitest';
 import {
   getIdFromChannelMention,
   getIdFromMention,
-  getIdFromRoleMention
+  getIdFromRoleMention,
+  isBadName
 } from '@util/UtilRegex';
 
 describe('UtilRegex', () => {
@@ -25,5 +26,19 @@ describe('UtilRegex', () => {
     const roleMention = `<@&${role}>`;
     expect(getIdFromRoleMention(roleMention)).toBe(role);
     expect(getIdFromRoleMention(role)).toBe(role);
+  });
+
+  describe('isBadName', () => {
+    it('should return true if the name starts with not a valid character', () => {
+      expect(isBadName('1998')).toBeTruthy();
+      expect(isBadName('1Sy_')).toBeTruthy();
+      expect(isBadName('[23]Sigmet')).toBeTruthy();
+    });
+
+    it('should return false if the name starts with a valid character', () => {
+      expect(isBadName('jean')).toBeFalsy();
+      expect(isBadName('Zerø')).toBeFalsy();
+      expect(isBadName('A-Lister')).toBeFalsy();
+    });
   });
 });

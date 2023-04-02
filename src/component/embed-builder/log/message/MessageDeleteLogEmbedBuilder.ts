@@ -31,7 +31,6 @@ export const MessageDeleteLogEmbedBuilder = async (
         }
       )
     )
-    .setTimestamp(new Date())
     .setFooter({
       text: translator('User ID: {USER} | Message ID: {MESSAGE}', {
         USER: message.author.id,
