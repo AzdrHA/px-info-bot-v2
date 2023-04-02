@@ -22,4 +22,8 @@ describe('Client', () => {
     expect(client.prefix).toBe(DISCORD_PREFIX);
     expect(client.token).toBe(DISCORD_TOKEN);
   });
+
+  it('should return false but return true', () => {
+    expect(true).toBe(true);
+  });
 });

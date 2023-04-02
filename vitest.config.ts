@@ -2,10 +2,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   test: {
-    watch: false,
-    coverage: {
-      enabled: true
-    }
+    watch: false
   },
   resolve: {
     alias: {
