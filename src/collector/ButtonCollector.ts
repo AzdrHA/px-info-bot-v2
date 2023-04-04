@@ -7,6 +7,7 @@ import {
 import UtilLogger from '@util/UtilLogger';
 import InteractionService from '@service/InteractionService';
 import { EGlobalButton } from '@enum/EGlobalButton';
+import {type Callback} from "@abstract/AbstractAction";
 
 /**
  * @class ButtonCollector
@@ -16,19 +17,22 @@ export default class ButtonCollector {
   private readonly message: Message;
   private readonly interaction: Message | ButtonInteraction;
   private collector: InteractionCollector<ButtonInteraction> | undefined;
-  private readonly callback: ((customId: string) => void) | undefined;
+  private readonly callback: Callback | undefined;
 
   /**
    * @constructor
    * @param {Message} message
    * @param {Message | ButtonInteraction} interaction
+   * @param {Callback} callback
    */
   public constructor(
     message: Message,
-    interaction: Message | ButtonInteraction
+    interaction: Message | ButtonInteraction,
+    callback: Callback | undefined = undefined
   ) {
     this.message = message;
     this.interaction = interaction;
+    this.callback = callback;
     this.__init();
   }
 

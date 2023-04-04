@@ -1,23 +1,23 @@
-import { EChannelSetCommand } from '@enum/command/EChannelSetCommand';
 import AbstractChannelInteraction from "@abstract/AbstractChannelInteraction";
+import {type IChannels} from "@interface/IChannels";
+import {type EChannelSetCommand} from "@enum/command/EChannelSetCommand";
 import {getIdFromChannelMention} from "@util/UtilRegex";
 import {TextChannel} from "discord.js";
 import AppException from "@exception/AppException";
-import {type IMenuInfo} from "@interface/IMenuInfo";
-import menuInfoRequest from "@/api/MenuInfoRequest";
+import channelRequest from "@/api/ChannelRequest";
 import translator from "@util/UtilTranslator";
-import UtilLogger from "@util/UtilLogger";
 import util from "util";
+import UtilLogger from "@util/UtilLogger";
 
 /**
- * @class MenuInfoChannelInteraction
- * @extends AbstractChannelInteraction
+ * @abstract
+ * @class AbstractChannelInteraction
+ * @extends AbstractInteraction
  */
-export default class MenuInfoChannelInteraction extends AbstractChannelInteraction {
-  protected channel: keyof IMenuInfo = 'channel';
+export default abstract class AbstractSaveChannelInteraction extends AbstractChannelInteraction {
+  public abstract channel: keyof IChannels;
   public global: boolean = false;
-  public id: string = EChannelSetCommand.MENU_INFO;
-
+  public abstract id: EChannelSetCommand;
 
   /**
    * @param {string} content
@@ -33,10 +33,14 @@ export default class MenuInfoChannelInteraction extends AbstractChannelInteracti
     if (channel == null || !(channel instanceof TextChannel))
       throw new AppException('The value entered is invalid');
 
-    await menuInfoRequest.update(this.channel, channel.id);
+    await channelRequest.update(this.channel, channel.id);
     await this.success(
       translator('The **{TYPE}** has been successfully updated', {
-        TYPE: translator('Channel')
+        TYPE: util.format(
+          '%s %s',
+          translator(this.channel),
+          translator('Channel')
+        )
       })
     );
     UtilLogger.success('ChannelLogInteraction callback ' + channel.id);

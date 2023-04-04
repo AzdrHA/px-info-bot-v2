@@ -3,8 +3,7 @@ import { type Message, type TextChannel, userMention } from 'discord.js';
 import type AbstractCommand from '../../abstract/AbstractCommand';
 import { ENodeEnv } from '@enum/ENodeEnv';
 import { DEVELOPERS } from '@/config/AppConfig';
-import { DONT_PING_ME } from '@config/EmojiConfig';
-import { COMMAND_LIST } from '@config/Constant';
+import {COMMAND_LIST, DONT_PING_ME_EMOJI} from '@config/Constant';
 import ExceptionService from '@service/ExceptionService';
 import { CommandExecuteLogEmbedBuilder } from '@component/embed-builder/log/CommandExecuteLogEmbedBuilder';
 import channelLogRequest from '@/api/ChannelLogRequest';
@@ -35,7 +34,7 @@ export default class MessageCreateEvent extends AbstractEvent {
 
     // Reply to message if mention the bot
     if (message.content.includes(userMention(this.client.user?.id as string))) {
-      return await message.reply(DONT_PING_ME);
+      return await message.reply(DONT_PING_ME_EMOJI);
     }
 
     // Ignore message that don't start with the prefix (in config.json)

@@ -33,10 +33,11 @@ export default abstract class AbstractAction {
   /**
    * @public
    * @param {Message} message
+   * @param {Callback} callback
    * @returns {Promise<Message>}
    */
-  public async buttonCollector(message: Message): Promise<ButtonCollector> {
-    return new ButtonCollector(message, this._interaction);
+  public async buttonCollector(message: Message, callback: Callback | undefined = undefined): Promise<ButtonCollector> {
+    return new ButtonCollector(message, this._interaction, callback);
   }
 
   /**

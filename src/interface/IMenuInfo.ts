@@ -1,14 +1,14 @@
-export interface MenuInfoType {
-  status: string;
-  dStatus: string;
-  version: string;
-  releaseDate: string;
-  serverStatus: string;
-  launcherVersion: string;
-  launcherDownloadLink: string;
-  launcherDownloadPortableLink: string;
-  launcherDownloadInstallerLink: string;
-  manualFiles: string;
-  channel: string;
-  message: string;
+export interface IMenuInfo {
+  status?: string | null | undefined;
+  dStatus?: string | null | undefined;
+  version?: string | null | undefined;
+  releaseDate?: string | null | undefined;
+  serverStatus?: string | null | undefined;
+  launcherVersion?: string | null | undefined;
+  launcherDownloadLink?: string | null | undefined;
+  launcherDownloadPortableLink?: string | null | undefined;
+  launcherDownloadInstallerLink?: string | null | undefined;
+  manualFiles?: string | null | undefined;
+  channel?: string | null | undefined;
+  message?: string | null | undefined;
 }
