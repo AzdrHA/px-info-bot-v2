@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, vi } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import VerifyInteraction from '@interaction/global/verification/VerifyInteraction';
 import type Client from '@/Client';
 import { type ButtonInteraction } from 'discord.js';

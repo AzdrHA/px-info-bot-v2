@@ -70,7 +70,7 @@ export default class ButtonCollector {
       return await interaction.message.delete().catch(() => null);
     await interaction.update({ content: 'Loading...', components: [] });
     await new InteractionService().run(interaction);
-    if (this.callback != null) this.callback(interaction.customId);
+    if (this.callback != null) await this.callback(interaction.customId);
   };
 
   /**

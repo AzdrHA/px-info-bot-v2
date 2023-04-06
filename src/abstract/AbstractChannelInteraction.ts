@@ -13,6 +13,7 @@ export default abstract class AbstractChannelInteraction extends AbstractInterac
   protected abstract channel: string;
   protected abstract callback: Callback
   public message= 'Send the ID or mention the **{TYPE}** channel you want to use'
+  public global: boolean = false;
 
   /**
    * @method run

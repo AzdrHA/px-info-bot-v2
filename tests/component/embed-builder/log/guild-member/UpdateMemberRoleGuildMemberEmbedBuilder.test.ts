@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
 import translator from '@util/UtilTranslator';
 import { UpdateMemberRoleGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/UpdateMemberRoleGuildMemberEmbedBuilder';

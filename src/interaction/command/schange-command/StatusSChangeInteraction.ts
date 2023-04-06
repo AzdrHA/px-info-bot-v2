@@ -4,17 +4,17 @@ import StatusSChangeCommandButton from "@component/button/command/schange-comman
 import {EStatusSChangeButton} from "@enum/command/schange-command/EStatusSChangeButton";
 import AppException from "@exception/AppException";
 import MenuInfoService from "@service/MenuInfoService";
-import AbstractSChangeInteraction from "@abstract/AbstractSChangeInteraction";
 import {revertInteractionIdToTranslation} from "@util/UtilStr";
+import AbstractInteraction from "@abstract/AbstractInteraction";
 
 /**
  * @class StatusSChangeInteraction
  * @extends AbstractInteraction
  */
-export default class StatusSChangeInteraction extends AbstractSChangeInteraction {
+export default class StatusSChangeInteraction extends AbstractInteraction {
   public id: string = ESChangeButton.STATUS;
-  public buttons = StatusSChangeCommandButton;
-  public key: string = 'Status';
+  public global: boolean = false;
+
 
   private readonly ACCEPT_ENTRY: string[] = [
     EStatusSChangeButton.ONLINE,
@@ -28,8 +28,26 @@ export default class StatusSChangeInteraction extends AbstractSChangeInteraction
     await new MenuInfoService().updateStatus(this.client, revertInteractionIdToTranslation(content))
     await this.success(
       translator('The new **{TYPE}** has just been modified!', {
-        TYPE: translator(this.key)
+        TYPE: translator('Status')
       })
+    );
+  }
+
+  /**
+   * @public
+   * @returns {Promise<any>}
+   */
+  public async run(): Promise<any> {
+    return await this.buttonCollector(
+      await this.send({
+        content: translator(
+          'What **{TYPE}** settings would you like to change?',
+          {
+            TYPE: translator('Status')
+          }
+        ),
+        components: await this.buildButtons(StatusSChangeCommandButton)
+      }), this.callback.bind(this)
     );
   }
 }

@@ -1,4 +1,3 @@
-import AbstractChannelInteraction from '@abstract/AbstractChannelInteraction';
 import { type IChannels } from '@interface/IChannels';
 import { EChannelSetCommand } from '@enum/command/EChannelSetCommand';
 import AbstractSaveChannelInteraction from "@abstract/AbstractSaveChannelInteraction";

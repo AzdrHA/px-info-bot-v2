@@ -39,6 +39,86 @@ export default class MenuInfoService {
   }
 
   /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} version
+   */
+  public async updateVersion(client: Client, version: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('version', version)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} releaseDate
+   */
+  public async updateReleaseDate(client: Client, releaseDate: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('releaseDate', releaseDate)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} launcherVersion
+   */
+  public async updateLauncherVersion(client: Client, launcherVersion: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('launcherVersion', launcherVersion)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} launcherDownloadLink
+   */
+  public async updateLauncherDownloadLink(client: Client, launcherDownloadLink: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('launcherDownloadLink', launcherDownloadLink)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} manualDownloadLink
+   */
+  public async updateManualFiles(client: Client, manualDownloadLink: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('manualFiles', manualDownloadLink)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} serverStatus
+   */
+  public async updateServerStatus(client: Client, serverStatus: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('serverStatus', serverStatus)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} launcherDownloadInstallerLink
+   */
+  public async updateLauncherDownloadInstallerLink(client: Client, launcherDownloadInstallerLink: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('launcherDownloadInstallerLink', launcherDownloadInstallerLink)
+    return await this.__updateMessage(client)
+  }
+
+  /**
+   * Update Version
+   * @param {Client} client
+   * @param {string} launcherDownloadPortableLink
+   */
+  public async updateLauncherDownloadPortableLink(client: Client, launcherDownloadPortableLink: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('launcherDownloadPortableLink', launcherDownloadPortableLink)
+    return await this.__updateMessage(client)
+  }
+
+  /**
    * Base Message
    * @param {IMenuInfo} menuInfo
    * @return {Promise<BaseMessageOptions>}

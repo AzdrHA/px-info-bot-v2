@@ -1,4 +1,4 @@
-import { EChannelSetCommand } from '@enum/command/EChannelSetCommand';
+import {EChannelSetCommand} from '@enum/command/EChannelSetCommand';
 import AbstractChannelInteraction from "@abstract/AbstractChannelInteraction";
 import {getIdFromChannelMention} from "@util/UtilRegex";
 import {TextChannel} from "discord.js";
@@ -14,15 +14,13 @@ import UtilLogger from "@util/UtilLogger";
  */
 export default class MenuInfoChannelInteraction extends AbstractChannelInteraction {
   protected channel: keyof IMenuInfo = 'channel';
-  public global: boolean = false;
   public id: string = EChannelSetCommand.MENU_INFO;
-
 
   /**
    * @param {string} content
    * @returns {void}
    */
-  protected  callback = async (content: string): Promise<void> => {
+  protected callback = async (content: string): Promise<void> => {
     const channel =
       this.interaction.guild != null
         ? this.interaction.guild.channels.cache.get(
