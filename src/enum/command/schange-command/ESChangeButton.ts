@@ -1,7 +1,7 @@
 export enum ESChangeButton {
   STATUS = 'admin_command_schange_button/status',
   D_STATUS = 'admin_command_schange_button/d_status',
-  // VERSION = 'admin_command_schange_button/version',
+  VERSION = 'admin_command_schange_button/version',
   // RELEASE_DATE = 'admin_command_schange_button/release_date',
   // LAUNCHER_VERSION = 'admin_command_schange_button/launcher_version',
   // LAUNCHER_DOWNLOAD_LINK = 'admin_command_schange_button/launcher_download_link',

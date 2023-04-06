@@ -7,7 +7,6 @@ import {type IMenuInfo} from "@interface/IMenuInfo";
 import menuInfoRequest from "@/api/MenuInfoRequest";
 import translator from "@util/UtilTranslator";
 import UtilLogger from "@util/UtilLogger";
-import util from "util";
 
 /**
  * @class MenuInfoChannelInteraction

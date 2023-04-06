@@ -14,10 +14,16 @@ export default class SChangeCommandButton extends DefaultCanceledButtonBuilder {
         label: translator('Status'),
         style: ButtonStyle.Primary,
         customId: ESChangeButton.STATUS
-      }),new ButtonBuilder({
+      }),
+      new ButtonBuilder({
         label: translator('DStatus'),
         style: ButtonStyle.Primary,
         customId: ESChangeButton.D_STATUS
+      }),
+      new ButtonBuilder({
+        label: translator('Version'),
+        style: ButtonStyle.Primary,
+        customId: ESChangeButton.VERSION
       }),
     ];
   };

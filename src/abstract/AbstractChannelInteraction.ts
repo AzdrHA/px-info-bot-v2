@@ -12,6 +12,7 @@ import {type Callback} from "@abstract/AbstractAction";
 export default abstract class AbstractChannelInteraction extends AbstractInteraction {
   protected abstract channel: string;
   protected abstract callback: Callback
+  public message= 'Send the ID or mention the **{TYPE}** channel you want to use'
 
   /**
    * @method run
@@ -22,7 +23,7 @@ export default abstract class AbstractChannelInteraction extends AbstractInterac
     return await this.messageButtonCollector(
       await this.send({
         content: translator(
-          'Send the ID or mention the **{TYPE}** channel you want to use',
+          this.message,
           {
             TYPE: translator(this.channel)
           }

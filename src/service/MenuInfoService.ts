@@ -28,6 +28,17 @@ export default class MenuInfoService {
   }
 
   /**
+   * Update Message
+   * @param {Client} client
+   * @param {string} status
+   * @return {Promise<Message | boolean>}
+   */
+  public async updateDStatus(client: Client, status: string): Promise<Message | boolean>  {
+    await menuInfoRequest.update('dStatus', status)
+    return await this.__updateMessage(client)
+  }
+
+  /**
    * Base Message
    * @param {IMenuInfo} menuInfo
    * @return {Promise<BaseMessageOptions>}
