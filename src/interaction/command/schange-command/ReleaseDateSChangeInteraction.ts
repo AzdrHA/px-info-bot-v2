@@ -11,7 +11,7 @@ import AppException from "@exception/AppException";
  * @extends AbstractInteraction
  */
 export default class ReleaseDateSChangeInteraction extends AbstractInteraction {
-  public id: string = ESChangeButton.VERSION;
+  public id: string = ESChangeButton.RELEASE_DATE;
   public global: boolean = false
 
   public callback = async (content: string): Promise<void> => {

@@ -5,10 +5,10 @@ import AbstractInteraction from "@abstract/AbstractInteraction";
 import MenuInfoService from "@service/MenuInfoService";
 
 /**
- * @class LauncherVersionSChangeInteraction
+ * @class ManualFileSChangeInteraction
  * @extends AbstractInteraction
  */
-export default class LauncherVersionSChangeInteraction extends AbstractInteraction {
+export default class ManualFileSChangeInteraction extends AbstractInteraction {
   public id: string = ESChangeButton.MANUAL_FILES;
   public global: boolean = false
 
