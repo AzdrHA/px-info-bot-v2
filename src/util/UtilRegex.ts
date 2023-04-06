@@ -39,3 +39,14 @@ export const isBadName = (name: string): boolean => {
 export const isVersionPattern = (version: string): boolean => {
   return /^v\.\d+\.\d+\.\d+$/i.test(version);
 }
+
+/**
+ * @param {string} date
+ * @returns {boolean}
+ * @constructor
+ * @description Check if the date is a valid
+ * @example 01-Jan-2021
+ */
+export const isDatePattern = (date: string): boolean => {
+  return /^(0[1-9]|[12][0-9]|3[01])-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)-\d{4}$/i.test(date);
+}

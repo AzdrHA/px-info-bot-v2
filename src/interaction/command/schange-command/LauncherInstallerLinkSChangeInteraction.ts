@@ -3,23 +3,20 @@ import translator from "@util/UtilTranslator";
 import CanceledButton from "@component/button/CanceledButton";
 import AbstractInteraction from "@abstract/AbstractInteraction";
 import MenuInfoService from "@service/MenuInfoService";
-import {isVersionPattern} from "@util/UtilRegex";
-import AppException from "@exception/AppException";
 
 /**
- * @class VersionSChangeInteraction
+ * @class LauncherInstallerLinkSChangeInteraction
  * @extends AbstractInteraction
  */
-export default class VersionSChangeInteraction extends AbstractInteraction {
-  public id: string = ESChangeButton.VERSION;
+export default class LauncherInstallerLinkSChangeInteraction extends AbstractInteraction {
+  public id: string = ESChangeButton.LAUNCHER_INSTALLER_LINK;
   public global: boolean = false
 
   public callback = async (content: string): Promise<void> => {
-    if (!isVersionPattern(content)) throw new AppException('The version must be in the format: v.X.X.X')
-    await new MenuInfoService().updateVersion(this.client, content)
+    await new MenuInfoService().updateLauncherDownloadInstallerLink(this.client, content)
     await this.success(
       translator('The new **{TYPE}** has just been modified!', {
-        TYPE: translator('Version')
+        TYPE: translator('Launcher Installer Link')
       })
     );
   }
@@ -32,9 +29,9 @@ export default class VersionSChangeInteraction extends AbstractInteraction {
     return await this.messageButtonCollector(
       await this.send({
         content: translator(
-          'Write the new **Version** of the menu: (Format: v.X.X.X)',
+          'Write the new **{TYPE}** of the menu',
           {
-            TYPE: translator('Version')
+            TYPE: translator('Launcher Installer Link')
           }
         ),
         components: await this.buildButtons(CanceledButton)

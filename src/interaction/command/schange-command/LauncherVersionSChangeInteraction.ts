@@ -7,19 +7,19 @@ import {isVersionPattern} from "@util/UtilRegex";
 import AppException from "@exception/AppException";
 
 /**
- * @class VersionSChangeInteraction
+ * @class LauncherVersionSChangeInteraction
  * @extends AbstractInteraction
  */
-export default class VersionSChangeInteraction extends AbstractInteraction {
-  public id: string = ESChangeButton.VERSION;
+export default class LauncherVersionSChangeInteraction extends AbstractInteraction {
+  public id: string = ESChangeButton.LAUNCHER_VERSION;
   public global: boolean = false
 
   public callback = async (content: string): Promise<void> => {
     if (!isVersionPattern(content)) throw new AppException('The version must be in the format: v.X.X.X')
-    await new MenuInfoService().updateVersion(this.client, content)
+    await new MenuInfoService().updateLauncherVersion(this.client, content)
     await this.success(
       translator('The new **{TYPE}** has just been modified!', {
-        TYPE: translator('Version')
+        TYPE: translator('Launcher Version')
       })
     );
   }
@@ -34,7 +34,7 @@ export default class VersionSChangeInteraction extends AbstractInteraction {
         content: translator(
           'Write the new **Version** of the menu: (Format: v.X.X.X)',
           {
-            TYPE: translator('Version')
+            TYPE: translator('Launcher Version')
           }
         ),
         components: await this.buildButtons(CanceledButton)
