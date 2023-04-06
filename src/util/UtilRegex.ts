@@ -37,7 +37,7 @@ export const isBadName = (name: string): boolean => {
  * @description Check if the version is a valid
  */
 export const isVersionPattern = (version: string): boolean => {
-  return /^v\.\d+\.\d+\.\d+$/i.test(version);
+  return /^v\d+\.\d+\.\d+$/i.test(version);
 }
 
 /**

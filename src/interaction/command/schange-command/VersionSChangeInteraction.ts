@@ -15,7 +15,7 @@ export default class VersionSChangeInteraction extends AbstractInteraction {
   public global: boolean = false
 
   public callback = async (content: string): Promise<void> => {
-    if (!isVersionPattern(content)) throw new AppException('The version must be in the format: v.X.X.X')
+    if (!isVersionPattern(content)) throw new AppException('The version must be in the format: vX.X.X')
     await new MenuInfoService().updateVersion(this.client, content)
     await this.success(
       translator('The new **{TYPE}** has just been modified!', {
@@ -32,7 +32,7 @@ export default class VersionSChangeInteraction extends AbstractInteraction {
     return await this.messageButtonCollector(
       await this.send({
         content: translator(
-          'Write the new **Version** of the menu: (Format: v.X.X.X)',
+          'Write the new **Version** of the menu: (Format: vX.X.X)',
           {
             TYPE: translator('Version')
           }
