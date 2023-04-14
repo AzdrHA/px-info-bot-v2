@@ -1,6 +1,6 @@
 import ButtonCollector from '@collector/ButtonCollector';
 import type DefaultButtonRowBuilder from '@component/row-builder/DefaultButtonRowBuilder';
-import { TextChannel, type ButtonInteraction, type Message } from 'discord.js';
+import {TextChannel, ButtonInteraction, type Message} from 'discord.js';
 import { MessageCollector } from '@collector/MessageCollector';
 import util from 'util';
 import translator from '@util/UtilTranslator';
@@ -94,7 +94,7 @@ export default abstract class AbstractAction {
   ): Promise<Message<true>> {
     return await this.tempMessage(
       content,
-      this._interaction.channel as TextChannel,
+      this._interaction,
       time
     );
   }
@@ -102,18 +102,20 @@ export default abstract class AbstractAction {
   /**
    * @public
    * @param {string} content
-   * @param {Channel} channel
+   * @param {Message | ButtonInteraction} interaction
    * @param {number} time
    * @returns {Promise<Message>}
    * @description Send a message
    */
   public async tempMessage(
     content: string,
-    channel: TextChannel,
+    interaction: Message | ButtonInteraction,
     time: number = 5
-  ): Promise<Message<true>> {
-    return await channel
-      .send({
+  ): Promise<any> {
+    if (interaction instanceof ButtonInteraction)
+      await interaction.message.delete().catch(() => null);
+
+    return await (interaction.channel?.send({
         content: util.format(
           '%s %s',
           content,
@@ -121,13 +123,12 @@ export default abstract class AbstractAction {
             TIME: time.toString()
           })
         )
-      })
-      .then((message: Message<true>) => {
+      }).then((message) => {
         setTimeout(() => {
           void message.delete().catch(() => null);
         }, time * 1000);
         return message;
-      });
+      }));
   }
 
   /**
