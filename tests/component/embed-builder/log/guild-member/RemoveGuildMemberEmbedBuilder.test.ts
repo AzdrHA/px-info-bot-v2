@@ -2,7 +2,6 @@ import { describe, expect, it, vi } from 'vitest';
 import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
 import translator from '@util/UtilTranslator';
 import util from 'util';
-import { AddGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/AddGuildMemberEmbedBuilder';
 import { RemoveGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/RemoveGuildMemberEmbedBuilder';
 
 describe('RemoveGuildMemberEmbedBuilder.test', () => {

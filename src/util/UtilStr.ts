@@ -104,3 +104,12 @@ export const getNested = (
       obj
     );
 };
+
+/**
+ * @public
+ * @param {string} content
+ * @returns {string}
+ */
+export const revertInteractionIdToTranslation = (content: string): string => {
+  return ucFirst(content.split('/').pop() ?? '')
+}

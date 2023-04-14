@@ -13,7 +13,6 @@ module.exports = {
     project: ['./tsconfig.json']
   },
   rules: {
-    'prettier/prettier': 2, // Means error,
     'require-jsdoc': [
       'error',
       {

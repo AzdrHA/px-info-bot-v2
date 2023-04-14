@@ -101,3 +101,20 @@ Found {SIZE} members with bad name: Found {SIZE} members with bad name
 '{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed.': '{SUCCESS_SIZE} member.s renamed. {FAIL_SIZE} member.s cannot be renamed.'
 Invite: Invite
 Command: Command
+Status: Status
+DStatus: Status
+Version: Version
+Launcher Version: Launcher Version
+Manual Files: Manual Files
+Server Status: Server Status
+Launcher Installer Link: Launcher Installer Link
+Launcher Portable Link: Launcher Portable Link
+Discord Invite: Discord Invite
+Website VK: Website VK
+Website: Website
+Download: Download
+Role: Role
+Online: Online
+Offline: Offline
+Maintenance: Maintenance
+Testing: Testing

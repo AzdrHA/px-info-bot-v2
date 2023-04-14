@@ -13,15 +13,13 @@ import Client from '@/Client';
 import MessageCreateEvent from '@event/message/MessageCreateEvent';
 import { ENodeEnv } from '@enum/ENodeEnv';
 import { DEVELOPERS, DISCORD_PREFIX, DISCORD_TOKEN } from '@config/AppConfig';
-import { DONT_PING_ME } from '@config/EmojiConfig';
-import { COMMAND_LIST } from '@config/Constant';
+import {COMMAND_LIST, DONT_PING_ME_EMOJI} from '@config/Constant';
 import AbstractCommand from '@abstract/AbstractCommand';
 
 describe('MessageCreateEvent', () => {
   let client: Client;
   let mockMessage: Message;
   let event: MessageCreateEvent;
-  let command: AbstractCommand;
 
   beforeAll(() => {
     client = new Client({
@@ -44,9 +42,18 @@ describe('MessageCreateEvent', () => {
     } as any;
     event = new MessageCreateEvent(client, mockMessage);
 
+    /**
+     * Mock a command
+     * @class TestCommand
+     * @extends {AbstractCommand}
+     */
     class TestCommand extends AbstractCommand {
       public alias: string[] = ['ping'];
 
+      /**
+       * @public
+       * @returns {Promise<any>}
+       */
       async run(): Promise<any> {
         return vi.fn().mockResolvedValue(true);
       }
@@ -79,7 +86,7 @@ describe('MessageCreateEvent', () => {
   it('should reply with a message if the bot is mentioned in the message', async () => {
     mockMessage.content = `test <@${client.user?.id as string}> test`;
     await event.run(mockMessage);
-    expect(mockMessage.reply).toHaveBeenCalledWith(DONT_PING_ME);
+    expect(mockMessage.reply).toHaveBeenCalledWith(DONT_PING_ME_EMOJI);
   });
 
   it('should return "false" if the message does not start with the prefix', async () => {

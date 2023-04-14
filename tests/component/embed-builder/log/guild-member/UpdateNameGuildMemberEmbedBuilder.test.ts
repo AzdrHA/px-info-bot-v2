@@ -1,16 +1,16 @@
 import { describe, expect, it, vi } from 'vitest';
 import DefaultEmbedBuilder from '@component/embed-builder/DefaultEmbedBuilder';
 import translator from '@util/UtilTranslator';
-import { UpdateMemberRoleGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/UpdateMemberRoleGuildMemberEmbedBuilder';
-import { roleMention, userMention } from 'discord.js';
+import { userMention } from 'discord.js';
 import util from 'util';
 import { UpdateNameGuildMemberEmbedBuilder } from '@component/embed-builder/log/guild-member/UpdateNameGuildMemberEmbedBuilder';
 
-describe('UpdateMemberRoleGuildMemberEmbedBuilder.test', () => {
+describe('UpdateNameGuildMemberEmbedBuilder.test', () => {
   it('should return an embed', async () => {
     const member = {
       id: '123456789',
       displayAvatarURL: vi.fn(),
+      displayName: 'test',
       user: {
         username: 'test'
       }
